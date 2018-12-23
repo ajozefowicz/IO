@@ -1,0 +1,7 @@
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfUserDoBazy\bin\Debug\WcfUserDoBazy.dll.config
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfUserDoBazy\bin\Debug\WcfUserDoBazy.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfUserDoBazy\bin\Debug\WcfUserDoBazy.pdb
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfUserDoBazy\obj\Debug\WcfUserDoBazy.csproj.CoreCompileInputs.cache
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfUserDoBazy\obj\Debug\WcfUserDoBazy.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfUserDoBazy\obj\Debug\WcfUserDoBazy.pdb
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfUserDoBazy\obj\Debug\WcfUserDoBazy.csprojAssemblyReference.cache
