@@ -7,15 +7,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CompositeType" nillable="true" type="tns:CompositeType" />
-  <xs:complexType name="Uzytkownik">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="emaileee" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="haslo" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="imie" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="nazwisko" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="pesel" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Uzytkownik" nillable="true" type="tns:Uzytkownik" />
 </xs:schema>

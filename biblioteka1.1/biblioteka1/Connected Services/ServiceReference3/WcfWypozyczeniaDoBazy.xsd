@@ -10,7 +10,7 @@
   <xs:complexType name="Wypozyczenie">
     <xs:sequence>
       <xs:element minOccurs="0" name="czyAktualne" type="xs:boolean" />
-      <xs:element minOccurs="0" name="dataWypozczyenia" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="dataWypozyczyenia" type="xs:dateTime" />
       <xs:element minOccurs="0" name="dataZwrotu" type="xs:dateTime" />
       <xs:element minOccurs="0" name="id" type="xs:int" />
       <xs:element minOccurs="0" name="idKsiazki" type="xs:int" />

@@ -1,4 +1,4 @@
-﻿using biblioteka1.ServiceReference1;
+﻿//using biblioteka1.ServiceReference1;
 
 namespace biblioteka1
 {
@@ -77,6 +77,7 @@ namespace biblioteka1
             this.dataGridView_ksiazkiTabela = new System.Windows.Forms.DataGridView();
             this.button_usunKsiazkezTabeli = new System.Windows.Forms.Button();
             this.button_pokazKsiazkiTabela = new System.Windows.Forms.Button();
+            this.button_pokazWypozyczenia = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPokazUserow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ksiazkiTabela)).BeginInit();
             this.SuspendLayout();
@@ -482,11 +483,22 @@ namespace biblioteka1
             this.button_pokazKsiazkiTabela.UseVisualStyleBackColor = true;
             this.button_pokazKsiazkiTabela.Click += new System.EventHandler(this.button_pokazKsiazkiTabela_Click);
             // 
+            // button_pokazWypozyczenia
+            // 
+            this.button_pokazWypozyczenia.Location = new System.Drawing.Point(463, 376);
+            this.button_pokazWypozyczenia.Name = "button_pokazWypozyczenia";
+            this.button_pokazWypozyczenia.Size = new System.Drawing.Size(117, 23);
+            this.button_pokazWypozyczenia.TabIndex = 49;
+            this.button_pokazWypozyczenia.Text = "pokaz wypozyczenia";
+            this.button_pokazWypozyczenia.UseVisualStyleBackColor = true;
+            this.button_pokazWypozyczenia.Click += new System.EventHandler(this.button_pokazWypozyczenia_Click);
+            // 
             // Form2_PanelPracownika
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1015, 450);
+            this.Controls.Add(this.button_pokazWypozyczenia);
             this.Controls.Add(this.button_usunKsiazkezTabeli);
             this.Controls.Add(this.button_pokazKsiazkiTabela);
             this.Controls.Add(this.dataGridView_ksiazkiTabela);
@@ -593,5 +605,6 @@ namespace biblioteka1
         private System.Windows.Forms.DataGridView dataGridView_ksiazkiTabela;
         private System.Windows.Forms.Button button_usunKsiazkezTabeli;
         private System.Windows.Forms.Button button_pokazKsiazkiTabela;
+        private System.Windows.Forms.Button button_pokazWypozyczenia;
     }
 }

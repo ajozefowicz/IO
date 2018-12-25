@@ -7,28 +7,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using biblioteka1.ServiceReference1;
+//using biblioteka1.ServiceReference1;
 using biblioteka1.ServiceReference2;
 using WcfWypozyczeniaDoBazy;
 
-//using WcfKsiazkaDoBazy;
+using WcfKsiazkaDoBazy4;
 using biblioteka1.ServiceReference3;
+//using.biblioteka1.ServiceReference4;
 
 namespace biblioteka1
 {
     public partial class Form3_PanelCzytelnika : Form
     {
 
-        WCFKsiazkaDataSet wc = new WCFKsiazkaDataSet();
+        //WCFKsiazkaDataSet wc = new WCFKsiazkaDataSet();
+
+        
 
 
-        WcfWypozyczeniaDoBazy.Service1 sc;
+        WcfKsiazkaDoBazy4.Service1 sc;
 
         public Form3_PanelCzytelnika()
         {
             InitializeComponent();
 
-            sc = new WcfWypozyczeniaDoBazy.Service1();
+            sc = new WcfKsiazkaDoBazy4.Service1();
         }
 
         private void button1_powrotDoGlownego_Click(object sender, EventArgs e)
@@ -175,7 +178,7 @@ namespace biblioteka1
 
 
 
-            listBox_ksiazkiWybrane.DataSource = sc.FillListBoxKsiazkiWybranePrzezUsera(key);
+            //listBox_ksiazkiWybrane.DataSource = sc.FillListBoxKsiazkiWybranePrzezUsera(key);
 
             dataGridView_ksiazki.DataSource = sc.FillListBoxKsiazkiWybranePrzezUsera(key);
 
@@ -189,7 +192,7 @@ namespace biblioteka1
 
         private void button_Wypozycz_Click(object sender, EventArgs e)
         {
-            ServiceReference1.Ksiazka ks = new ServiceReference1.Ksiazka();
+            ServiceReference4.Ksiazka ks = new ServiceReference4.Ksiazka();
 
             //ks = listBox_ksiazkiWybrane.SelectedItem as ServiceReference1.Ksiazka;// to nie działa, po wybraniu wiersza na ekranie jest nullem
 
@@ -200,18 +203,18 @@ namespace biblioteka1
 
 
 
-            Wypozyczenie w = new Wypozyczenie();
+            ServiceReference3.Wypozyczenie w = new ServiceReference3.Wypozyczenie();
             //w.id = 0; // jak zrobic by się nadpisywało
             w.idKsiazki =  Convert.ToInt32(key1); // = ks.id nie działa, bo wybrany wiersz jest nulem, wiec zamiast listBox, dataGridView
-            w.idUsera = "ana"; // to na probe, zmienić by pobierało
-            w.dataWypozczyenia = DateTime.UtcNow.ToLocalTime();
+            w.idUsera = textBox_IdUsera.Text; // to na probe, zmienić by pobierało
+            w.dataWypozyczyenia = DateTime.UtcNow.ToLocalTime();
             w.dataZwrotu = DateTime.UtcNow.ToLocalTime(); // jak tu zrobic nulla
             w.czyAktualne = true; //w momencie wypozyczenia - true, jak będziemy zwracac to zmiana na false 
 
             ServiceReference3.Service1Client service = new ServiceReference3.Service1Client();
 
 
-            // tu jeszcze trzeba zmienic stan oryginalnej ksiazki na niedostępna czyli update dodac do funkcji wypozyczenia
+            // tu jeszcze trzeba zmienic stan oryginalnej ksiazki na niedostępna czyli update dodac do funkcji wypozyczenia i date trza zmienic
 
 
 
@@ -220,6 +223,24 @@ namespace biblioteka1
                 MessageBox.Show("Ksiazka wypozyczona");
             }
             
+
+        }
+
+        private void button_dodajDoUlubionych_Click(object sender, EventArgs e)
+        {
+            // trza gdzieś zrobic pole ulubioneDla i tam np podawac id usera, w książce nie - bo moze bnyc wielu userów a pole 1, 
+            //w wypozyczeniach też nie bo nie musiał wypozyczyć by dodać do ulubioncyh - no w ostateczności tak sie zrobi
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //zwróc
+            //wybiera poprzez wybór na liście
+            //jak zwroci to zmianie ulega status w ksiazce i w wypozyczeniu zmienia się na archiwalne i nowa data zwrotu się pojawia - update
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
 
         }
     }

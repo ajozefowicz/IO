@@ -8,8 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using biblioteka1.ServiceReference1;
+//using biblioteka1.ServiceReference1;
 using biblioteka1.ServiceReference2;
+using biblioteka1.ServiceReference3;
+using biblioteka1.ServiceReference4;
+
+using WcfUserDoBazy;
+
 
 
 namespace biblioteka1
@@ -20,7 +25,9 @@ namespace biblioteka1
 
         WcfUserDoBazy.Service1 sc;
 
-        WcfWypozyczeniaDoBazy.Service1 scKsiazki;
+        WcfKsiazkaDoBazy4.Service1 scKsiazki;
+
+        WcfWypozyczeniaDoBazy.Service1 scWypozyczenia;
 
 
         public Form2_PanelPracownika()
@@ -29,7 +36,9 @@ namespace biblioteka1
 
             sc = new WcfUserDoBazy.Service1();
 
-            scKsiazki = new WcfWypozyczeniaDoBazy.Service1();
+            scKsiazki = new WcfKsiazkaDoBazy4.Service1();
+
+            scWypozyczenia = new WcfWypozyczeniaDoBazy.Service1();
         }
 
         private void button1_powrotDoGlownego_Click(object sender, EventArgs e)
@@ -80,7 +89,7 @@ namespace biblioteka1
            // k.dataWypozyczenia = DateTime.UtcNow.ToLocalTime();
            // k.dataZwrotu = DateTime.UtcNow.ToLocalTime();
 
-            ServiceReference1.Service1Client service = new ServiceReference1.Service1Client();
+            ServiceReference4.Service1Client service = new ServiceReference4.Service1Client();
 
            if ( service.InsertKsiazka(k) == 1)
             {
@@ -103,7 +112,12 @@ namespace biblioteka1
 
             ServiceReference2.Service1Client service = new ServiceReference2.Service1Client();
 
-            if (service.InsertUser(u) == 1)
+            
+
+            WcfUserDoBazy.Service1 scUser = new WcfUserDoBazy.Service1();
+
+           // if (service.InsertUser(u) == 1) -- wczesniej dzialalo
+                if (scUser.InsertUser(u) == 1)
             {
                 MessageBox.Show("uzytkownik dodany do bazy");
             }
@@ -243,6 +257,11 @@ namespace biblioteka1
         private void button_usunUsera_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button_pokazWypozyczenia_Click(object sender, EventArgs e)
+        {
+            dataGridView_ksiazkiTabela.DataSource = scWypozyczenia.FillWypozyczeniaDataGridViewTabela();
         }
     }
 }

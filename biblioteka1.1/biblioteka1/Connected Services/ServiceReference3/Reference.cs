@@ -87,7 +87,7 @@ namespace biblioteka1.ServiceReference3 {
         private bool czyAktualneField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime dataWypozczyeniaField;
+        private System.DateTime dataWypozyczyeniaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime dataZwrotuField;
@@ -125,14 +125,14 @@ namespace biblioteka1.ServiceReference3 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime dataWypozczyenia {
+        public System.DateTime dataWypozyczyenia {
             get {
-                return this.dataWypozczyeniaField;
+                return this.dataWypozyczyeniaField;
             }
             set {
-                if ((this.dataWypozczyeniaField.Equals(value) != true)) {
-                    this.dataWypozczyeniaField = value;
-                    this.RaisePropertyChanged("dataWypozczyenia");
+                if ((this.dataWypozyczyeniaField.Equals(value) != true)) {
+                    this.dataWypozyczyeniaField = value;
+                    this.RaisePropertyChanged("dataWypozyczyenia");
                 }
             }
         }

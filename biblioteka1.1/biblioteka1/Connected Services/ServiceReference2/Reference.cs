@@ -74,131 +74,6 @@ namespace biblioteka1.ServiceReference2 {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Uzytkownik", Namespace="http://schemas.datacontract.org/2004/07/WcfUserDoBazy")]
-    [System.SerializableAttribute()]
-    public partial class Uzytkownik : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string emaileeeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string hasloField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string idField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string imieField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string nazwiskoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string peselField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string emaileee {
-            get {
-                return this.emaileeeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.emaileeeField, value) != true)) {
-                    this.emaileeeField = value;
-                    this.RaisePropertyChanged("emaileee");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string haslo {
-            get {
-                return this.hasloField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.hasloField, value) != true)) {
-                    this.hasloField = value;
-                    this.RaisePropertyChanged("haslo");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string id {
-            get {
-                return this.idField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.idField, value) != true)) {
-                    this.idField = value;
-                    this.RaisePropertyChanged("id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string imie {
-            get {
-                return this.imieField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.imieField, value) != true)) {
-                    this.imieField = value;
-                    this.RaisePropertyChanged("imie");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string nazwisko {
-            get {
-                return this.nazwiskoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.nazwiskoField, value) != true)) {
-                    this.nazwiskoField = value;
-                    this.RaisePropertyChanged("nazwisko");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string pesel {
-            get {
-                return this.peselField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.peselField, value) != true)) {
-                    this.peselField = value;
-                    this.RaisePropertyChanged("pesel");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference2.IService1")]
     public interface IService1 {
@@ -214,12 +89,6 @@ namespace biblioteka1.ServiceReference2 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IService1/GetDataUsingDataContractResponse")]
         System.Threading.Tasks.Task<biblioteka1.ServiceReference2.CompositeType> GetDataUsingDataContractAsync(biblioteka1.ServiceReference2.CompositeType composite);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/InsertUser", ReplyAction="http://tempuri.org/IService1/InsertUserResponse")]
-        int InsertUser(biblioteka1.ServiceReference2.Uzytkownik u);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/InsertUser", ReplyAction="http://tempuri.org/IService1/InsertUserResponse")]
-        System.Threading.Tasks.Task<int> InsertUserAsync(biblioteka1.ServiceReference2.Uzytkownik u);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -263,14 +132,6 @@ namespace biblioteka1.ServiceReference2 {
         
         public System.Threading.Tasks.Task<biblioteka1.ServiceReference2.CompositeType> GetDataUsingDataContractAsync(biblioteka1.ServiceReference2.CompositeType composite) {
             return base.Channel.GetDataUsingDataContractAsync(composite);
-        }
-        
-        public int InsertUser(biblioteka1.ServiceReference2.Uzytkownik u) {
-            return base.Channel.InsertUser(u);
-        }
-        
-        public System.Threading.Tasks.Task<int> InsertUserAsync(biblioteka1.ServiceReference2.Uzytkownik u) {
-            return base.Channel.InsertUserAsync(u);
         }
     }
 }

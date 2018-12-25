@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WcfWypozyczeniaDoBazy
+namespace WcfKsiazkaDoBazy
 {
     [DataContract]
     public class Ksiazka

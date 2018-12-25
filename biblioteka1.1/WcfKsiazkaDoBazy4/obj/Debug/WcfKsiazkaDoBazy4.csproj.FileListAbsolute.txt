@@ -1,0 +1,14 @@
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfKsiazkaDoBazy4\bin\Debug\WcfKsiazkaDoBazy4.dll.config
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfKsiazkaDoBazy4\bin\Debug\WcfKsiazkaDoBazy4.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfKsiazkaDoBazy4\bin\Debug\WcfKsiazkaDoBazy4.pdb
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfKsiazkaDoBazy4\obj\Debug\WcfKsiazkaDoBazy4.csproj.CoreCompileInputs.cache
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfKsiazkaDoBazy4\obj\Debug\WcfKsiazkaDoBazy4.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfKsiazkaDoBazy4\obj\Debug\WcfKsiazkaDoBazy4.pdb
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfKsiazkaDoBazy4\obj\Debug\WcfKsiazkaDoBazy4.csprojAssemblyReference.cache
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.3\WcfKsiazkaDoBazy4\bin\Debug\WcfKsiazkaDoBazy4.dll.config
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.3\WcfKsiazkaDoBazy4\bin\Debug\WcfKsiazkaDoBazy4.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.3\WcfKsiazkaDoBazy4\bin\Debug\WcfKsiazkaDoBazy4.pdb
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.3\WcfKsiazkaDoBazy4\obj\Debug\WcfKsiazkaDoBazy4.csprojAssemblyReference.cache
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.3\WcfKsiazkaDoBazy4\obj\Debug\WcfKsiazkaDoBazy4.csproj.CoreCompileInputs.cache
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.3\WcfKsiazkaDoBazy4\obj\Debug\WcfKsiazkaDoBazy4.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.3\WcfKsiazkaDoBazy4\obj\Debug\WcfKsiazkaDoBazy4.pdb

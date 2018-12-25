@@ -17,14 +17,11 @@ namespace WcfUserDoBazy
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
-        [OperationContract]
-        int InsertUser(Uzytkownik u);
-
         // TODO: dodaj tutaj operacje usługi
     }
 
     // Użyj kontraktu danych, jak pokazano w poniższym przykładzie, aby dodać typy złożone do operacji usługi.
-    // Możesz dodać pliki XSD do projektu. Po skompilowaniu projektu możesz bezpośrednio użyć zdefiniowanych w nim typów danych w przestrzeni nazw „WcfUserDoBazy.ContractType”.
+    // Możesz dodać pliki XSD do projektu. Po skompilowaniu projektu możesz bezpośrednio użyć zdefiniowanych w nim typów danych w przestrzeni nazw „WcfKsiazkaDoBazy2.ContractType”.
     [DataContract]
     public class CompositeType
     {

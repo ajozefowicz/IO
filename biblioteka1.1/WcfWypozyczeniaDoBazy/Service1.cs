@@ -87,6 +87,10 @@ namespace WcfWypozyczeniaDoBazy
 
 
 
+                // // tu jeszcze trzeba zmienic stan oryginalnej ksiazki na niedostępna czyli update dodac do funkcji wypozyczenia i date trza zmienic
+
+
+
                 comm.CommandType = CommandType.Text;
                 conn.Open();
 
@@ -108,5 +112,67 @@ namespace WcfWypozyczeniaDoBazy
             }
 
         }
+
+
+
+
+        public List<Wypozyczenie> FillWypozyczeniaDataGridViewTabela()
+        {
+
+            List<Wypozyczenie> wypozyczenia = new List<Wypozyczenie>();
+
+
+            try
+            {
+
+                ////////////////////////////////// wersja 
+
+
+                string cmdText = "Select * from IWypozyczenie";
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                conn.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    Wypozyczenie w = new Wypozyczenie();
+                    w.id = Convert.ToInt32(reader["id"].ToString());
+                    w.idKsiazki = Convert.ToInt32(reader["idKsiazki"].ToString());
+                    w.idUsera = reader["idUsera"].ToString();
+                    w.dataWypozyczyenia = Convert.ToDateTime(reader["dataWypozyczenia"].ToString());
+                    w.dataZwrotu = Convert.ToDateTime(reader["dataZwrotu"].ToString());
+                    w.czyAktualne = Convert.ToBoolean(reader["czyAktualne"].ToString());
+
+
+                    wypozyczenia.Add(w);
+
+
+                }
+                return wypozyczenia;
+
+
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+
+
+
+
     }
 }

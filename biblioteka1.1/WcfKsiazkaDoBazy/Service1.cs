@@ -9,10 +9,10 @@ using System.Text;
 
 
 
-namespace WcfWypozyczeniaDoBazy
+namespace WcfKsiazkaDoBazy
 {
     // UWAGA: możesz użyć polecenia „Zmień nazwę” w menu „Refaktoryzuj”, aby zmienić nazwę klasy „Service1” w kodzie i pliku konfiguracji.
-    public class Service1 : IService1
+    public class Service1 : WcfKsiazkaDoBazy.IService1
     {
 
         public Service1()
@@ -89,7 +89,7 @@ namespace WcfWypozyczeniaDoBazy
                 comm.Parameters.AddWithValue("@rodzaj", k.rodzaj);
                 comm.Parameters.AddWithValue("@licznikWypozyczen", k.licznikWypozyczen);
                 comm.Parameters.AddWithValue("@dataWypozyczenia", DateTime.UtcNow.ToLocalTime()); //DateTime.UtcNow.ToLocalTime()
-                comm.Parameters.AddWithValue("@dataZwrotu", DateTime.UtcNow.ToLocalTime()); // tez można podac "2010-10-10"
+                comm.Parameters.AddWithValue("@dataZwrotu", "2010-10-10"); // tez można podac "2010-10-10"
                 comm.Parameters.AddWithValue("@licznikPrzedluzen", k.licznikPrzedluzen);
                 comm.Parameters.AddWithValue("@iloscStron", k.iloscStron);
                 comm.Parameters.AddWithValue("@imieAutora", k.imieAutora);
@@ -126,7 +126,7 @@ namespace WcfWypozyczeniaDoBazy
         public List<string> FillListBoxKsiazki()
         {
 
-            WCFKsiazkaDataSet wc = new WCFKsiazkaDataSet();
+            //WCFKsiazkaDataSet wc = new WCFKsiazkaDataSet();
 
             List<Ksiazka> ksiazki = new List<Ksiazka>();
 
@@ -252,7 +252,7 @@ namespace WcfWypozyczeniaDoBazy
         public List<Ksiazka> FillListBoxKsiazkiTabela ()
         {
 
-            WCFKsiazkaDataSet wc = new WCFKsiazkaDataSet();
+            //WCFKsiazkaDataSet wc = new WCFKsiazkaDataSet();
 
             List<Ksiazka> ksiazki = new List<Ksiazka>();
 
@@ -528,7 +528,7 @@ namespace WcfWypozyczeniaDoBazy
         public List<Ksiazka> FillListBoxKsiazkiWybranePrzezUsera(string key)
         {
 
-            WCFKsiazkaDataSet wc = new WCFKsiazkaDataSet();
+           // WCFKsiazkaDataSet wc = new WCFKsiazkaDataSet();
 
             List<Ksiazka> ksiazki = new List<Ksiazka>();
             try

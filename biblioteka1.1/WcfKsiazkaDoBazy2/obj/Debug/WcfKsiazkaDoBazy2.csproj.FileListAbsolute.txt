@@ -1,0 +1,2 @@
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfKsiazkaDoBazy2\obj\Debug\WcfKsiazkaDoBazy2.csprojAssemblyReference.cache
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfKsiazkaDoBazy2\obj\Debug\WcfKsiazkaDoBazy2.csproj.CoreCompileInputs.cache

@@ -1,0 +1,7 @@
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfTest\bin\Debug\WcfTest.dll.config
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfTest\bin\Debug\WcfTest.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfTest\bin\Debug\WcfTest.pdb
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfTest\obj\Debug\WcfTest.csprojAssemblyReference.cache
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfTest\obj\Debug\WcfTest.csproj.CoreCompileInputs.cache
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfTest\obj\Debug\WcfTest.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfTest\obj\Debug\WcfTest.pdb
