@@ -20,11 +20,16 @@ namespace biblioteka1
 
         WcfUserDoBazy.Service1 sc;
 
+        WcfKsiazkaDoBazy.Service1 scKsiazki;
+
+
         public Form2_PanelPracownika()
         {
             InitializeComponent();
 
             sc = new WcfUserDoBazy.Service1();
+
+            scKsiazki = new WcfKsiazkaDoBazy.Service1();
         }
 
         private void button1_powrotDoGlownego_Click(object sender, EventArgs e)
@@ -127,6 +132,111 @@ namespace biblioteka1
             //ServiceReference2.Service1Client service = new ServiceReference2.Service1Client();
 
             listBox2_uzytkownicy.DataSource = sc.FillListBoxUzytkownicy();
+
+        }
+
+        private void button_pokazKsiazki_Click(object sender, EventArgs e)
+        {
+            //listBox2_uzytkownicy.DataSource = sc.FillListBoxUzytkownicy();
+            listBox_ksiazkiPracownik.DataSource = scKsiazki.FillListBoxKsiazkiPanelPracownika();
+        }
+
+        private void button_pokazUserówDataGrid_Click(object sender, EventArgs e)
+        {
+            dataGridViewPokazUserow.DataSource = sc.FillListBoxUserzyTabela();
+
+        }
+
+        private void button_usunUserazTabeli_Click(object sender, EventArgs e)
+        {
+            // int rowIndex = dataGridViewPokazUserow.CurrentCell.RowIndex;
+            //dataGridViewPokazUserow.Rows.RemoveAt(rowIndex);
+
+
+
+
+
+
+            //Uzytkownik u = new Uzytkownik();
+
+
+            //int index = dataGridViewPokazUserow.CurrentRow.Index;
+
+            //  u.id = index.ToString();
+
+
+            /*
+            u.id = (dataGridViewPokazUserow.CurrentCell.ColumnIndex).ToString();
+            u.haslo = (dataGridViewPokazUserow.CurrentCell.ColumnIndex).ToString();
+            u.imie = (dataGridViewPokazUserow.CurrentCell.ColumnIndex).ToString();
+            u.nazwisko = (dataGridViewPokazUserow.CurrentCell.ColumnIndex).ToString();
+            u.pesel = (dataGridViewPokazUserow.CurrentCell.ColumnIndex).ToString();
+            u.emaileee = (dataGridViewPokazUserow.CurrentCell.ColumnIndex).ToString();
+            */
+
+            //u = dataGridViewPokazUserow.Select
+
+            // sc.DeleteUser(index);
+
+
+
+
+            //  u.id = dataGridViewPokazUserow.CurrentCell.RowIndex
+
+
+            string key1 = dataGridViewPokazUserow.CurrentRow.Cells["id"].Value.ToString();
+ 
+            string key2 = dataGridViewPokazUserow.CurrentRow.Cells["haslo"].Value.ToString();
+
+            string key = " CONVERT(VARCHAR, id)  = '" + key1 + " ' and CONVERT(VARCHAR, haslo) = '" + key2 + "'"; //= czy like? lepiej = i konversja na varchar
+
+            bool request = sc.DeleteUser2(key);
+
+            if(request)
+            {
+                MessageBox.Show("usunieto");
+            }
+            else
+            {
+                MessageBox.Show("nie usunieto");
+            }
+
+
+        }
+
+        //////////////////////////////////////////////////////////
+
+        private void button_pokazKsiazkiTabela_Click(object sender, EventArgs e)
+        {
+            // dataGridViewPokazUserow.DataSource = sc.FillListBoxUserzyTabela();
+
+            dataGridView_ksiazkiTabela.DataSource = scKsiazki.FillListBoxksiazkiTabela();
+        }
+
+        private void button_usunKsiazkezTabeli_Click(object sender, EventArgs e)
+        {
+
+            string key1 = dataGridView_ksiazkiTabela.CurrentRow.Cells["id"].Value.ToString();
+
+            string key2 = dataGridView_ksiazkiTabela.CurrentRow.Cells["tytul"].Value.ToString();
+
+            string key = "  id  = '" + key1 + " ' and CONVERT(VARCHAR, tytul) = '" + key2 + "'"; //= czy like? lepiej = i konversja na varchar
+
+            bool request = scKsiazki.DeleteKsiazka2(key);
+
+            if (request)
+            {
+                MessageBox.Show("usunieto");
+            }
+            else
+            {
+                MessageBox.Show("nie usunieto");
+            }
+
+        }
+
+        private void label6_licznikPrzedluzen_Click(object sender, EventArgs e)
+        {
 
         }
     }

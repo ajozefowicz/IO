@@ -66,14 +66,24 @@ namespace biblioteka1
             this.label4_haslo = new System.Windows.Forms.Label();
             this.button_dodajUsera = new System.Windows.Forms.Button();
             this.button_pokazUzytkownikow = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBox_ksiazkiPracownik = new System.Windows.Forms.ListBox();
             this.listBox2_uzytkownicy = new System.Windows.Forms.ListBox();
             this.button_usunUsera = new System.Windows.Forms.Button();
+            this.button_pokazKsiazki = new System.Windows.Forms.Button();
+            this.button_usunKsiazke = new System.Windows.Forms.Button();
+            this.dataGridViewPokazUserow = new System.Windows.Forms.DataGridView();
+            this.button_pokazUserówDataGrid = new System.Windows.Forms.Button();
+            this.button_usunUserazTabeli = new System.Windows.Forms.Button();
+            this.dataGridView_ksiazkiTabela = new System.Windows.Forms.DataGridView();
+            this.button_usunKsiazkezTabeli = new System.Windows.Forms.Button();
+            this.button_pokazKsiazkiTabela = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPokazUserow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ksiazkiTabela)).BeginInit();
             this.SuspendLayout();
             // 
             // button1_powrotDoGlownego
             // 
-            this.button1_powrotDoGlownego.Location = new System.Drawing.Point(803, 12);
+            this.button1_powrotDoGlownego.Location = new System.Drawing.Point(851, 1);
             this.button1_powrotDoGlownego.Name = "button1_powrotDoGlownego";
             this.button1_powrotDoGlownego.Size = new System.Drawing.Size(124, 36);
             this.button1_powrotDoGlownego.TabIndex = 0;
@@ -187,6 +197,7 @@ namespace biblioteka1
             this.label6_licznikPrzedluzen.Size = new System.Drawing.Size(92, 13);
             this.label6_licznikPrzedluzen.TabIndex = 12;
             this.label6_licznikPrzedluzen.Text = "licznik przedłużeń";
+            this.label6_licznikPrzedluzen.Click += new System.EventHandler(this.label6_licznikPrzedluzen_Click);
             // 
             // textIloscStron
             // 
@@ -256,7 +267,7 @@ namespace biblioteka1
             // 
             // textEMail
             // 
-            this.textEMail.Location = new System.Drawing.Point(440, 158);
+            this.textEMail.Location = new System.Drawing.Point(667, 161);
             this.textEMail.Name = "textEMail";
             this.textEMail.Size = new System.Drawing.Size(100, 20);
             this.textEMail.TabIndex = 31;
@@ -264,7 +275,7 @@ namespace biblioteka1
             // label_emial
             // 
             this.label_emial.AutoSize = true;
-            this.label_emial.Location = new System.Drawing.Point(392, 158);
+            this.label_emial.Location = new System.Drawing.Point(619, 161);
             this.label_emial.Name = "label_emial";
             this.label_emial.Size = new System.Drawing.Size(34, 13);
             this.label_emial.TabIndex = 30;
@@ -272,7 +283,7 @@ namespace biblioteka1
             // 
             // textPesel
             // 
-            this.textPesel.Location = new System.Drawing.Point(440, 132);
+            this.textPesel.Location = new System.Drawing.Point(667, 135);
             this.textPesel.Name = "textPesel";
             this.textPesel.Size = new System.Drawing.Size(100, 20);
             this.textPesel.TabIndex = 29;
@@ -280,7 +291,7 @@ namespace biblioteka1
             // label_pesel
             // 
             this.label_pesel.AutoSize = true;
-            this.label_pesel.Location = new System.Drawing.Point(392, 132);
+            this.label_pesel.Location = new System.Drawing.Point(619, 135);
             this.label_pesel.Name = "label_pesel";
             this.label_pesel.Size = new System.Drawing.Size(32, 13);
             this.label_pesel.TabIndex = 28;
@@ -288,7 +299,7 @@ namespace biblioteka1
             // 
             // text_IdUsera
             // 
-            this.text_IdUsera.Location = new System.Drawing.Point(440, 33);
+            this.text_IdUsera.Location = new System.Drawing.Point(667, 36);
             this.text_IdUsera.Name = "text_IdUsera";
             this.text_IdUsera.Size = new System.Drawing.Size(100, 20);
             this.text_IdUsera.TabIndex = 27;
@@ -296,7 +307,7 @@ namespace biblioteka1
             // label_IdUsera
             // 
             this.label_IdUsera.AutoSize = true;
-            this.label_IdUsera.Location = new System.Drawing.Point(392, 36);
+            this.label_IdUsera.Location = new System.Drawing.Point(619, 39);
             this.label_IdUsera.Name = "label_IdUsera";
             this.label_IdUsera.Size = new System.Drawing.Size(15, 13);
             this.label_IdUsera.TabIndex = 26;
@@ -304,7 +315,7 @@ namespace biblioteka1
             // 
             // text_nazwiskoUsera
             // 
-            this.text_nazwiskoUsera.Location = new System.Drawing.Point(440, 106);
+            this.text_nazwiskoUsera.Location = new System.Drawing.Point(667, 109);
             this.text_nazwiskoUsera.Name = "text_nazwiskoUsera";
             this.text_nazwiskoUsera.Size = new System.Drawing.Size(100, 20);
             this.text_nazwiskoUsera.TabIndex = 25;
@@ -312,7 +323,7 @@ namespace biblioteka1
             // label_NazwiskoUsera
             // 
             this.label_NazwiskoUsera.AutoSize = true;
-            this.label_NazwiskoUsera.Location = new System.Drawing.Point(392, 106);
+            this.label_NazwiskoUsera.Location = new System.Drawing.Point(619, 109);
             this.label_NazwiskoUsera.Name = "label_NazwiskoUsera";
             this.label_NazwiskoUsera.Size = new System.Drawing.Size(46, 13);
             this.label_NazwiskoUsera.TabIndex = 24;
@@ -320,7 +331,7 @@ namespace biblioteka1
             // 
             // text_ImieUsera
             // 
-            this.text_ImieUsera.Location = new System.Drawing.Point(440, 81);
+            this.text_ImieUsera.Location = new System.Drawing.Point(667, 84);
             this.text_ImieUsera.Name = "text_ImieUsera";
             this.text_ImieUsera.Size = new System.Drawing.Size(100, 20);
             this.text_ImieUsera.TabIndex = 23;
@@ -328,7 +339,7 @@ namespace biblioteka1
             // label_Imie
             // 
             this.label_Imie.AutoSize = true;
-            this.label_Imie.Location = new System.Drawing.Point(392, 81);
+            this.label_Imie.Location = new System.Drawing.Point(619, 84);
             this.label_Imie.Name = "label_Imie";
             this.label_Imie.Size = new System.Drawing.Size(25, 13);
             this.label_Imie.TabIndex = 22;
@@ -336,7 +347,7 @@ namespace biblioteka1
             // 
             // text_haslo
             // 
-            this.text_haslo.Location = new System.Drawing.Point(440, 57);
+            this.text_haslo.Location = new System.Drawing.Point(667, 60);
             this.text_haslo.Name = "text_haslo";
             this.text_haslo.Size = new System.Drawing.Size(100, 20);
             this.text_haslo.TabIndex = 35;
@@ -344,7 +355,7 @@ namespace biblioteka1
             // label4_haslo
             // 
             this.label4_haslo.AutoSize = true;
-            this.label4_haslo.Location = new System.Drawing.Point(392, 57);
+            this.label4_haslo.Location = new System.Drawing.Point(619, 60);
             this.label4_haslo.Name = "label4_haslo";
             this.label4_haslo.Size = new System.Drawing.Size(32, 13);
             this.label4_haslo.TabIndex = 34;
@@ -352,7 +363,7 @@ namespace biblioteka1
             // 
             // button_dodajUsera
             // 
-            this.button_dodajUsera.Location = new System.Drawing.Point(440, 203);
+            this.button_dodajUsera.Location = new System.Drawing.Point(667, 191);
             this.button_dodajUsera.Name = "button_dodajUsera";
             this.button_dodajUsera.Size = new System.Drawing.Size(103, 23);
             this.button_dodajUsera.TabIndex = 36;
@@ -362,7 +373,7 @@ namespace biblioteka1
             // 
             // button_pokazUzytkownikow
             // 
-            this.button_pokazUzytkownikow.Location = new System.Drawing.Point(623, 203);
+            this.button_pokazUzytkownikow.Location = new System.Drawing.Point(781, 191);
             this.button_pokazUzytkownikow.Name = "button_pokazUzytkownikow";
             this.button_pokazUzytkownikow.Size = new System.Drawing.Size(117, 23);
             this.button_pokazUzytkownikow.TabIndex = 37;
@@ -370,39 +381,122 @@ namespace biblioteka1
             this.button_pokazUzytkownikow.UseVisualStyleBackColor = true;
             this.button_pokazUzytkownikow.Click += new System.EventHandler(this.button_pokazUzytkownikow_Click);
             // 
-            // listBox1
+            // listBox_ksiazkiPracownik
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(227, 36);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(133, 147);
-            this.listBox1.TabIndex = 38;
+            this.listBox_ksiazkiPracownik.FormattingEnabled = true;
+            this.listBox_ksiazkiPracownik.Location = new System.Drawing.Point(214, 36);
+            this.listBox_ksiazkiPracownik.Name = "listBox_ksiazkiPracownik";
+            this.listBox_ksiazkiPracownik.Size = new System.Drawing.Size(399, 147);
+            this.listBox_ksiazkiPracownik.TabIndex = 38;
             // 
             // listBox2_uzytkownicy
             // 
             this.listBox2_uzytkownicy.FormattingEnabled = true;
-            this.listBox2_uzytkownicy.Location = new System.Drawing.Point(554, 35);
+            this.listBox2_uzytkownicy.Location = new System.Drawing.Point(781, 38);
             this.listBox2_uzytkownicy.Name = "listBox2_uzytkownicy";
             this.listBox2_uzytkownicy.Size = new System.Drawing.Size(199, 147);
             this.listBox2_uzytkownicy.TabIndex = 39;
             // 
             // button_usunUsera
             // 
-            this.button_usunUsera.Location = new System.Drawing.Point(637, 238);
+            this.button_usunUsera.Location = new System.Drawing.Point(900, 191);
             this.button_usunUsera.Name = "button_usunUsera";
             this.button_usunUsera.Size = new System.Drawing.Size(103, 23);
             this.button_usunUsera.TabIndex = 40;
             this.button_usunUsera.Text = "usun użytkownika";
             this.button_usunUsera.UseVisualStyleBackColor = true;
             // 
+            // button_pokazKsiazki
+            // 
+            this.button_pokazKsiazki.Location = new System.Drawing.Point(236, 189);
+            this.button_pokazKsiazki.Name = "button_pokazKsiazki";
+            this.button_pokazKsiazki.Size = new System.Drawing.Size(103, 23);
+            this.button_pokazKsiazki.TabIndex = 41;
+            this.button_pokazKsiazki.Text = "pokaz ksiazki";
+            this.button_pokazKsiazki.UseVisualStyleBackColor = true;
+            this.button_pokazKsiazki.Click += new System.EventHandler(this.button_pokazKsiazki_Click);
+            // 
+            // button_usunKsiazke
+            // 
+            this.button_usunKsiazke.Location = new System.Drawing.Point(360, 189);
+            this.button_usunKsiazke.Name = "button_usunKsiazke";
+            this.button_usunKsiazke.Size = new System.Drawing.Size(103, 23);
+            this.button_usunKsiazke.TabIndex = 42;
+            this.button_usunKsiazke.Text = "usun ksiazke";
+            this.button_usunKsiazke.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewPokazUserow
+            // 
+            this.dataGridViewPokazUserow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPokazUserow.Location = new System.Drawing.Point(667, 220);
+            this.dataGridViewPokazUserow.Name = "dataGridViewPokazUserow";
+            this.dataGridViewPokazUserow.Size = new System.Drawing.Size(326, 150);
+            this.dataGridViewPokazUserow.TabIndex = 43;
+            // 
+            // button_pokazUserówDataGrid
+            // 
+            this.button_pokazUserówDataGrid.Location = new System.Drawing.Point(667, 376);
+            this.button_pokazUserówDataGrid.Name = "button_pokazUserówDataGrid";
+            this.button_pokazUserówDataGrid.Size = new System.Drawing.Size(117, 23);
+            this.button_pokazUserówDataGrid.TabIndex = 44;
+            this.button_pokazUserówDataGrid.Text = "pokaz użytkowników";
+            this.button_pokazUserówDataGrid.UseVisualStyleBackColor = true;
+            this.button_pokazUserówDataGrid.Click += new System.EventHandler(this.button_pokazUserówDataGrid_Click);
+            // 
+            // button_usunUserazTabeli
+            // 
+            this.button_usunUserazTabeli.Location = new System.Drawing.Point(817, 376);
+            this.button_usunUserazTabeli.Name = "button_usunUserazTabeli";
+            this.button_usunUserazTabeli.Size = new System.Drawing.Size(117, 23);
+            this.button_usunUserazTabeli.TabIndex = 45;
+            this.button_usunUserazTabeli.Text = "usun uzytkownika";
+            this.button_usunUserazTabeli.UseVisualStyleBackColor = true;
+            this.button_usunUserazTabeli.Click += new System.EventHandler(this.button_usunUserazTabeli_Click);
+            // 
+            // dataGridView_ksiazkiTabela
+            // 
+            this.dataGridView_ksiazkiTabela.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_ksiazkiTabela.Location = new System.Drawing.Point(214, 218);
+            this.dataGridView_ksiazkiTabela.Name = "dataGridView_ksiazkiTabela";
+            this.dataGridView_ksiazkiTabela.Size = new System.Drawing.Size(366, 150);
+            this.dataGridView_ksiazkiTabela.TabIndex = 46;
+            // 
+            // button_usunKsiazkezTabeli
+            // 
+            this.button_usunKsiazkezTabeli.Location = new System.Drawing.Point(338, 374);
+            this.button_usunKsiazkezTabeli.Name = "button_usunKsiazkezTabeli";
+            this.button_usunKsiazkezTabeli.Size = new System.Drawing.Size(103, 23);
+            this.button_usunKsiazkezTabeli.TabIndex = 48;
+            this.button_usunKsiazkezTabeli.Text = "usun ksiazke";
+            this.button_usunKsiazkezTabeli.UseVisualStyleBackColor = true;
+            this.button_usunKsiazkezTabeli.Click += new System.EventHandler(this.button_usunKsiazkezTabeli_Click);
+            // 
+            // button_pokazKsiazkiTabela
+            // 
+            this.button_pokazKsiazkiTabela.Location = new System.Drawing.Point(214, 374);
+            this.button_pokazKsiazkiTabela.Name = "button_pokazKsiazkiTabela";
+            this.button_pokazKsiazkiTabela.Size = new System.Drawing.Size(103, 23);
+            this.button_pokazKsiazkiTabela.TabIndex = 47;
+            this.button_pokazKsiazkiTabela.Text = "pokaz ksiazki";
+            this.button_pokazKsiazkiTabela.UseVisualStyleBackColor = true;
+            this.button_pokazKsiazkiTabela.Click += new System.EventHandler(this.button_pokazKsiazkiTabela_Click);
+            // 
             // Form2_PanelPracownika
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(930, 450);
+            this.ClientSize = new System.Drawing.Size(1015, 450);
+            this.Controls.Add(this.button_usunKsiazkezTabeli);
+            this.Controls.Add(this.button_pokazKsiazkiTabela);
+            this.Controls.Add(this.dataGridView_ksiazkiTabela);
+            this.Controls.Add(this.button_usunUserazTabeli);
+            this.Controls.Add(this.button_pokazUserówDataGrid);
+            this.Controls.Add(this.dataGridViewPokazUserow);
+            this.Controls.Add(this.button_usunKsiazke);
+            this.Controls.Add(this.button_pokazKsiazki);
             this.Controls.Add(this.button_usunUsera);
             this.Controls.Add(this.listBox2_uzytkownicy);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBox_ksiazkiPracownik);
             this.Controls.Add(this.button_pokazUzytkownikow);
             this.Controls.Add(this.button_dodajUsera);
             this.Controls.Add(this.text_haslo);
@@ -442,6 +536,8 @@ namespace biblioteka1
             this.Name = "Form2_PanelPracownika";
             this.Text = "Form2_PanelPracownika";
             this.Load += new System.EventHandler(this.Form2_PanelPracownika_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPokazUserow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ksiazkiTabela)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -485,8 +581,16 @@ namespace biblioteka1
         private System.Windows.Forms.Label label4_haslo;
         private System.Windows.Forms.Button button_dodajUsera;
         private System.Windows.Forms.Button button_pokazUzytkownikow;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBox_ksiazkiPracownik;
         private System.Windows.Forms.ListBox listBox2_uzytkownicy;
         private System.Windows.Forms.Button button_usunUsera;
+        private System.Windows.Forms.Button button_pokazKsiazki;
+        private System.Windows.Forms.Button button_usunKsiazke;
+        private System.Windows.Forms.DataGridView dataGridViewPokazUserow;
+        private System.Windows.Forms.Button button_pokazUserówDataGrid;
+        private System.Windows.Forms.Button button_usunUserazTabeli;
+        private System.Windows.Forms.DataGridView dataGridView_ksiazkiTabela;
+        private System.Windows.Forms.Button button_usunKsiazkezTabeli;
+        private System.Windows.Forms.Button button_pokazKsiazkiTabela;
     }
 }

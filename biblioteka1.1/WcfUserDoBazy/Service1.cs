@@ -154,9 +154,135 @@ namespace WcfUserDoBazy
         }
 
 
+        ///////////////////////////////
+        ///
+
+        public List<Uzytkownik> FillListBoxUserzyTabela()
+        {
+
+            List<Uzytkownik> uzytkownicy = new List<Uzytkownik>();
+
+
+            try
+            {
+
+                ////////////////////////////////// wersja 
+
+
+                string cmdText = "Select * from IUzytkownik";
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                conn.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    Uzytkownik uz = new Uzytkownik();
+                    uz.id = reader["id"].ToString();
+                    uz.haslo = reader["haslo"].ToString();
+                    uz.imie = reader["imie"].ToString();
+                    uz.nazwisko = reader["nazwisko"].ToString();
+                    uz.pesel = reader["pesel"].ToString();
+                    uz.emaileee = reader["email"].ToString();
+
+                    uzytkownicy.Add(uz);
+
+
+                }
+                return uzytkownicy;
+
+
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+        /////////////////////////////////////////////////////
+        ///
+        public void DeleteUser (Uzytkownik u)
+        {
+
+            try
+            {
+                
+                string cmddText = "Delete from IUzytkownik where id = @id";
+                SqlCommand cmd = new SqlCommand(cmddText, conn);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                
+
+                //SqlCommand cmd = new SqlCommand (Delate from IUzytkonicy where id = dataG, conn)
+            }
+
+            catch
+            {
+                throw;
+            }
+
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
 
 
 
+        }
+
+        ///////////
+        ///
+
+        public bool DeleteUser2(string key)
+        {
+
+            try
+            {
+
+
+                conn.Open();
+                string cmddText = "Delete from IUzytkownik where " + key;
+                SqlCommand cmd = new SqlCommand(cmddText, conn);
+                cmd.ExecuteNonQuery();
+                return true;
+
+
+                //SqlCommand cmd = new SqlCommand (Delate from IUzytkonicy where id = dataG, conn)
+            }
+
+            catch
+            {
+                throw;
+                //return false;
+            }
+
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+        ///////////////////////////////////////////////////////
+        ///
+
+       
 
 
     }
