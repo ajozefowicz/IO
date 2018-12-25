@@ -592,11 +592,135 @@ namespace WcfKsiazkaDoBazy4
 
         }
 
+        ////////////////////////////////////////////
+
+
+        public void UpdateNaWypozyczenie(Ksiazka kStara, Ksiazka kNowa)
+        {
+
+            try
+            {
+
+                /*
+                string cmdText = "Update IKsiazka set dataWypozyczenia = @dataWypozyczenia, dataZwrotu = @dataZwrotu, stan = @stan where id = @id";
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                cmd.Parameters.AddWithValue("@dataWypozyczenia", DateTime.UtcNow.ToLocalTime());
+                cmd.Parameters.AddWithValue("@dataWypozyczenia", DateTime.UtcNow.ToLocalTime());
+                cmd.Parameters.AddWithValue("status", kNowa.stan);
+                cmd.Parameters.AddWithValue("@id", kNowa.id);
+
+                conn.Open();
+                cmd.EndExecuteNonQuery();
+
+                */
+
+                
+                //LICZY SIE TO W JAKIEJ KOLEJNOSCI TU SA POLA WPISANE, TAK DODAJE DO BAZY
+                comm.CommandText = "Update IKsiazka set   tytul = @tytul, stan = @stan, rodzaj = @rodzaj, licznikWypozyczen = @licznikWypozyczen," +
+                    "dataWypozyczenia = @dataWypozyczenia, dataZwrotu = @dataZwrotu, licznikPrzedluzen = @licznikPrzedluzen, iloscStron = @iloscStron, imieAutora = @imieAutora, nazwiskoAutora = @nazwiskoAutora, nrISBN = @nrISBN where id =@id ";
+
+
+                //caly czas sie pluje o to ID, przy wypozyczaniu drugiej ksiazki
+
+
+                comm.Parameters.AddWithValue("@id", kStara.id);
+                comm.Parameters.AddWithValue("@tytul", kNowa.tytul);
+                comm.Parameters.AddWithValue("@stan", kNowa.stan);
+                comm.Parameters.AddWithValue("@rodzaj", kNowa.rodzaj);
+                comm.Parameters.AddWithValue("@licznikWypozyczen", kNowa.licznikWypozyczen);
+                comm.Parameters.AddWithValue("@dataWypozyczenia", DateTime.UtcNow.ToLocalTime()); //DateTime.UtcNow.ToLocalTime()
+                comm.Parameters.AddWithValue("@dataZwrotu", DateTime.UtcNow.ToLocalTime()); // + 14 dni // tez można podac "2010-10-10"
+                comm.Parameters.AddWithValue("@licznikPrzedluzen", kNowa.licznikPrzedluzen);
+                comm.Parameters.AddWithValue("@iloscStron", kNowa.iloscStron);
+                comm.Parameters.AddWithValue("@imieAutora", kNowa.imieAutora);
+                comm.Parameters.AddWithValue("@nazwiskoAutora", kNowa.nazwiskoAutora);
+                comm.Parameters.AddWithValue("@nrISBN", kNowa.nrISBN);
+
+
+                conn.Open();
+                comm.ExecuteNonQuery();
+
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+
+        }
+
+
+
+        public void UpdateNaWypozyczenie2(string key, Ksiazka kNowa)
+        {
+
+            try
+            {
+
+                //LICZY SIE TO W JAKIEJ KOLEJNOSCI TU SA POLA WPISANE, TAK DODAJE DO BAZY
+                comm.CommandText = "Update IKsiazka set  tytul = @tytul , stan = @stan, rodzaj = @rodzaj, licznikWypozyczen = @licznikWypozyczen," +
+                    "dataWypozyczenia = @dataWypozyczenia, dataZwrotu = @dataZwrotu, licznikPrzedluzen = @licznikPrzedluzen, iloscStron = @iloscStron, imieAutora = @imieAutora, nazwiskoAutora = @nazwiskoAutora, nrISBN = @nrISBN where id = '" +key + "'" ;
+
+
+                //caly czas sie pluje o to ID, przy wypozyczaniu drugiej ksiazki
+
+
+                //comm.Parameters.AddWithValue("@id", kStara.id);
+                comm.Parameters.AddWithValue("@tytul", kNowa.tytul);
+                comm.Parameters.AddWithValue("@stan", kNowa.stan);
+                comm.Parameters.AddWithValue("@rodzaj", kNowa.rodzaj);
+                comm.Parameters.AddWithValue("@licznikWypozyczen", kNowa.licznikWypozyczen);
+                comm.Parameters.AddWithValue("@dataWypozyczenia", kNowa.dataWypozyczenia); //DateTime.UtcNow.ToLocalTime()
+                comm.Parameters.AddWithValue("@dataZwrotu", kNowa.dataZwrotu); // + 14 dni // tez można podac "2010-10-10"
+                comm.Parameters.AddWithValue("@licznikPrzedluzen", kNowa.licznikPrzedluzen);
+                comm.Parameters.AddWithValue("@iloscStron", kNowa.iloscStron);
+                comm.Parameters.AddWithValue("@imieAutora", kNowa.imieAutora);
+                comm.Parameters.AddWithValue("@nazwiskoAutora", kNowa.nazwiskoAutora);
+                comm.Parameters.AddWithValue("@nrISBN", kNowa.nrISBN);
+
+
+                conn.Open();
+                comm.ExecuteNonQuery();
+
+                comm.Parameters.Clear();
+
+
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
 
 
 
 
 
+
+
+
+
+        }
+
+
+        public void UpdateNaZwrot()
+        {
+
+
+        }
 
 
 

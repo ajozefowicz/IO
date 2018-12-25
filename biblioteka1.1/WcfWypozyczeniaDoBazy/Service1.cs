@@ -88,7 +88,8 @@ namespace WcfWypozyczeniaDoBazy
 
 
                 // // tu jeszcze trzeba zmienic stan oryginalnej ksiazki na niedostępna czyli update dodac do funkcji wypozyczenia i date trza zmienic
-
+                // ale to trza zrobic w ksiązce by mmiec dostep do bazy ksiazka
+                // i tam mozna tez pwprowadzic, że jak status false to wypozyczenie nie mozliwe
 
 
                 comm.CommandType = CommandType.Text;

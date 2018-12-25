@@ -22,10 +22,7 @@ C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\biblioteka1\obj\Debug\biblioteka1
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\biblioteka1\obj\Debug\biblioteka1.csproj.CoreCompileInputs.cache
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\biblioteka1\obj\Debug\biblioteka1.exe
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\biblioteka1\obj\Debug\biblioteka1.pdb
-C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\biblioteka1\bin\Debug\WcfKsiazkaDoBazy.dll
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\biblioteka1\bin\Debug\WcfUserDoBazy.dll
-C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\biblioteka1\bin\Debug\WcfKsiazkaDoBazy.pdb
-C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\biblioteka1\bin\Debug\WcfKsiazkaDoBazy.dll.config
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\biblioteka1\bin\Debug\WcfUserDoBazy.pdb
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\biblioteka1\bin\Debug\WcfUserDoBazy.dll.config
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\biblioteka1\obj\Debug\biblioteka1.csproj.CopyComplete
@@ -76,3 +73,6 @@ C:\Users\Anna\Desktop\IO_projekt\biblioteka1.3\biblioteka1\bin\Debug\WcfUserDoBa
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.3\biblioteka1\bin\Debug\WcfWypozyczeniaDoBazy.pdb
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.3\biblioteka1\bin\Debug\WcfWypozyczeniaDoBazy.dll.config
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.3\biblioteka1\obj\Debug\biblioteka1.csproj.CopyComplete
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\biblioteka1\bin\Debug\WcfKsiazkaDoBazy4.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\biblioteka1\bin\Debug\WcfKsiazkaDoBazy4.pdb
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\biblioteka1\bin\Debug\WcfKsiazkaDoBazy4.dll.config
