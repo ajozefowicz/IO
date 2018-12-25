@@ -405,6 +405,7 @@ namespace biblioteka1
             this.button_usunUsera.TabIndex = 40;
             this.button_usunUsera.Text = "usun użytkownika";
             this.button_usunUsera.UseVisualStyleBackColor = true;
+            this.button_usunUsera.Click += new System.EventHandler(this.button_usunUsera_Click);
             // 
             // button_pokazKsiazki
             // 

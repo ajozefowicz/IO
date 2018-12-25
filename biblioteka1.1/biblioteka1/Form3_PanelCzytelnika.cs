@@ -9,7 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using biblioteka1.ServiceReference1;
 using biblioteka1.ServiceReference2;
-using WcfKsiazkaDoBazy;
+using WcfWypozyczeniaDoBazy;
+
+//using WcfKsiazkaDoBazy;
+using biblioteka1.ServiceReference3;
 
 namespace biblioteka1
 {
@@ -19,13 +22,13 @@ namespace biblioteka1
         WCFKsiazkaDataSet wc = new WCFKsiazkaDataSet();
 
 
-        WcfKsiazkaDoBazy.Service1 sc;
+        WcfWypozyczeniaDoBazy.Service1 sc;
 
         public Form3_PanelCzytelnika()
         {
             InitializeComponent();
 
-            sc = new WcfKsiazkaDoBazy.Service1();
+            sc = new WcfWypozyczeniaDoBazy.Service1();
         }
 
         private void button1_powrotDoGlownego_Click(object sender, EventArgs e)
@@ -172,24 +175,51 @@ namespace biblioteka1
 
 
 
-
-
-
-
-
-
-
-
-
-
-
             listBox_ksiazkiWybrane.DataSource = sc.FillListBoxKsiazkiWybranePrzezUsera(key);
+
+            dataGridView_ksiazki.DataSource = sc.FillListBoxKsiazkiWybranePrzezUsera(key);
 
 
         }
 
         private void textBox_imieAutora_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void button_Wypozycz_Click(object sender, EventArgs e)
+        {
+            ServiceReference1.Ksiazka ks = new ServiceReference1.Ksiazka();
+
+            //ks = listBox_ksiazkiWybrane.SelectedItem as ServiceReference1.Ksiazka;// to nie działa, po wybraniu wiersza na ekranie jest nullem
+
+
+            string key1 = dataGridView_ksiazki.CurrentRow.Cells["id"].Value.ToString();
+
+            //int key2 = listBox_ksiazkiWybrane.
+
+
+
+            Wypozyczenie w = new Wypozyczenie();
+            //w.id = 0; // jak zrobic by się nadpisywało
+            w.idKsiazki =  Convert.ToInt32(key1); // = ks.id nie działa, bo wybrany wiersz jest nulem, wiec zamiast listBox, dataGridView
+            w.idUsera = "ana"; // to na probe, zmienić by pobierało
+            w.dataWypozczyenia = DateTime.UtcNow.ToLocalTime();
+            w.dataZwrotu = DateTime.UtcNow.ToLocalTime(); // jak tu zrobic nulla
+            w.czyAktualne = true; //w momencie wypozyczenia - true, jak będziemy zwracac to zmiana na false 
+
+            ServiceReference3.Service1Client service = new ServiceReference3.Service1Client();
+
+
+            // tu jeszcze trzeba zmienic stan oryginalnej ksiazki na niedostępna czyli update dodac do funkcji wypozyczenia
+
+
+
+            if(service.InsertWypozyczenie(w) ==1)
+            {
+                MessageBox.Show("Ksiazka wypozyczona");
+            }
+            
 
         }
     }

@@ -7,11 +7,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "biblioteka1", "biblioteka1\
 	ProjectSection(ProjectDependencies) = postProject
 		{5A74870A-BDFF-41AB-A6C6-002D06BAE6C2} = {5A74870A-BDFF-41AB-A6C6-002D06BAE6C2}
 		{F0E7B70D-C890-467E-B284-B806492AD4DB} = {F0E7B70D-C890-467E-B284-B806492AD4DB}
+		{4058E6CA-5C70-486A-842C-08CA7307EC31} = {4058E6CA-5C70-486A-842C-08CA7307EC31}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfKsiazkaDoBazy", "WcfKsiazkaDoBazy\WcfKsiazkaDoBazy.csproj", "{5A74870A-BDFF-41AB-A6C6-002D06BAE6C2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfUserDoBazy", "WcfUserDoBazy\WcfUserDoBazy.csproj", "{F0E7B70D-C890-467E-B284-B806492AD4DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfWypozyczeniaDoBazy", "WcfWypozyczeniaDoBazy\WcfWypozyczeniaDoBazy.csproj", "{4058E6CA-5C70-486A-842C-08CA7307EC31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +34,10 @@ Global
 		{F0E7B70D-C890-467E-B284-B806492AD4DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0E7B70D-C890-467E-B284-B806492AD4DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0E7B70D-C890-467E-B284-B806492AD4DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4058E6CA-5C70-486A-842C-08CA7307EC31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4058E6CA-5C70-486A-842C-08CA7307EC31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4058E6CA-5C70-486A-842C-08CA7307EC31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4058E6CA-5C70-486A-842C-08CA7307EC31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

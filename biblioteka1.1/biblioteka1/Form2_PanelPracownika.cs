@@ -20,7 +20,7 @@ namespace biblioteka1
 
         WcfUserDoBazy.Service1 sc;
 
-        WcfKsiazkaDoBazy.Service1 scKsiazki;
+        WcfWypozyczeniaDoBazy.Service1 scKsiazki;
 
 
         public Form2_PanelPracownika()
@@ -29,7 +29,7 @@ namespace biblioteka1
 
             sc = new WcfUserDoBazy.Service1();
 
-            scKsiazki = new WcfKsiazkaDoBazy.Service1();
+            scKsiazki = new WcfWypozyczeniaDoBazy.Service1();
         }
 
         private void button1_powrotDoGlownego_Click(object sender, EventArgs e)
@@ -236,6 +236,11 @@ namespace biblioteka1
         }
 
         private void label6_licznikPrzedluzen_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_usunUsera_Click(object sender, EventArgs e)
         {
 
         }

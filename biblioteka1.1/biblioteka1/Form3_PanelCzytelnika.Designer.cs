@@ -45,6 +45,7 @@
             this.listBox_ksiazkiWybrane = new System.Windows.Forms.ListBox();
             this.textBox_nrISBN = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.button_Wypozycz = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.compositeTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ksiazki)).BeginInit();
             this.SuspendLayout();
@@ -65,7 +66,7 @@
             this.button_pokazKsiazki.Name = "button_pokazKsiazki";
             this.button_pokazKsiazki.Size = new System.Drawing.Size(153, 23);
             this.button_pokazKsiazki.TabIndex = 1;
-            this.button_pokazKsiazki.Text = "pokaz wszytskie";
+            this.button_pokazKsiazki.Text = "pokaz wszystkie (lista stringow)";
             this.button_pokazKsiazki.UseVisualStyleBackColor = true;
             this.button_pokazKsiazki.Click += new System.EventHandler(this.button_pokazKsiazki_Click);
             // 
@@ -182,11 +183,22 @@
             this.label4.TabIndex = 13;
             this.label4.Text = "nrISBN";
             // 
+            // button_Wypozycz
+            // 
+            this.button_Wypozycz.Location = new System.Drawing.Point(654, 215);
+            this.button_Wypozycz.Name = "button_Wypozycz";
+            this.button_Wypozycz.Size = new System.Drawing.Size(75, 23);
+            this.button_Wypozycz.TabIndex = 15;
+            this.button_Wypozycz.Text = "wypozycz";
+            this.button_Wypozycz.UseVisualStyleBackColor = true;
+            this.button_Wypozycz.Click += new System.EventHandler(this.button_Wypozycz_Click);
+            // 
             // Form3_PanelCzytelnika
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(991, 450);
+            this.Controls.Add(this.button_Wypozycz);
             this.Controls.Add(this.textBox_nrISBN);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.listBox_ksiazkiWybrane);
@@ -230,5 +242,6 @@
         private System.Windows.Forms.ListBox listBox_ksiazkiWybrane;
         private System.Windows.Forms.TextBox textBox_nrISBN;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button_Wypozycz;
     }
 }

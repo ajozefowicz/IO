@@ -9,7 +9,7 @@ using System.Text;
 
 
 
-namespace WcfKsiazkaDoBazy
+namespace WcfWypozyczeniaDoBazy
 {
     // UWAGA: możesz użyć polecenia „Zmień nazwę” w menu „Refaktoryzuj”, aby zmienić nazwę klasy „Service1” w kodzie i pliku konfiguracji.
     public class Service1 : IService1
@@ -73,38 +73,6 @@ namespace WcfKsiazkaDoBazy
                     " @dataWypozyczenia, @dataZwrotu, @licznikPrzedluzen, @iloscStron, @imieAutora, @nazwiskoAutora, @nrISBN )";
 
 
-                //proba inna
-
-                /*
-
-                SqlParameter parameter = new SqlParameter();
-                parameter.ParameterName = "@dataWypozyczenia";
-                parameter.SqlDbType = SqlDbType.DateTime;
-                parameter.Value = DateTime.Parse("2000 - 09 - 02");
-
-                SqlParameter parameter2 = new SqlParameter();
-                parameter2.ParameterName = "@dataZwrotu";
-                parameter2.SqlDbType = SqlDbType.DateTime;
-                parameter2.Value = DateTime.Parse("2000 - 09 - 02");
-                */
-
-                /*
-                SqlParameter param = new SqlParameter();
-                param.ParameterName = "@dataWypozyczenia";
-                param.SqlDbType = System.Data.SqlDbType.DateTime;
-                param.Value=null;
-                comm.Parameters.Add(param);
-
-                
-                SqlParameter param2 = new SqlParameter();
-                param2.ParameterName = "@dataZwrotu";
-                param2.DbType = System.Data.DbType.DateTime;
-                comm.Parameters.Add(param2);
-
-                */
-
-
-
                 DateTime myDateTime = DateTime.Now;
                 string sqlFormattedDate = myDateTime.ToString("2000-12-12");
 
@@ -121,24 +89,12 @@ namespace WcfKsiazkaDoBazy
                 comm.Parameters.AddWithValue("@rodzaj", k.rodzaj);
                 comm.Parameters.AddWithValue("@licznikWypozyczen", k.licznikWypozyczen);
                 comm.Parameters.AddWithValue("@dataWypozyczenia", DateTime.UtcNow.ToLocalTime()); //DateTime.UtcNow.ToLocalTime()
-                comm.Parameters.AddWithValue("@dataZwrotu", "2010-10-10"); //
+                comm.Parameters.AddWithValue("@dataZwrotu", DateTime.UtcNow.ToLocalTime()); // tez można podac "2010-10-10"
                 comm.Parameters.AddWithValue("@licznikPrzedluzen", k.licznikPrzedluzen);
                 comm.Parameters.AddWithValue("@iloscStron", k.iloscStron);
                 comm.Parameters.AddWithValue("@imieAutora", k.imieAutora);
                 comm.Parameters.AddWithValue("@nazwiskoAutora", k.nazwiskoAutora);
                 comm.Parameters.AddWithValue("@nrISBN", k.nrISBN);
-
-                //comm.Parameters.Add(parameter); //'2005-04-12' //Operand type clash: int is incompatible with date
-                //comm.Parameters.Add(parameter2);
-
-
-
-
-                /////
-              
-
-
-
 
 
                 comm.CommandType = CommandType.Text;
@@ -167,13 +123,6 @@ namespace WcfKsiazkaDoBazy
         //  POKAZ KSIAZKI DLA PANELU cZYTELNIKA
 
 
-        ////////////////////////////
-        /// <summary>
-        /// 
-        /// //EnumerableRowCollection
-        /// </summary>
-        //      public List<string> FillListBoxKsiazki()
-
         public List<string> FillListBoxKsiazki()
         {
 
@@ -186,7 +135,7 @@ namespace WcfKsiazkaDoBazy
             try
             {
 
-                ////////////////////////////////// wersja 1 - wyswietla pierwsze 6 kolumn
+                ////////////////////////////////// wersja 1 
                 
                 
                 string cmdText = "Select tytul, id, stan, imieAutora, nazwiskoAutora, nrISBN from IKsiazka";
@@ -586,7 +535,7 @@ namespace WcfKsiazkaDoBazy
             {
 
 
-                string cmdText = "Select imieAutora, nazwiskoAutora, tytul, nrISBN, stan from IKsiazka" +
+                string cmdText = "Select imieAutora, nazwiskoAutora, tytul, nrISBN, stan, id from IKsiazka" +
                     " where  " + key;      //textBox_imieAutora.Text
 
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
@@ -603,6 +552,7 @@ namespace WcfKsiazkaDoBazy
                     ks.nazwiskoAutora = reader["nazwiskoAutora"].ToString();
                     ks.nrISBN = reader["nrISBN"].ToString();
                     ks.stan = Convert.ToBoolean(reader["stan"].ToString());
+                    ks.id = Convert.ToInt32(reader["id"].ToString());
 
                     //string ss = ks.id + " " + ks.tytul + " " + ks.stan + " " + ks.imieAutora + " " + ks.nazwiskoAutora + " " + ks.nrISBN;
 

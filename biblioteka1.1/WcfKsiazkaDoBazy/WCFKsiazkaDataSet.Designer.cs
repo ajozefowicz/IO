@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace WcfKsiazkaDoBazy {
+namespace WcfWypozyczeniaDoBazy {
     
     
     /// <summary>
@@ -946,7 +946,7 @@ namespace WcfKsiazkaDoBazy {
         }
     }
 }
-namespace WcfKsiazkaDoBazy.WCFKsiazkaDataSetTableAdapters {
+namespace WcfWypozyczeniaDoBazy.WCFKsiazkaDataSetTableAdapters {
     
     
     /// <summary>
@@ -1149,7 +1149,7 @@ SELECT id, tytul, stan, rodzaj, licznikWypozyczen, dataWypozyczenia, dataZwrotu,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::WcfKsiazkaDoBazy.Properties.Settings.Default.WCFKsiazkaConnectionString;
+            this._connection.ConnectionString = global::WcfWypozyczeniaDoBazy.Properties.Settings.Default.WCFKsiazkaConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

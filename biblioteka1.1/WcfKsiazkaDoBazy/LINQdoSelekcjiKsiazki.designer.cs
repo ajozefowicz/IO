@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WcfKsiazkaDoBazy
+namespace WcfWypozyczeniaDoBazy
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
