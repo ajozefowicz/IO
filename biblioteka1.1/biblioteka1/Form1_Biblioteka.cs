@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+
 namespace biblioteka1
 {
     public partial class Form1_Biblioteka : Form
@@ -31,6 +33,41 @@ namespace biblioteka1
 
             Form3_PanelCzytelnika p = new Form3_PanelCzytelnika();
             p.Show();
+
+
+            string hello = textBox1_loginCzytelnika.Text;
+
+
+            p.pobierzNazweUseraDoPowitania(hello);
+
+            /*
+            textBox_IdUsera.Text = "ananan";
+
+            p.pobierzNazweUsera();
+
+            listBoxKsiazki.DataSource = "nanana";
+            //p.pobierzNazweUsera();
+
+            */
+
+
+        }
+
+        private void Form1_Biblioteka_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        public string pobierzNazweUsera()
+        {
+            return textBox1_loginCzytelnika.Text;
+
         }
     }
 }

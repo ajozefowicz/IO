@@ -22,10 +22,15 @@ namespace WcfKsiazkaDoBazy4
             public string rodzaj { get; set; } //mozna posniej zmienic na enuma, ale jak z bazą??
             [DataMember]
             public int licznikWypozyczen { get; set; }
-            [DataMember]
-            public DateTime dataWypozyczenia { get; set; }
-            [DataMember]
-            public DateTime dataZwrotu { get; set; }
+        [DataMember]
+
+            //public DateTime? dataWypozyczenia = null;
+        public DateTime?  dataWypozyczenia { get; set; } //Nullable<DateTime>
+
+        [DataMember]
+
+        //public Nullable<DateTime> dataZwrotu = null;
+            public Nullable<DateTime> dataZwrotu { get; set; }
             [DataMember]
             public int licznikPrzedluzen { get; set; }
             [DataMember]

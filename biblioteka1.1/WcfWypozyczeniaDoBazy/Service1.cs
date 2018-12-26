@@ -78,11 +78,11 @@ namespace WcfWypozyczeniaDoBazy
             {
                 comm.CommandText = "Insert into IWypozyczenie values( @idKsiazki, @idUsera, @dataWypozyczenia, @dataZwrotu, @czyAktualne)";
 
-               // comm.Parameters.AddWithValue("id", w.id);
+                // comm.Parameters.AddWithValue("id", w.id);
                 comm.Parameters.AddWithValue("idKsiazki", w.idKsiazki);
                 comm.Parameters.AddWithValue("idUsera", w.idUsera);
                 comm.Parameters.AddWithValue("dataWypozyczenia", DateTime.UtcNow.ToLocalTime());
-                comm.Parameters.AddWithValue("dataZwrotu", DateTime.UtcNow.ToLocalTime());
+                comm.Parameters.AddWithValue("dataZwrotu", DateTime.UtcNow.ToLocalTime().AddDays(14));
                 comm.Parameters.AddWithValue("czyAktualne", w.czyAktualne);
 
 
@@ -172,8 +172,215 @@ namespace WcfWypozyczeniaDoBazy
         }
 
 
+        //////////////////////////////////////////////
+        ///
+        //wypozyczenia konkretnego usera
+        public List<Wypozyczenie> FillWypozyczeniaUseraWszystkie(string key, string idU)
+        {
+
+            List<Wypozyczenie> wypozyczenia = new List<Wypozyczenie>();
 
 
+            try
+            {
+
+                ////////////////////////////////// wersja 
+
+
+                //string cmdText = "Select * from IWypozyczenie where idUsera = " +  idUsera ;
+
+
+
+                string cmdText = "Select * from IWypozyczenie" +
+                                    " where  " + key;      //textBox_imieAutora.Text
+
+
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                conn.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    Wypozyczenie w = new Wypozyczenie();
+                    w.id = Convert.ToInt32(reader["id"].ToString());
+                    w.idKsiazki = Convert.ToInt32(reader["idKsiazki"].ToString());
+                    w.idUsera = idU;//        reader["idUsera"].ToString();  // hmmmmmmmmmmmmm
+                    w.dataWypozyczyenia = Convert.ToDateTime(reader["dataWypozyczenia"].ToString());
+                    w.dataZwrotu = Convert.ToDateTime(reader["dataZwrotu"].ToString());
+                    w.czyAktualne = Convert.ToBoolean(reader["czyAktualne"].ToString());
+
+
+                    wypozyczenia.Add(w);
+
+
+                }
+                return wypozyczenia;
+
+
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+
+        //////////////////////////
+        // aktualne wypozyczenia usera
+
+
+        public List<Wypozyczenie> FillWypozyczeniaUseraAktualne(string key)
+        {
+            List<Wypozyczenie> wypozyczenia = new List<Wypozyczenie>();
+
+            try
+            {
+
+                string cmdText = "Select * from IWypozyczenie" +
+                                    " where  " + key;      //
+
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                conn.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Wypozyczenie w = new Wypozyczenie();
+                    w.id = Convert.ToInt32(reader["id"].ToString());
+                    w.idKsiazki = Convert.ToInt32(reader["idKsiazki"].ToString());
+                    w.idUsera = reader["idUsera"].ToString();  // hmmmmmmmmmmmmm
+                    w.dataWypozyczyenia = Convert.ToDateTime(reader["dataWypozyczenia"].ToString());
+                    w.dataZwrotu = Convert.ToDateTime(reader["dataZwrotu"].ToString());
+                    w.czyAktualne = Convert.ToBoolean(reader["czyAktualne"].ToString());
+
+                    wypozyczenia.Add(w);
+
+                }
+                return wypozyczenia;
+
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+
+        public List<Wypozyczenie> FillWypozyczeniaUseraArchiwalne(string key)
+        {
+            List<Wypozyczenie> wypozyczenia = new List<Wypozyczenie>();
+
+            try
+            {
+
+                string cmdText = "Select * from IWypozyczenie" +
+                                    " where  " + key;      //
+
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                conn.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Wypozyczenie w = new Wypozyczenie();
+                    w.id = Convert.ToInt32(reader["id"].ToString());
+                    w.idKsiazki = Convert.ToInt32(reader["idKsiazki"].ToString());
+                    w.idUsera = reader["idUsera"].ToString();  // hmmmmmmmmmmmmm
+                    w.dataWypozyczyenia = Convert.ToDateTime(reader["dataWypozyczenia"].ToString());
+                    w.dataZwrotu = Convert.ToDateTime(reader["dataZwrotu"].ToString());
+                    w.czyAktualne = Convert.ToBoolean(reader["czyAktualne"].ToString());
+
+                    wypozyczenia.Add(w);
+
+                }
+                return wypozyczenia;
+
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+
+        //////////////////////////////
+        ///
+        public void UpdateNaZwrot(string key, Wypozyczenie wNowe)
+        {
+
+            //key to bedzie pozycja wybrana z listywypozyczen usera wiec z IWypozyczenie
+
+            try
+            {
+
+
+                comm.CommandText = "Update IWypozyczenie set idUsera= @idUsera, dataWypozyczenia = @dataWypozyczenia, dataZwrotu = @dataZwrotu, " +
+                    "czyAktualne = @czyAktualne where idKsiazki = '" + key + "'";
+
+                // comm.Parameters.AddWithValue("id", w.id);
+                //comm.Parameters.AddWithValue("idKsiazki", w.idKsiazki);
+                comm.Parameters.AddWithValue("@idUsera", wNowe.idUsera);
+                comm.Parameters.AddWithValue("@dataWypozyczenia", wNowe.dataZwrotu);
+                comm.Parameters.AddWithValue("@dataZwrotu", wNowe.dataWypozyczyenia);
+                comm.Parameters.AddWithValue("@czyAktualne", wNowe.czyAktualne);
+
+
+                conn.Open();
+                comm.ExecuteNonQuery();
+
+                comm.Parameters.Clear();
+
+
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+
+
+        }
 
     }
 }

@@ -280,7 +280,16 @@ namespace WcfUserDoBazy
         }
 
         ///////////////////////////////////////////////////////
-        ///
+        //powitanie uzytkownika
+
+        public void powitajUsera(string p)
+        {
+            string powitanie = null; //label7witajUser
+
+            string nazwa_Usera = null; //textBox1_loginCzytelnika
+
+            powitanie = nazwa_Usera;
+        }
 
        
 

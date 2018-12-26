@@ -22,16 +22,19 @@ namespace biblioteka1
 
         //WCFKsiazkaDataSet wc = new WCFKsiazkaDataSet();
 
-        
-
 
         WcfKsiazkaDoBazy4.Service1 sc;
+
+        WcfWypozyczeniaDoBazy.Service1 scWypozyczenie;
 
         public Form3_PanelCzytelnika()
         {
             InitializeComponent();
 
             sc = new WcfKsiazkaDoBazy4.Service1();
+
+            scWypozyczenie = new WcfWypozyczeniaDoBazy.Service1();
+
         }
 
         private void button1_powrotDoGlownego_Click(object sender, EventArgs e)
@@ -199,8 +202,6 @@ namespace biblioteka1
 
             string key1 = dataGridView_ksiazki.CurrentRow.Cells["id"].Value.ToString();
 
-            //int key2 = listBox_ksiazkiWybrane.
-
 
             //najpierw sprawdzamy czy ksiazka dostępna
 
@@ -210,20 +211,14 @@ namespace biblioteka1
 
                 ServiceReference3.Wypozyczenie w = new ServiceReference3.Wypozyczenie();
                 w.idKsiazki = Convert.ToInt32(key1); // pcja = ks.id nie działa, bo wybrany wiersz jest nulem, wiec zamiast listBox, dataGridView
-                w.idUsera = textBox_IdUsera.Text; // to na probe, zmienić by pobierało
+                w.idUsera = textBox_witajUser.Text;     //label7_witaJUser.Text;   //textBox_IdUsera.Text; // to na probe, zmienić by pobierało
                 w.dataWypozyczyenia = DateTime.UtcNow.ToLocalTime();
-                w.dataZwrotu = DateTime.UtcNow.ToLocalTime(); // jak tu zrobic nulla
+                w.dataZwrotu = DateTime.UtcNow.ToLocalTime().AddDays(14); // jak tu zrobic nulla
                 w.czyAktualne = true; //w momencie wypozyczenia - true, jak będziemy zwracac to zmiana na false 
 
                 ServiceReference3.Service1Client service = new ServiceReference3.Service1Client();
 
-
-                // tu jeszcze trzeba zmienic stan oryginalnej ksiazki na niedostępna czyli update dodac do funkcji wypozyczenia i date trza zmienic
-
-
-
-                ///////////////////////////////////////////
-                ///
+                /////
 
 
 
@@ -251,7 +246,7 @@ namespace biblioteka1
                 //parametry, ktore ulegaja zmianie przy wypozyczeniu
                 //nowa.id = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["id"].Value.ToString());
                 nowa.dataWypozyczenia = DateTime.UtcNow.ToLocalTime();
-                nowa.dataZwrotu = DateTime.UtcNow.ToLocalTime().AddDays(14); //+14 dni jako prognozowana data zwrotu
+                nowa.dataZwrotu = (DateTime.UtcNow.ToLocalTime().AddDays(14)); //+14 dni jako prognozowana data zwrotu
                 nowa.stan = false;
                 nowa.licznikWypozyczen = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["licznikWypozyczen"].Value.ToString()) + 1;
 
@@ -265,8 +260,12 @@ namespace biblioteka1
                 nowa.nazwiskoAutora = dataGridView_ksiazki.CurrentRow.Cells["nazwiskoAutora"].Value.ToString();
                 nowa.nrISBN = dataGridView_ksiazki.CurrentRow.Cells["nrISBN"].Value.ToString();
 
+
+                // update z WCFKiazka
                 sc.UpdateNaWypozyczenie2(key1, nowa);
 
+
+                //Insert z WCFWypozyczenie
                 if (service.InsertWypozyczenie(w) == 1)
                 {
                     MessageBox.Show("Ksiazka wypozyczona");
@@ -280,25 +279,6 @@ namespace biblioteka1
                 MessageBox.Show("Ksiazka niedostępna, pusty kwadracik !!!");
 
 
-        
-
-            
-
-
-
-
-
-
-            
-
-       
-
-
-
-
-
-
-
         }
 
         private void button_dodajDoUlubionych_Click(object sender, EventArgs e)
@@ -307,15 +287,235 @@ namespace biblioteka1
             //w wypozyczeniach też nie bo nie musiał wypozyczyć by dodać do ulubioncyh - no w ostateczności tak sie zrobi
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button_zwroc_Click(object sender, EventArgs e) // uwaga zmieniona nazawa butona, jak by sie krzaczyło pamiętać
         {
             //zwróc
-            //wybiera poprzez wybór na liście
+            //wybiera poprzez wybór na liście ksiazek usera
             //jak zwroci to zmianie ulega status w ksiazce i w wypozyczeniu zmienia się na archiwalne i nowa data zwrotu się pojawia - update
+
+            string key = dataGridView_katalogUsera.CurrentRow.Cells["idKsiazki"].Value.ToString();
+
+            string keyDoWstawienia = "  CONVERT(VARCHAR, id)  = '" + key + " '";
+
+
+            //pooakzuje dane wybranej - bo tak
+            //dataGridView_ksiazki.DataSource = sc.FillListBoxKsiazkiWybranePrzezUsera(key);
+            dataGridView_wybrana.DataSource = sc.pokazDaneWybranejKsiazkiZKataloguUsera(keyDoWstawienia);
+
+
+
+
+            //najpierw sprawdzamy czy ksiazka jest jako wypozyczenieAktualne w katalogu Usera
+
+            if (Convert.ToBoolean(dataGridView_katalogUsera.CurrentRow.Cells["czyAktualne"].Value.ToString()) == true)
+
+            {
+
+
+                //update wypozyczenie
+
+                WcfWypozyczeniaDoBazy.Wypozyczenie wypNowe = new WcfWypozyczeniaDoBazy.Wypozyczenie();
+
+                //zmianie ulega data zwrotu i czyAktualne
+                wypNowe.dataZwrotu = DateTime.UtcNow.ToLocalTime();
+                wypNowe.czyAktualne = false;
+
+                //zmienie nie ulegaja
+                wypNowe.idUsera = dataGridView_katalogUsera.CurrentRow.Cells["idUsera"].Value.ToString();
+                wypNowe.dataWypozyczyenia = Convert.ToDateTime(dataGridView_katalogUsera.CurrentRow.Cells["dataWypozyczyenia"].Value.ToString());
+
+
+                //update wyp
+
+
+                 scWypozyczenie.UpdateNaZwrot(key, wypNowe);
+
+                //MessageBox.Show("Ksiazka zwrocona");
+
+
+                //Insert z WCFWypozyczenie
+                /*
+                if (service.InsertWypozyczenie(w) == 1)
+                {
+                    MessageBox.Show("Ksiazka wypozyczona");
+                }
+                */
+
+
+
+                //update Ksiazki z Iksiazka
+
+                Ksiazka nowa = new Ksiazka();
+
+                //parametry, ktore ulegaja zmianie przy zwrocie
+                //nowa.id = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["id"].Value.ToString());
+
+                nowa.dataZwrotu = DateTime.UtcNow.ToLocalTime();
+                nowa.stan = true;
+
+                nowa.dataWypozyczenia = Convert.ToDateTime(dataGridView_katalogUsera.CurrentRow.Cells["dataWypozyczyenia"].Value.ToString());//DateTime.UtcNow.ToLocalTime();
+
+               
+                
+                //troxhe na okrętke
+                //parametry, które się nie zmieniają
+                nowa.licznikWypozyczen = Convert.ToInt32(dataGridView_wybrana.CurrentRow.Cells["licznikWypozyczen"].Value.ToString()); //Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["licznikWypozyczen"].Value.ToString());
+                //nowa.dataWypozyczenia = Convert.ToDateTime(dataGridView_wybrana.CurrentRow.Cells["dataWypozyczenia"].Value.ToString());//DateTime.UtcNow.ToLocalTime();
+                nowa.tytul = nowa.tytul = dataGridView_wybrana.CurrentRow.Cells["tytul"].Value.ToString();
+                nowa.rodzaj = dataGridView_wybrana.CurrentRow.Cells["rodzaj"].Value.ToString();
+                nowa.licznikPrzedluzen = Convert.ToInt32(dataGridView_wybrana.CurrentRow.Cells["licznikPrzedluzen"].Value.ToString());
+                nowa.iloscStron = Convert.ToInt32(dataGridView_wybrana.CurrentRow.Cells["iloscStron"].Value.ToString());
+                nowa.imieAutora = dataGridView_wybrana.CurrentRow.Cells["imieAutora"].Value.ToString();
+                nowa.nazwiskoAutora = dataGridView_wybrana.CurrentRow.Cells["nazwiskoAutora"].Value.ToString();
+                nowa.nrISBN = dataGridView_wybrana.CurrentRow.Cells["nrISBN"].Value.ToString();
+                
+
+                //update ksiazka
+                sc.UpdateNaZwrot(key, nowa);
+
+                MessageBox.Show("ksiazka zwrócona");
+
+
+
+
+            }
+
+
+
+
+
+
+
+
+
+            else
+                MessageBox.Show("Ksiazka juz została przez Ciebie zwrócona");
+
+
+
+
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_witajUserName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+
+        public void pobierzNazweUseraDoPowitania(string n)
+        {
+
+            //textBox_IdUsera.Text = n;
+
+            textBox_witajUser.Text = n;
+
+           // label7_witaJUser.Text = n;
+        }
+
+        private void button_przegladajkatalogWlasny_Click(object sender, EventArgs e)
+        {
+            string idUzytkownika = textBox_witajUser.Text;
+
+           // string idUzytkownika = label7_witajUserName.Text; // wolalabym labela, ale niestwty nie odczytuje poprawnie :/
+
+            string key = "  CONVERT(VARCHAR, idUsera)  like '" + idUzytkownika + "'";
+
+            dataGridView_katalogUsera.DataSource = scWypozyczenie.FillWypozyczeniaUseraWszystkie(key, idUzytkownika);
+
+        }
+
+        private void button_pokazAktualneWypUsera_Click(object sender, EventArgs e)
+        {
+            string idUzytkownika = textBox_witajUser.Text; // label7_witajUserName.Text;
+
+            string key = "  CONVERT(VARCHAR, idUsera)  like '" + idUzytkownika + "' and czyAktualne like '1' ";
+
+            dataGridView_katalogUsera.DataSource = scWypozyczenie.FillWypozyczeniaUseraAktualne(key);
+
+
+
+        }
+
+        private void button_pokazArchiwalneWypUsera_Click(object sender, EventArgs e)
+        {
+
+
+            string idUzytkownika = textBox_witajUser.Text; // // label7_witajUserName.Text;
+
+            string key = "  CONVERT(VARCHAR, idUsera)  like '" + idUzytkownika + "' and czyAktualne like '0' ";
+
+            dataGridView_katalogUsera.DataSource = scWypozyczenie.FillWypozyczeniaUseraAktualne(key);
+
+        }
+
+        private void button1_pokazDaneWybranejKs_Click(object sender, EventArgs e)
+        {
+            string id = dataGridView_katalogUsera.CurrentRow.Cells["idKsiazki"].Value.ToString();
+
+            string key = "  CONVERT(VARCHAR, id)  = '" + id + " ' ";
+
+
+            //dataGridView_ksiazki.DataSource = sc.FillListBoxKsiazkiWybranePrzezUsera(key);
+            dataGridView_wybrana.DataSource = sc.pokazDaneWybranejKsiazkiZKataloguUsera(key);
+
+
+        }
+
+        private void dataGridView_wybrana_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string id = dataGridView_katalogUsera.CurrentRow.Cells["idKsiazki"].Value.ToString();
+
+            string key = "  CONVERT(VARCHAR, id)  = '" + id + " ' ";
+
+
+            //dataGridView_ksiazki.DataSource = sc.FillListBoxKsiazkiWybranePrzezUsera(key);
+            dataGridView_wybrana.DataSource = sc.pokazDaneWybranejKsiazkiZKataloguUsera(key);
+
+            dataGridView_wybrana.ClearSelection();
+
+
+        }
+
+        private void dataGridView_katalogUsera_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            string id = dataGridView_katalogUsera.CurrentRow.Cells["idKsiazki"].Value.ToString();
+
+            string key = "  CONVERT(VARCHAR, id)  = '" + id + " ' ";
+
+
+
+
+            //pooakzuje dane wybranej - bo tak
+            //dataGridView_ksiazki.DataSource = sc.FillListBoxKsiazkiWybranePrzezUsera(key);
+
+
+
+            textBox_imieAutora.Text = "nanan";
+
+
+            //dataGridView_ksiazki.DataSource = sc.FillListBoxKsiazkiWybranePrzezUsera(key);
+            dataGridView_wybrana.DataSource = sc.pokazDaneWybranejKsiazkiZKataloguUsera(key);
+
+
+            dataGridView_wybrana.ClearSelection();
+
+
+
+            // ShowDialog();
+
 
         }
     }
