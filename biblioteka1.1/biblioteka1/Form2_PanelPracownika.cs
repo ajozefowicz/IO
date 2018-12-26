@@ -75,8 +75,10 @@ namespace biblioteka1
             Ksiazka k = new Ksiazka();
             k.id = Convert.ToInt32(textId.Text);
             k.tytul = textTytul.Text;
-            k.stan = Convert.ToBoolean(textStan.Text);
-            k.rodzaj = textRodzaj.Text;
+            //k.stan = Convert.ToBoolean(textStan.Text);
+            k.stan = Convert.ToBoolean(comboBox_stan.Text);
+            //  k.rodzaj = textRodzaj.Text;
+            k.rodzaj = comboBox_rodzajeKsiazke.Text;
             k.licznikWypozyczen = Convert.ToInt32(textLicznikWyp.Text);
             k.licznikPrzedluzen = Convert.ToInt32(textLicznikPrzed.Text);
             k.iloscStron = Convert.ToInt32(textIloscStron.Text);
@@ -137,22 +139,15 @@ namespace biblioteka1
         }
 
 
-        private void button_pokazUzytkownikow_Click(object sender, EventArgs e)
-        {
 
-            //listBox2_uzytkownicy.Items.Clear();
-
-
-            //ServiceReference2.Service1Client service = new ServiceReference2.Service1Client();
-
-            listBox2_uzytkownicy.DataSource = sc.FillListBoxUzytkownicy();
-
-        }
 
         private void button_pokazKsiazki_Click(object sender, EventArgs e)
         {
-            //listBox2_uzytkownicy.DataSource = sc.FillListBoxUzytkownicy();
-            listBox_ksiazkiPracownik.DataSource = scKsiazki.FillListBoxKsiazkiPanelPracownika();
+            //zaby pokazało ks wszytskie, ale tylko kila parametrów
+            // listBox_ksiazkiPracownik.DataSource = scKsiazki.FillListBoxKsiazkiPanelPracownika();
+            listBox_ksiazkiPracownik.DataSource = scKsiazki.pokazKsiazkiNajczesciejWypozyczane();
+
+
         }
 
         private void button_pokazUserówDataGrid_Click(object sender, EventArgs e)
@@ -262,6 +257,22 @@ namespace biblioteka1
         private void button_pokazWypozyczenia_Click(object sender, EventArgs e)
         {
             dataGridView_ksiazkiTabela.DataSource = scWypozyczenia.FillWypozyczeniaDataGridViewTabela();
+        }
+
+        private void comboBox_sortowanieNaj_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           if (comboBox_sortowanieNaj.SelectedIndex == 0 )
+            {
+                listBox_ksiazkiPracownik.DataSource = scKsiazki.pokazKsiazkiNajczesciejWypozyczane();
+
+            }
+
+
+            if (comboBox_sortowanieNaj.SelectedIndex == 1)
+            {
+                listBox_ksiazkiPracownik.DataSource = scKsiazki.pokazKsiazkiNajzadziejWypozyczane();
+
+            }
         }
     }
 }

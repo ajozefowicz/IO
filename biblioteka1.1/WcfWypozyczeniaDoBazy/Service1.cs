@@ -382,5 +382,54 @@ namespace WcfWypozyczeniaDoBazy
 
         }
 
+
+
+        //////////////////////////////////////
+        ///
+
+
+        public void UpdateNaPrzedluzenie(string key, Wypozyczenie wNowe)
+        {
+
+            //key to bedzie pozycja wybrana z listywypozyczen usera wiec z IWypozyczenie
+
+            try
+            {
+
+
+                comm.CommandText = "Update IWypozyczenie set idUsera= @idUsera, dataWypozyczenia = @dataWypozyczenia, dataZwrotu = @dataZwrotu, " +
+                    "czyAktualne = @czyAktualne where idKsiazki = '" + key + "'";
+
+                // comm.Parameters.AddWithValue("id", w.id);
+                //comm.Parameters.AddWithValue("idKsiazki", w.idKsiazki);
+                comm.Parameters.AddWithValue("@idUsera", wNowe.idUsera);
+                comm.Parameters.AddWithValue("@dataWypozyczenia", wNowe.dataZwrotu);
+                comm.Parameters.AddWithValue("@dataZwrotu", DateTime.UtcNow.ToLocalTime().AddDays(14));
+                comm.Parameters.AddWithValue("@czyAktualne", wNowe.czyAktualne);
+
+
+                conn.Open();
+                comm.ExecuteNonQuery();
+
+                comm.Parameters.Clear();
+
+
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+
+
+        }
+
     }
 }

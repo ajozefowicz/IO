@@ -631,7 +631,7 @@ namespace WcfKsiazkaDoBazy4
 
                 */
 
-                
+
                 //LICZY SIE TO W JAKIEJ KOLEJNOSCI TU SA POLA WPISANE, TAK DODAJE DO BAZY
                 comm.CommandText = "Update IKsiazka set   tytul = @tytul, stan = @stan, rodzaj = @rodzaj, licznikWypozyczen = @licznikWypozyczen," +
                     "dataWypozyczenia = @dataWypozyczenia, dataZwrotu = @dataZwrotu, licznikPrzedluzen = @licznikPrzedluzen, iloscStron = @iloscStron, imieAutora = @imieAutora, nazwiskoAutora = @nazwiskoAutora, nrISBN = @nrISBN where id =@id ";
@@ -683,7 +683,7 @@ namespace WcfKsiazkaDoBazy4
 
                 //LICZY SIE TO W JAKIEJ KOLEJNOSCI TU SA POLA WPISANE, TAK DODAJE DO BAZY
                 comm.CommandText = "Update IKsiazka set  tytul = @tytul , stan = @stan, rodzaj = @rodzaj, licznikWypozyczen = @licznikWypozyczen," +
-                    "dataWypozyczenia = @dataWypozyczenia, dataZwrotu = @dataZwrotu, licznikPrzedluzen = @licznikPrzedluzen, iloscStron = @iloscStron, imieAutora = @imieAutora, nazwiskoAutora = @nazwiskoAutora, nrISBN = @nrISBN where id = '" +key + "'" ;
+                    "dataWypozyczenia = @dataWypozyczenia, dataZwrotu = @dataZwrotu, licznikPrzedluzen = @licznikPrzedluzen, iloscStron = @iloscStron, imieAutora = @imieAutora, nazwiskoAutora = @nazwiskoAutora, nrISBN = @nrISBN where id = '" + key + "'";
 
 
                 //caly czas sie pluje o to ID, przy wypozyczaniu drugiej ksiazki
@@ -721,14 +721,6 @@ namespace WcfKsiazkaDoBazy4
                     conn.Close();
                 }
             }
-
-
-
-
-
-
-
-
 
         }
 
@@ -779,16 +771,63 @@ namespace WcfKsiazkaDoBazy4
                 }
             }
 
-
-
-
-
-
         }
 
 
         /////////////
-        ///
+        public void UpdateNaPrzedluzenie(string key, Ksiazka kNowa)
+        {
+
+            //key to bedzie pozycja wybrana z listywypozyczen usera wiec z IWypozyczenie
+
+            try
+            {
+
+                //LICZY SIE TO W JAKIEJ KOLEJNOSCI TU SA POLA WPISANE, TAK DODAJE DO BAZY
+                comm.CommandText = "Update IKsiazka set  tytul = @tytul , stan = @stan, rodzaj = @rodzaj, licznikWypozyczen = @licznikWypozyczen," +
+                    "dataWypozyczenia = @dataWypozyczenia, dataZwrotu = @dataZwrotu, licznikPrzedluzen = @licznikPrzedluzen, iloscStron = @iloscStron, imieAutora = @imieAutora, nazwiskoAutora = @nazwiskoAutora, nrISBN = @nrISBN where id = '" + key + "'";
+
+
+                //comm.Parameters.AddWithValue("@id", kStara.id);
+                comm.Parameters.AddWithValue("@tytul", kNowa.tytul);
+                comm.Parameters.AddWithValue("@stan", kNowa.stan);
+                comm.Parameters.AddWithValue("@rodzaj", kNowa.rodzaj);
+                comm.Parameters.AddWithValue("@licznikWypozyczen", kNowa.licznikWypozyczen);
+                comm.Parameters.AddWithValue("@dataWypozyczenia", kNowa.dataWypozyczenia); //DateTime.UtcNow.ToLocalTime()
+                comm.Parameters.AddWithValue("@dataZwrotu", DateTime.UtcNow.ToLocalTime().AddDays(14)); // + 14 dni // tez można podac "2010-10-10"
+                comm.Parameters.AddWithValue("@licznikPrzedluzen", kNowa.licznikPrzedluzen);
+                comm.Parameters.AddWithValue("@iloscStron", kNowa.iloscStron);
+                comm.Parameters.AddWithValue("@imieAutora", kNowa.imieAutora);
+                comm.Parameters.AddWithValue("@nazwiskoAutora", kNowa.nazwiskoAutora);
+                comm.Parameters.AddWithValue("@nrISBN", kNowa.nrISBN);
+
+
+                conn.Open();
+                comm.ExecuteNonQuery();
+
+                comm.Parameters.Clear();
+
+
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+
+
+
+        /////////////////
+
         public List<Ksiazka> pokazDaneWybranejKsiazkiZKataloguUsera(string key) //mozna tez zrobic oknk wyskakujace z opisem
         {
             //kluczem bedzue id z DataGrid katalogu usera
@@ -834,7 +873,145 @@ namespace WcfKsiazkaDoBazy4
 
 
                 ////////////
-                
+
+
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+
+
+
+
+        ///////////////////////////////////
+        ///
+
+        public List<string> pokazKsiazkiNajczesciejWypozyczane() //mozna tez zrobic oknk wyskakujace z opisem
+        {
+            //kluczem bedzue największa liczba wypozyczeń
+
+            List<Ksiazka> ksiazki = new List<Ksiazka>();
+            List<string> stringi = new List<string>();
+
+
+            try
+            {
+
+                string cmdText = "Select * " +
+                    "from IKsiazka " +
+                    "order by licznikWypozyczen desc";
+
+
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                conn.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    Ksiazka ks = new Ksiazka();
+                    ks.tytul = reader["tytul"].ToString();
+                    ks.id = Convert.ToInt32(reader["id"].ToString());
+                    ks.stan = Convert.ToBoolean(reader["stan"].ToString());
+                    ks.rodzaj = reader["rodzaj"].ToString();
+                    ks.imieAutora = reader["imieAutora"].ToString();
+                    ks.nazwiskoAutora = reader["nazwiskoAutora"].ToString();
+                    ks.nrISBN = reader["nrISBN"].ToString();
+                    ks.dataWypozyczenia = Convert.ToDateTime(reader["dataWypozyczenia"].ToString());
+                    ks.dataZwrotu = Convert.ToDateTime(reader["dataZwrotu"].ToString());
+                    ks.licznikWypozyczen = Convert.ToInt32(reader["licznikWypozyczen"].ToString());
+                    ks.licznikPrzedluzen = Convert.ToInt32(reader["licznikPrzedluzen"].ToString());
+                    ks.iloscStron = Convert.ToInt32(reader["iloscStron"].ToString());
+
+                    string ss = ks.tytul + " napisana przez " + ks.imieAutora + " " + ks.nazwiskoAutora + " (" + ks.nrISBN + "), ilosc wypozyczen: " + ks.licznikWypozyczen;
+
+
+                    stringi.Add(ss);
+
+                }
+                return stringi;
+
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+
+            //////////////////////////////
+        }
+
+
+
+
+        public List<string> pokazKsiazkiNajzadziejWypozyczane() //mozna tez zrobic oknk wyskakujace z opisem
+        {
+            //kluczem bedzue największa liczba wypozyczeń
+
+            List<Ksiazka> ksiazki = new List<Ksiazka>();
+            List<string> stringi = new List<string>();
+
+
+            try
+            {
+
+                string cmdText = "Select * " +
+                    "from IKsiazka " +
+                    "order by licznikWypozyczen";
+
+
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                conn.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    Ksiazka ks = new Ksiazka();
+                    ks.tytul = reader["tytul"].ToString();
+                    ks.id = Convert.ToInt32(reader["id"].ToString());
+                    ks.stan = Convert.ToBoolean(reader["stan"].ToString());
+                    ks.rodzaj = reader["rodzaj"].ToString();
+                    ks.imieAutora = reader["imieAutora"].ToString();
+                    ks.nazwiskoAutora = reader["nazwiskoAutora"].ToString();
+                    ks.nrISBN = reader["nrISBN"].ToString();
+                    ks.dataWypozyczenia = Convert.ToDateTime(reader["dataWypozyczenia"].ToString());
+                    ks.dataZwrotu = Convert.ToDateTime(reader["dataZwrotu"].ToString());
+                    ks.licznikWypozyczen = Convert.ToInt32(reader["licznikWypozyczen"].ToString());
+                    ks.licznikPrzedluzen = Convert.ToInt32(reader["licznikPrzedluzen"].ToString());
+                    ks.iloscStron = Convert.ToInt32(reader["iloscStron"].ToString());
+
+                    string ss = ks.tytul + " napisana przez " + ks.imieAutora + " " + ks.nazwiskoAutora + " (" + ks.nrISBN + "), ilosc wypozyczen: " + ks.licznikWypozyczen;
+
+
+                    stringi.Add(ss);
+
+                }
+                return stringi;
 
             }
 
@@ -853,13 +1030,9 @@ namespace WcfKsiazkaDoBazy4
 
 
 
-
-
-
         }
 
 
-
-        //////////////////////////////
     }
+
 }

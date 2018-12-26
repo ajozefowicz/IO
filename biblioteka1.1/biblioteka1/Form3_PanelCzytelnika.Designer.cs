@@ -60,6 +60,7 @@
             this.button1_pokazDaneWybranejKs = new System.Windows.Forms.Button();
             this.dataGridView_wybrana = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
+            this.button_przedłuż = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.compositeTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ksiazki)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_katalogUsera)).BeginInit();
@@ -348,11 +349,22 @@
             this.label7.TabIndex = 32;
             this.label7.Text = "jesli nie ma tz ksiazka została wycofana";
             // 
+            // button_przedłuż
+            // 
+            this.button_przedłuż.Location = new System.Drawing.Point(541, 89);
+            this.button_przedłuż.Name = "button_przedłuż";
+            this.button_przedłuż.Size = new System.Drawing.Size(196, 23);
+            this.button_przedłuż.TabIndex = 33;
+            this.button_przedłuż.Text = "TODO przedłuż wybraną ksiązke";
+            this.button_przedłuż.UseVisualStyleBackColor = true;
+            this.button_przedłuż.Click += new System.EventHandler(this.button_przedłuż_Click);
+            // 
             // Form3_PanelCzytelnika
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(991, 450);
+            this.Controls.Add(this.button_przedłuż);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dataGridView_wybrana);
             this.Controls.Add(this.button1_pokazDaneWybranejKs);
@@ -428,5 +440,6 @@
         private System.Windows.Forms.Button button1_pokazDaneWybranejKs;
         private System.Windows.Forms.DataGridView dataGridView_wybrana;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button_przedłuż;
     }
 }

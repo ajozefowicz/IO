@@ -250,11 +250,14 @@ namespace biblioteka1
                 nowa.stan = false;
                 nowa.licznikWypozyczen = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["licznikWypozyczen"].Value.ToString()) + 1;
 
+                //a jeszcze licznik przedluzen by sprawdzac czy nie przekroczono limitu
+                nowa.licznikPrzedluzen = 0;
+
 
                 //parametry, które się nie zmieniają
                 nowa.tytul = nowa.tytul = dataGridView_ksiazki.CurrentRow.Cells["tytul"].Value.ToString();
                 nowa.rodzaj = dataGridView_ksiazki.CurrentRow.Cells["rodzaj"].Value.ToString();
-                nowa.licznikPrzedluzen = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["licznikPrzedluzen"].Value.ToString());
+               // nowa.licznikPrzedluzen = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["licznikPrzedluzen"].Value.ToString());
                 nowa.iloscStron = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["iloscStron"].Value.ToString());
                 nowa.imieAutora = dataGridView_ksiazki.CurrentRow.Cells["imieAutora"].Value.ToString();
                 nowa.nazwiskoAutora = dataGridView_ksiazki.CurrentRow.Cells["nazwiskoAutora"].Value.ToString();
@@ -330,17 +333,6 @@ namespace biblioteka1
 
                  scWypozyczenie.UpdateNaZwrot(key, wypNowe);
 
-                //MessageBox.Show("Ksiazka zwrocona");
-
-
-                //Insert z WCFWypozyczenie
-                /*
-                if (service.InsertWypozyczenie(w) == 1)
-                {
-                    MessageBox.Show("Ksiazka wypozyczona");
-                }
-                */
-
 
 
                 //update Ksiazki z Iksiazka
@@ -375,23 +367,11 @@ namespace biblioteka1
 
                 MessageBox.Show("ksiazka zwrócona");
 
-
-
-
             }
-
-
-
-
-
-
-
 
 
             else
                 MessageBox.Show("Ksiazka juz została przez Ciebie zwrócona");
-
-
 
 
         }
@@ -515,6 +495,114 @@ namespace biblioteka1
 
 
             // ShowDialog();
+
+
+        }
+
+        private void button_przedłuż_Click(object sender, EventArgs e)
+        {
+            //można przedłużyć 3 razy
+            //ilość przedłużeń mozemy sprawidzć dla danej pozycji id 
+            //- nie mozemy bo w wypozyczeniach nie zaplanowalismy pola ilość przedłużeń
+            //a może sie da licząc ile razy dla danej pozycji id wypozyczenia wywołano klik butona
+
+            //zmienają się tylko daty zwrotu w IKsiazka i i Wypozyczenie
+
+
+
+
+
+
+
+            string key = dataGridView_katalogUsera.CurrentRow.Cells["idKsiazki"].Value.ToString();
+
+            string keyDoWstawienia = "  CONVERT(VARCHAR, id)  = '" + key + " '";
+
+
+            //pooakzuje dane wybranej - bo tak
+            //dataGridView_ksiazki.DataSource = sc.FillListBoxKsiazkiWybranePrzezUsera(key);
+            dataGridView_wybrana.DataSource = sc.pokazDaneWybranejKsiazkiZKataloguUsera(keyDoWstawienia);
+
+
+
+
+            //najpierw sprawdzamy czy ksiazka jest jako wypozyczenieAktualne w katalogu Usera
+
+            if (Convert.ToBoolean(dataGridView_katalogUsera.CurrentRow.Cells["czyAktualne"].Value.ToString()) == true)
+
+            {
+
+                if (Convert.ToInt32(dataGridView_wybrana.CurrentRow.Cells["licznikPrzedluzen"].Value.ToString())<3)
+
+                {
+
+
+                    //update wypozyczenie
+
+                    WcfWypozyczeniaDoBazy.Wypozyczenie wypNowe = new WcfWypozyczeniaDoBazy.Wypozyczenie();
+
+                    //zmianie ulega data zwrotu 
+                    wypNowe.dataZwrotu = DateTime.UtcNow.ToLocalTime();
+
+                    //zmienie nie ulegaja
+                    wypNowe.idUsera = dataGridView_katalogUsera.CurrentRow.Cells["idUsera"].Value.ToString();
+                    wypNowe.dataWypozyczyenia = Convert.ToDateTime(dataGridView_katalogUsera.CurrentRow.Cells["dataWypozyczyenia"].Value.ToString());
+                    wypNowe.czyAktualne = Convert.ToBoolean(dataGridView_katalogUsera.CurrentRow.Cells["czyAktualne"].Value.ToString());
+
+
+                    //update wyp
+
+
+                    scWypozyczenie.UpdateNaPrzedluzenie(key, wypNowe);
+
+
+
+                    //update Ksiazki z Iksiazka
+
+                    Ksiazka nowa = new Ksiazka();
+
+                    //parametry, ktore ulegaja zmianie przy przedluzeniu
+
+                    nowa.dataZwrotu = DateTime.UtcNow.ToLocalTime().AddDays(14);
+                    nowa.licznikPrzedluzen = Convert.ToInt32(dataGridView_wybrana.CurrentRow.Cells["licznikPrzedluzen"].Value.ToString()) + 1;
+
+
+                    //nowa.dataWypozyczenia = Convert.ToDateTime(dataGridView_katalogUsera.CurrentRow.Cells["dataWypozyczyenia"].Value.ToString());//DateTime.UtcNow.ToLocalTime();
+
+
+
+                    //troxhe na okrętke
+                    //parametry, które się nie zmieniają
+                    nowa.stan = Convert.ToBoolean(dataGridView_wybrana.CurrentRow.Cells["stan"].Value.ToString());
+                    nowa.licznikWypozyczen = Convert.ToInt32(dataGridView_wybrana.CurrentRow.Cells["licznikWypozyczen"].Value.ToString()); //Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["licznikWypozyczen"].Value.ToString());
+                    nowa.dataWypozyczenia = Convert.ToDateTime(dataGridView_wybrana.CurrentRow.Cells["dataWypozyczenia"].Value.ToString());//DateTime.UtcNow.ToLocalTime();
+                    nowa.tytul = nowa.tytul = dataGridView_wybrana.CurrentRow.Cells["tytul"].Value.ToString();
+                    nowa.rodzaj = dataGridView_wybrana.CurrentRow.Cells["rodzaj"].Value.ToString();
+                    //nowa.licznikPrzedluzen = Convert.ToInt32(dataGridView_wybrana.CurrentRow.Cells["licznikPrzedluzen"].Value.ToString());
+                    nowa.iloscStron = Convert.ToInt32(dataGridView_wybrana.CurrentRow.Cells["iloscStron"].Value.ToString());
+                    nowa.imieAutora = dataGridView_wybrana.CurrentRow.Cells["imieAutora"].Value.ToString();
+                    nowa.nazwiskoAutora = dataGridView_wybrana.CurrentRow.Cells["nazwiskoAutora"].Value.ToString();
+                    nowa.nrISBN = dataGridView_wybrana.CurrentRow.Cells["nrISBN"].Value.ToString();
+
+
+                    //update ksiazka
+                    sc.UpdateNaZwrot(key, nowa);
+
+                    MessageBox.Show("ksiazka przedluzona");
+
+                }
+
+
+                else MessageBox.Show("Wyczerpałeś limit przedłużeń");
+
+
+            }
+
+
+            else
+                MessageBox.Show("Nie możesz przedluzyć ksiązki, której nie masz");
+
+
 
 
         }
