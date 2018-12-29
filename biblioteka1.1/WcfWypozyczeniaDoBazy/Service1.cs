@@ -427,9 +427,126 @@ namespace WcfWypozyczeniaDoBazy
                 }
             }
 
+        }
+
+
+
+
+
+        public bool CzyUserNieZalegazeZwrotem(string idUzytkownika)
+        {
+
+            //sprawdzamy czy data żadnej pozycji nie została przekroczona i czy limit ksiązek nie zotsał przekroczony
+
+            //spr czy any data jest wieksza niz obecna ale tylko dla aktualnych wypozyczen 
+
+            //where czy aktualne true i dataWypozyczenia> data aktualna - nie można wypozyczyc -i id czytelnika = id 
+            // i do tego count i spr czy wieksze od 0
+
+
+
+            //zapytanie sprawdzone w bazie danych
+            /*
+            select count(dataZwrotu)
+            from dbo.Iwypozyczenie
+            where dataZwrotu < getDate()-- tzn nie oddał
+            and czyAktualne = 'true'
+            and CONVERT(VARCHAR, idUsera)   = 'qqq'
+
+            */
+
+            //jesli wieksze od 0 tzn nie moze wypozyczyc
+
+
+            try
+            {
+
+
+                ///////////////////////////
+
+
+                string cmdText = " select count(dataZwrotu)  " +
+    "from IWypozyczenie    " +
+    "where dataZwrotu < getDate() " +
+    "and czyAktualne = 'true' " +
+    //"and CONVERT(VARCHAR, idUsera)  = 'ana'";
+                "and CONVERT(VARCHAR, idUsera)  = '"  + idUzytkownika + "'";
+
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                conn.Open();
+
+                //SqlDataReader reader = cmd.ExecuteReader();
+
+                Int32 count = (Int32)cmd.ExecuteScalar();
+
+                if (count == 0)
+                {
+                    return true; // nie zalega
+
+                }
+
+                else
+                    return false;
+
+
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
 
 
         }
+
+
+        public int IleMaWypozyczonych(string idUzytkownika)
+        {
+
+            try
+            {
+
+
+                string cmdText = " select count(dataZwrotu)  " +
+                     "from IWypozyczenie    " +
+                      "where  " +
+                      "czyAktualne = 'true' " +
+                      "and CONVERT(VARCHAR, idUsera)  = '" + idUzytkownika + "'";
+
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                conn.Open();
+
+
+                Int32 count = (Int32)cmd.ExecuteScalar();
+
+
+                return count;
+
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+
+        }
+
+
+
+
 
     }
 }

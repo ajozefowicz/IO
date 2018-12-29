@@ -197,89 +197,122 @@ namespace biblioteka1
         {
             ServiceReference4.Ksiazka ks = new ServiceReference4.Ksiazka();
 
+ 
+
             //ks = listBox_ksiazkiWybrane.SelectedItem as ServiceReference1.Ksiazka;// to nie działa, po wybraniu wiersza na ekranie jest nullem
 
 
             string key1 = dataGridView_ksiazki.CurrentRow.Cells["id"].Value.ToString();
 
 
-            //najpierw sprawdzamy czy ksiazka dostępna
+            //id Usera do sprawdzenia funkcji czy nie zalega i czy limit nie przekroczony
+           string  idUzy = textBox_witajUser.Text;
 
-            if (Convert.ToBoolean(dataGridView_ksiazki.CurrentRow.Cells["stan"].Value.ToString()) == true)
 
+            //1. sprawdzamy czy limit nie zalega z skiążkami
+            if (scWypozyczenie.CzyUserNieZalegazeZwrotem(idUzy) == false)  //tzn zalega
             {
-
-                ServiceReference3.Wypozyczenie w = new ServiceReference3.Wypozyczenie();
-                w.idKsiazki = Convert.ToInt32(key1); // pcja = ks.id nie działa, bo wybrany wiersz jest nulem, wiec zamiast listBox, dataGridView
-                w.idUsera = textBox_witajUser.Text;     //label7_witaJUser.Text;   //textBox_IdUsera.Text; // to na probe, zmienić by pobierało
-                w.dataWypozyczyenia = DateTime.UtcNow.ToLocalTime();
-                w.dataZwrotu = DateTime.UtcNow.ToLocalTime().AddDays(14); // jak tu zrobic nulla
-                w.czyAktualne = true; //w momencie wypozyczenia - true, jak będziemy zwracac to zmiana na false 
-
-                ServiceReference3.Service1Client service = new ServiceReference3.Service1Client();
-
-                /////
-
-
-
-                Ksiazka nowa = new Ksiazka();
-                Ksiazka stara = new Ksiazka();
-
-                /*
-                //stara.id = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["id"].Value.ToString());
-                stara.dataWypozyczenia = Convert.ToDateTime(dataGridView_ksiazki.CurrentRow.Cells["dataWypozyczenia"].Value.ToString());
-                stara.dataZwrotu = Convert.ToDateTime(dataGridView_ksiazki.CurrentRow.Cells["dataZwrotu"].Value.ToString());
-                stara.stan = Convert.ToBoolean(dataGridView_ksiazki.CurrentRow.Cells["stan"].Value.ToString());
-
-
-                stara.tytul = dataGridView_ksiazki.CurrentRow.Cells["tytul"].Value.ToString();
-                stara.rodzaj = dataGridView_ksiazki.CurrentRow.Cells["rodzaj"].Value.ToString();
-                stara.licznikWypozyczen = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["licznikWypozyczen"].Value.ToString());
-                stara.licznikPrzedluzen = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["licznikPrzedluzen"].Value.ToString());
-                stara.iloscStron = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["iloscStron"].Value.ToString());
-                stara.imieAutora = dataGridView_ksiazki.CurrentRow.Cells["imieAutora"].Value.ToString();
-                stara.nazwiskoAutora = dataGridView_ksiazki.CurrentRow.Cells["nazwiskoAutora"].Value.ToString();
-                stara.nrISBN = dataGridView_ksiazki.CurrentRow.Cells["nrISBN"].Value.ToString();
-                */
-
-
-                //parametry, ktore ulegaja zmianie przy wypozyczeniu
-                //nowa.id = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["id"].Value.ToString());
-                nowa.dataWypozyczenia = DateTime.UtcNow.ToLocalTime();
-                nowa.dataZwrotu = (DateTime.UtcNow.ToLocalTime().AddDays(14)); //+14 dni jako prognozowana data zwrotu
-                nowa.stan = false;
-                nowa.licznikWypozyczen = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["licznikWypozyczen"].Value.ToString()) + 1;
-
-                //a jeszcze licznik przedluzen by sprawdzac czy nie przekroczono limitu
-                nowa.licznikPrzedluzen = 0;
-
-
-                //parametry, które się nie zmieniają
-                nowa.tytul = nowa.tytul = dataGridView_ksiazki.CurrentRow.Cells["tytul"].Value.ToString();
-                nowa.rodzaj = dataGridView_ksiazki.CurrentRow.Cells["rodzaj"].Value.ToString();
-               // nowa.licznikPrzedluzen = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["licznikPrzedluzen"].Value.ToString());
-                nowa.iloscStron = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["iloscStron"].Value.ToString());
-                nowa.imieAutora = dataGridView_ksiazki.CurrentRow.Cells["imieAutora"].Value.ToString();
-                nowa.nazwiskoAutora = dataGridView_ksiazki.CurrentRow.Cells["nazwiskoAutora"].Value.ToString();
-                nowa.nrISBN = dataGridView_ksiazki.CurrentRow.Cells["nrISBN"].Value.ToString();
-
-
-                // update z WCFKiazka
-                sc.UpdateNaWypozyczenie2(key1, nowa);
-
-
-                //Insert z WCFWypozyczenie
-                if (service.InsertWypozyczenie(w) == 1)
-                {
-                    MessageBox.Show("Ksiazka wypozyczona");
-                }
-
-                ///////////////////////////////
+                MessageBox.Show("Zalegasz ze zwrotem, nie możesz wypozyczyc");
             }
 
+            //2. spr czy nie przekroczy limitu
+            else if(scWypozyczenie.IleMaWypozyczonych(idUzy)>5) // na probe 20
+            {
+                MessageBox.Show("Wypozyczyles juz " + Convert.ToInt32(scWypozyczenie.IleMaWypozyczonych(idUzy)) + " nie mozesz więcej" );
+            }
 
+            //3.
             else
-                MessageBox.Show("Ksiazka niedostępna, pusty kwadracik !!!");
+            {
+                //najpierw sprawdzamy czy ksiazka dostępna
+
+                if (Convert.ToBoolean(dataGridView_ksiazki.CurrentRow.Cells["stan"].Value.ToString()) == true)
+
+                {
+
+                    ServiceReference3.Wypozyczenie w = new ServiceReference3.Wypozyczenie();
+                    w.idKsiazki = Convert.ToInt32(key1); // pcja = ks.id nie działa, bo wybrany wiersz jest nulem, wiec zamiast listBox, dataGridView
+                    w.idUsera = textBox_witajUser.Text;     //label7_witaJUser.Text;   //textBox_IdUsera.Text; // to na probe, zmienić by pobierało
+                    w.dataWypozyczyenia = DateTime.UtcNow.ToLocalTime();
+                    w.dataZwrotu = DateTime.UtcNow.ToLocalTime().AddDays(14); // jak tu zrobic nulla
+                    w.czyAktualne = true; //w momencie wypozyczenia - true, jak będziemy zwracac to zmiana na false 
+
+                    ServiceReference3.Service1Client service = new ServiceReference3.Service1Client();
+
+                    /////
+
+
+
+                    Ksiazka nowa = new Ksiazka();
+                    Ksiazka stara = new Ksiazka();
+
+                    /*
+                    //stara.id = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["id"].Value.ToString());
+                    stara.dataWypozyczenia = Convert.ToDateTime(dataGridView_ksiazki.CurrentRow.Cells["dataWypozyczenia"].Value.ToString());
+                    stara.dataZwrotu = Convert.ToDateTime(dataGridView_ksiazki.CurrentRow.Cells["dataZwrotu"].Value.ToString());
+                    stara.stan = Convert.ToBoolean(dataGridView_ksiazki.CurrentRow.Cells["stan"].Value.ToString());
+
+
+                    stara.tytul = dataGridView_ksiazki.CurrentRow.Cells["tytul"].Value.ToString();
+                    stara.rodzaj = dataGridView_ksiazki.CurrentRow.Cells["rodzaj"].Value.ToString();
+                    stara.licznikWypozyczen = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["licznikWypozyczen"].Value.ToString());
+                    stara.licznikPrzedluzen = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["licznikPrzedluzen"].Value.ToString());
+                    stara.iloscStron = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["iloscStron"].Value.ToString());
+                    stara.imieAutora = dataGridView_ksiazki.CurrentRow.Cells["imieAutora"].Value.ToString();
+                    stara.nazwiskoAutora = dataGridView_ksiazki.CurrentRow.Cells["nazwiskoAutora"].Value.ToString();
+                    stara.nrISBN = dataGridView_ksiazki.CurrentRow.Cells["nrISBN"].Value.ToString();
+                    */
+
+
+                    //parametry, ktore ulegaja zmianie przy wypozyczeniu
+                    //nowa.id = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["id"].Value.ToString());
+                    nowa.dataWypozyczenia = DateTime.UtcNow.ToLocalTime();
+                    nowa.dataZwrotu = (DateTime.UtcNow.ToLocalTime().AddDays(14)); //+14 dni jako prognozowana data zwrotu
+                    nowa.stan = false;
+                    nowa.licznikWypozyczen = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["licznikWypozyczen"].Value.ToString()) + 1;
+
+                    //a jeszcze licznik przedluzen by sprawdzac czy nie przekroczono limitu
+                    nowa.licznikPrzedluzen = 0;
+
+
+                    //parametry, które się nie zmieniają
+                    nowa.tytul = nowa.tytul = dataGridView_ksiazki.CurrentRow.Cells["tytul"].Value.ToString();
+                    nowa.rodzaj = dataGridView_ksiazki.CurrentRow.Cells["rodzaj"].Value.ToString();
+                    // nowa.licznikPrzedluzen = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["licznikPrzedluzen"].Value.ToString());
+                    nowa.iloscStron = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["iloscStron"].Value.ToString());
+                    nowa.imieAutora = dataGridView_ksiazki.CurrentRow.Cells["imieAutora"].Value.ToString();
+                    nowa.nazwiskoAutora = dataGridView_ksiazki.CurrentRow.Cells["nazwiskoAutora"].Value.ToString();
+                    nowa.nrISBN = dataGridView_ksiazki.CurrentRow.Cells["nrISBN"].Value.ToString();
+
+
+                    // update z WCFKiazka
+                    sc.UpdateNaWypozyczenie2(key1, nowa);
+
+
+                    //Insert z WCFWypozyczenie
+                    if (service.InsertWypozyczenie(w) == 1)
+                    {
+                        MessageBox.Show("Ksiazka wypozyczona");
+                    }
+
+                    ///////////////////////////////
+                }
+
+
+                else
+                    MessageBox.Show("Ksiazka niedostępna, pusty kwadracik !!!");
+
+
+
+
+
+            }
+                    
+
+
+
+
+            
 
 
         }

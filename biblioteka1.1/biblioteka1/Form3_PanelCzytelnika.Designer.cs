@@ -61,6 +61,7 @@
             this.dataGridView_wybrana = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.button_przedłuż = new System.Windows.Forms.Button();
+            this.button_pokazZarezerwowane = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.compositeTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ksiazki)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_katalogUsera)).BeginInit();
@@ -92,7 +93,7 @@
             this.listBoxKsiazki.FormattingEnabled = true;
             this.listBoxKsiazki.Location = new System.Drawing.Point(564, 14);
             this.listBoxKsiazki.Name = "listBoxKsiazki";
-            this.listBoxKsiazki.Size = new System.Drawing.Size(137, 69);
+            this.listBoxKsiazki.Size = new System.Drawing.Size(137, 43);
             this.listBoxKsiazki.TabIndex = 2;
             // 
             // compositeTypeBindingSource
@@ -351,7 +352,7 @@
             // 
             // button_przedłuż
             // 
-            this.button_przedłuż.Location = new System.Drawing.Point(541, 89);
+            this.button_przedłuż.Location = new System.Drawing.Point(541, 63);
             this.button_przedłuż.Name = "button_przedłuż";
             this.button_przedłuż.Size = new System.Drawing.Size(196, 23);
             this.button_przedłuż.TabIndex = 33;
@@ -359,11 +360,21 @@
             this.button_przedłuż.UseVisualStyleBackColor = true;
             this.button_przedłuż.Click += new System.EventHandler(this.button_przedłuż_Click);
             // 
+            // button_pokazZarezerwowane
+            // 
+            this.button_pokazZarezerwowane.Location = new System.Drawing.Point(541, 92);
+            this.button_pokazZarezerwowane.Name = "button_pokazZarezerwowane";
+            this.button_pokazZarezerwowane.Size = new System.Drawing.Size(196, 23);
+            this.button_pokazZarezerwowane.TabIndex = 34;
+            this.button_pokazZarezerwowane.Text = "TODO pokaz moje zarezerwowane ksiązki";
+            this.button_pokazZarezerwowane.UseVisualStyleBackColor = true;
+            // 
             // Form3_PanelCzytelnika
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(991, 450);
+            this.Controls.Add(this.button_pokazZarezerwowane);
             this.Controls.Add(this.button_przedłuż);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dataGridView_wybrana);
@@ -441,5 +452,6 @@
         private System.Windows.Forms.DataGridView dataGridView_wybrana;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button_przedłuż;
+        private System.Windows.Forms.Button button_pokazZarezerwowane;
     }
 }

@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfWypozyczeniaDoBazy", "Wc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfKsiazkaDoBazy4", "WcfKsiazkaDoBazy4\WcfKsiazkaDoBazy4.csproj", "{9ADBFE7C-517E-4092-BD90-DDF0F83E6DC1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfRezerwacjaDoBazy", "WcfRezerwacjaDoBazy\WcfRezerwacjaDoBazy.csproj", "{43C44474-D702-4D0A-91FE-4C856312DE2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{9ADBFE7C-517E-4092-BD90-DDF0F83E6DC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9ADBFE7C-517E-4092-BD90-DDF0F83E6DC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9ADBFE7C-517E-4092-BD90-DDF0F83E6DC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43C44474-D702-4D0A-91FE-4C856312DE2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43C44474-D702-4D0A-91FE-4C856312DE2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43C44474-D702-4D0A-91FE-4C856312DE2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43C44474-D702-4D0A-91FE-4C856312DE2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
