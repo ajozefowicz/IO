@@ -466,10 +466,10 @@ namespace WcfWypozyczeniaDoBazy
 
 
                 string cmdText = " select count(dataZwrotu)  " +
-    "from IWypozyczenie    " +
-    "where dataZwrotu < getDate() " +
-    "and czyAktualne = 'true' " +
-    //"and CONVERT(VARCHAR, idUsera)  = 'ana'";
+                "from IWypozyczenie    " +
+                "where dataZwrotu < getDate() " +
+                "and czyAktualne = 'true' " +
+                //"and CONVERT(VARCHAR, idUsera)  = 'ana'";
                 "and CONVERT(VARCHAR, idUsera)  = '"  + idUzytkownika + "'";
 
                 SqlCommand cmd = new SqlCommand(cmdText, conn);

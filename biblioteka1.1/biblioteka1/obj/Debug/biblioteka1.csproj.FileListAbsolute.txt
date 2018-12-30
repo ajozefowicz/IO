@@ -76,3 +76,6 @@ C:\Users\Anna\Desktop\IO_projekt\biblioteka1.3\biblioteka1\obj\Debug\biblioteka1
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\biblioteka1\bin\Debug\WcfKsiazkaDoBazy4.dll
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\biblioteka1\bin\Debug\WcfKsiazkaDoBazy4.pdb
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\biblioteka1\bin\Debug\WcfKsiazkaDoBazy4.dll.config
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\biblioteka1\bin\Debug\WcfRezerwacjaDoBazy.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\biblioteka1\bin\Debug\WcfRezerwacjaDoBazy.pdb
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\biblioteka1\bin\Debug\WcfRezerwacjaDoBazy.dll.config

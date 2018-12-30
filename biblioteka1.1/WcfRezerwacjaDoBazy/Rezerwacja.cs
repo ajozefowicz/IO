@@ -15,15 +15,15 @@ namespace WcfRezerwacjaDoBazy
         [DataMember]
         public int id { get; set; }
         [DataMember]
+        public string idUsera { get; set; }
+        [DataMember]
         public int idKsiazki { get; set; }
         [DataMember]
         public string tytul { get; set; }
         [DataMember]
         public string nazwiskoAutora { get; set; }
         [DataMember]
-        public string nrISBN { get; set; }
-        [DataMember]
-        public DateTime prognozowanaDataZwrotu { get; set; }
+        public DateTime dataZwrotu { get; set; }
 
 
     }

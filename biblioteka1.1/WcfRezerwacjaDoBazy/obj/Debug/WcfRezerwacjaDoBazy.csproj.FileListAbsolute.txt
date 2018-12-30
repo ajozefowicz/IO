@@ -1,0 +1,7 @@
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfRezerwacjaDoBazy\bin\Debug\WcfRezerwacjaDoBazy.dll.config
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfRezerwacjaDoBazy\bin\Debug\WcfRezerwacjaDoBazy.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfRezerwacjaDoBazy\bin\Debug\WcfRezerwacjaDoBazy.pdb
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfRezerwacjaDoBazy\obj\Debug\WcfRezerwacjaDoBazy.csprojAssemblyReference.cache
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfRezerwacjaDoBazy\obj\Debug\WcfRezerwacjaDoBazy.csproj.CoreCompileInputs.cache
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfRezerwacjaDoBazy\obj\Debug\WcfRezerwacjaDoBazy.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfRezerwacjaDoBazy\obj\Debug\WcfRezerwacjaDoBazy.pdb
