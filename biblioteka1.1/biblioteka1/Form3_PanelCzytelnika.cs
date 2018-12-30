@@ -206,7 +206,7 @@ namespace biblioteka1
 
  
             //2 wersje wypozyczania :
-            //1. z rezerwacji
+            //1. z rezerwacji i wtedy update rezerwacji - data
             //2.normalne
 
 
@@ -250,6 +250,7 @@ namespace biblioteka1
                 //1. wersja wypozyczania z rezerwacji
                 //jesli ks jest na rezerwacji u user jest nr 1 w kolejce to może wypozyczyć
                 //i ks musi byc zwrocona, czyli data zwrotu<dataaktualna
+
                 if((scRezerwacja.CzyKsiazkaJestNaRzerwacji(key1)==true) && scRezerwacja.NaKtorejUserJestPozycjiWRezerwacji(idUzy,idK )==1
                     && dataDoSprawdzeniaRezerwacji< DateTime.UtcNow.ToLocalTime())
 
@@ -259,6 +260,22 @@ namespace biblioteka1
 
                     //na koniec zdejmujemy rezerwacje z Listy Rezerwacji
                     scRezerwacja.DeleteRezerwacja(keyRez);
+
+
+                    Rezerwacja rezNowa = new Rezerwacja();
+
+                    //zmianie ulega data zwrotu - powinna we wszytskich
+                    rezNowa.dataZwrotu = DateTime.UtcNow.ToLocalTime().AddDays(14); //DateTime.UtcNow.ToLocalTime();
+
+                    //zmienie nie ulegaja
+                    // rewNowa.idUsera = dataGridView_katalogUsera.CurrentRow.Cells["idUsera"].Value.ToString();
+                    rezNowa.tytul = dataGridView_ksiazki.CurrentRow.Cells["tytul"].Value.ToString();
+                    rezNowa.nazwiskoAutora = dataGridView_ksiazki.CurrentRow.Cells["nazwiskoAutora"].Value.ToString();
+
+
+
+
+                    scRezerwacja.UpdateNaZwrot(key1, rezNowa);
 
                 }
 
@@ -379,6 +396,7 @@ namespace biblioteka1
             //zwróc
             //wybiera poprzez wybór na liście ksiazek usera
             //jak zwroci to zmianie ulega status w ksiazce i w wypozyczeniu zmienia się na archiwalne i nowa data zwrotu się pojawia - update
+            //i w rezerwacji data zwrotu powina sie zmienic
 
             string key = dataGridView_katalogUsera.CurrentRow.Cells["idKsiazki"].Value.ToString();
 
@@ -469,6 +487,25 @@ namespace biblioteka1
                 sc.UpdateNaZwrot(key, nowa);
 
                 MessageBox.Show("ksiazka zwrócona");
+
+
+
+                /////////////////////////////////////////////////////////////////////////////////////////////////
+                //update na rezerwace
+
+                WcfRezerwacjaDoBazy.Rezerwacja rewNowa = new WcfRezerwacjaDoBazy.Rezerwacja();
+
+
+                //zmianie ulega data zwrotu 
+                rewNowa.dataZwrotu = DateTime.UtcNow.ToLocalTime();
+
+                //zmienie nie ulegaja
+               // rewNowa.idUsera = dataGridView_katalogUsera.CurrentRow.Cells["idUsera"].Value.ToString();
+                rewNowa.tytul = dataGridView_wybrana.CurrentRow.Cells["tytul"].Value.ToString();
+                rewNowa.nazwiskoAutora = dataGridView_wybrana.CurrentRow.Cells["nazwiskoAutora"].Value.ToString();
+
+
+                scRezerwacja.UpdateNaZwrot(key, rewNowa);
 
             }
 
@@ -765,9 +802,14 @@ namespace biblioteka1
 
             int idK = Convert.ToInt32(dataGridView_katalogUsera.CurrentRow.Cells["idKsiazki"].Value.ToString());
 
+            DateTime dataZw = Convert.ToDateTime(dataGridView_katalogUsera.CurrentRow.Cells["dataZwrotu"].Value.ToString());
 
+
+            if(dataZw> DateTime.UtcNow.ToLocalTime())
             textBox_nrWKolejce.Text = (scRezerwacja.NaKtorejUserJestPozycjiWRezerwacji(idUzy, idK)).ToString();
 
+            else
+                textBox_nrWKolejce.Text = ((scRezerwacja.NaKtorejUserJestPozycjiWRezerwacji(idUzy, idK))-1).ToString();
 
 
         }
@@ -804,6 +846,19 @@ namespace biblioteka1
             //jest ok
             string key = dataGridView_katalogUsera.CurrentRow.Cells["idKsiazki"].Value.ToString();
             textBox1_pomocniczy.Text = Convert.ToString(scRezerwacja.CzyKsiazkaJestNaRzerwacji(key));
+        }
+
+        private void button_powiadomieniaORez_Click(object sender, EventArgs e)
+        {
+            DateTime dataDoSprawdzeniaRezerwacji = Convert.ToDateTime(dataGridView_ksiazki.CurrentRow.Cells["dataZwrotu"].Value.ToString());
+
+            Ksiazka ks = new Ksiazka();
+
+            //if ((scRezerwacja.CzyKsiazkaJestNaRzerwacji(key1) == true) && scRezerwacja.NaKtorejUserJestPozycjiWRezerwacji(idUzy, idK) == 1
+                 //   && dataDoSprawdzeniaRezerwacji < DateTime.UtcNow.ToLocalTime())
+
+            //nie ma jak sie dostac do daty zwrotu bez klikania na liste
+
         }
     }
 }

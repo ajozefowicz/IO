@@ -67,6 +67,7 @@
             this.button_usunRezerwacje = new System.Windows.Forms.Button();
             this.button_czyNaRezerwacji = new System.Windows.Forms.Button();
             this.textBox1_pomocniczy = new System.Windows.Forms.TextBox();
+            this.button_powiadomieniaORez = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.compositeTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ksiazki)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_katalogUsera)).BeginInit();
@@ -75,7 +76,7 @@
             // 
             // button1_powrotDoGlownego
             // 
-            this.button1_powrotDoGlownego.Location = new System.Drawing.Point(863, 14);
+            this.button1_powrotDoGlownego.Location = new System.Drawing.Point(888, 0);
             this.button1_powrotDoGlownego.Name = "button1_powrotDoGlownego";
             this.button1_powrotDoGlownego.Size = new System.Drawing.Size(104, 48);
             this.button1_powrotDoGlownego.TabIndex = 0;
@@ -350,7 +351,7 @@
             // 
             this.button_przedłuż.Location = new System.Drawing.Point(541, 68);
             this.button_przedłuż.Name = "button_przedłuż";
-            this.button_przedłuż.Size = new System.Drawing.Size(196, 23);
+            this.button_przedłuż.Size = new System.Drawing.Size(174, 23);
             this.button_przedłuż.TabIndex = 33;
             this.button_przedłuż.Text = "przedłuż wybraną ksiązke";
             this.button_przedłuż.UseVisualStyleBackColor = true;
@@ -360,7 +361,7 @@
             // 
             this.button_pokazZarezerwowane.Location = new System.Drawing.Point(541, 96);
             this.button_pokazZarezerwowane.Name = "button_pokazZarezerwowane";
-            this.button_pokazZarezerwowane.Size = new System.Drawing.Size(196, 23);
+            this.button_pokazZarezerwowane.Size = new System.Drawing.Size(174, 23);
             this.button_pokazZarezerwowane.TabIndex = 34;
             this.button_pokazZarezerwowane.Text = "pokaz moje zarezerwowane ksiązki";
             this.button_pokazZarezerwowane.UseVisualStyleBackColor = true;
@@ -378,7 +379,7 @@
             // 
             // button_pozycjeNaRezerwacji
             // 
-            this.button_pozycjeNaRezerwacji.Location = new System.Drawing.Point(743, 68);
+            this.button_pozycjeNaRezerwacji.Location = new System.Drawing.Point(721, 71);
             this.button_pozycjeNaRezerwacji.Name = "button_pozycjeNaRezerwacji";
             this.button_pozycjeNaRezerwacji.Size = new System.Drawing.Size(196, 23);
             this.button_pozycjeNaRezerwacji.TabIndex = 36;
@@ -395,7 +396,7 @@
             // 
             // button_usunRezerwacje
             // 
-            this.button_usunRezerwacje.Location = new System.Drawing.Point(743, 96);
+            this.button_usunRezerwacje.Location = new System.Drawing.Point(721, 97);
             this.button_usunRezerwacje.Name = "button_usunRezerwacje";
             this.button_usunRezerwacje.Size = new System.Drawing.Size(196, 23);
             this.button_usunRezerwacje.TabIndex = 38;
@@ -407,7 +408,7 @@
             // 
             this.button_czyNaRezerwacji.Location = new System.Drawing.Point(541, 39);
             this.button_czyNaRezerwacji.Name = "button_czyNaRezerwacji";
-            this.button_czyNaRezerwacji.Size = new System.Drawing.Size(196, 23);
+            this.button_czyNaRezerwacji.Size = new System.Drawing.Size(174, 23);
             this.button_czyNaRezerwacji.TabIndex = 39;
             this.button_czyNaRezerwacji.Text = "czy na liscie Rez";
             this.button_czyNaRezerwacji.UseVisualStyleBackColor = true;
@@ -415,16 +416,27 @@
             // 
             // textBox1_pomocniczy
             // 
-            this.textBox1_pomocniczy.Location = new System.Drawing.Point(743, 41);
+            this.textBox1_pomocniczy.Location = new System.Drawing.Point(721, 42);
             this.textBox1_pomocniczy.Name = "textBox1_pomocniczy";
             this.textBox1_pomocniczy.Size = new System.Drawing.Size(40, 20);
             this.textBox1_pomocniczy.TabIndex = 40;
+            // 
+            // button_powiadomieniaORez
+            // 
+            this.button_powiadomieniaORez.Location = new System.Drawing.Point(767, 42);
+            this.button_powiadomieniaORez.Name = "button_powiadomieniaORez";
+            this.button_powiadomieniaORez.Size = new System.Drawing.Size(196, 23);
+            this.button_powiadomieniaORez.TabIndex = 41;
+            this.button_powiadomieniaORez.Text = "moje powiadomienia";
+            this.button_powiadomieniaORez.UseVisualStyleBackColor = true;
+            this.button_powiadomieniaORez.Click += new System.EventHandler(this.button_powiadomieniaORez_Click);
             // 
             // Form3_PanelCzytelnika
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(991, 450);
+            this.Controls.Add(this.button_powiadomieniaORez);
             this.Controls.Add(this.textBox1_pomocniczy);
             this.Controls.Add(this.button_czyNaRezerwacji);
             this.Controls.Add(this.button_usunRezerwacje);
@@ -515,5 +527,6 @@
         private System.Windows.Forms.Button button_usunRezerwacje;
         private System.Windows.Forms.Button button_czyNaRezerwacji;
         private System.Windows.Forms.TextBox textBox1_pomocniczy;
+        private System.Windows.Forms.Button button_powiadomieniaORez;
     }
 }

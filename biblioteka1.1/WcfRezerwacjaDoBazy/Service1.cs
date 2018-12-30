@@ -297,6 +297,62 @@ namespace WcfRezerwacjaDoBazy
 
 
 
+        //musi byc update, bo jak zwraca to data zwrotu musi sie zmienic
+        public void UpdateNaZwrot(string key, Rezerwacja rNowa)
+        {
+
+            //key to bedzie pozycja wybrana z listywypozyczen usera wiec z IWypozyczenie
+
+            try
+            {
+
+
+                comm.CommandText = "Update IRezerwacja3 set  tytul=@tytul, nazwiskoAutora=@nazwiskoAutora,   dataZwrotu=@dataZwrotu where idKsiazki = '" + key + "'";
+
+
+
+                //comm.CommandText = "Insert into IRezerwacja3 values( @idUsera, @idKsiazki, @tytul, @nazwiskoAutora, @dataZwrotu)";
+
+                // comm.Parameters.AddWithValue("id", w.id);
+              //  comm.Parameters.AddWithValue("idUsera", rNowa.idUsera);
+               // comm.Parameters.AddWithValue("idKsiazki", r.idKsiazki);
+                comm.Parameters.AddWithValue("tytul", rNowa.tytul);
+                comm.Parameters.AddWithValue("nazwiskoAutora", rNowa.nazwiskoAutora);
+                comm.Parameters.AddWithValue("dataZwrotu", rNowa.dataZwrotu);
+
+
+
+
+
+
+
+
+
+
+                conn.Open();
+                comm.ExecuteNonQuery();
+
+                comm.Parameters.Clear();
+
+
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+
+
+        }
+
+
 
 
 
