@@ -83,7 +83,7 @@ namespace WcfWypozyczeniaDoBazy
                 comm.Parameters.AddWithValue("idKsiazki", w.idKsiazki);
                 comm.Parameters.AddWithValue("idUsera", w.idUsera);
                 comm.Parameters.AddWithValue("dataWypozyczenia", DateTime.UtcNow.ToLocalTime());
-                comm.Parameters.AddWithValue("dataZwrotu", DateTime.UtcNow.ToLocalTime().AddDays(14));
+                comm.Parameters.AddWithValue("dataZwrotu", w.dataZwrotu);//DateTime.UtcNow.ToLocalTime().AddDays(14));
                 comm.Parameters.AddWithValue("czyAktualne", w.czyAktualne);
 
 
@@ -399,13 +399,13 @@ namespace WcfWypozyczeniaDoBazy
 
 
                 comm.CommandText = "Update IWypozyczenie set idUsera= @idUsera, dataWypozyczenia = @dataWypozyczenia, dataZwrotu = @dataZwrotu, " +
-                    "czyAktualne = @czyAktualne where idKsiazki = '" + key + "'";
+                    "czyAktualne = @czyAktualne where id = '" + key + "'";
 
                 // comm.Parameters.AddWithValue("id", w.id);
                 //comm.Parameters.AddWithValue("idKsiazki", w.idKsiazki);
                 comm.Parameters.AddWithValue("@idUsera", wNowe.idUsera);
-                comm.Parameters.AddWithValue("@dataWypozyczenia", wNowe.dataZwrotu);
-                comm.Parameters.AddWithValue("@dataZwrotu", DateTime.UtcNow.ToLocalTime().AddDays(14));
+                comm.Parameters.AddWithValue("@dataWypozyczenia", wNowe.dataWypozyczyenia);
+                comm.Parameters.AddWithValue("@dataZwrotu", wNowe.dataZwrotu);//DateTime.UtcNow.ToLocalTime().AddDays(14));
                 comm.Parameters.AddWithValue("@czyAktualne", wNowe.czyAktualne);
 
 

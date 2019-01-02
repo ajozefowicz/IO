@@ -23,3 +23,7 @@ C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 — próba user\WcfWypozyczeniaDo
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 — próba user\WcfWypozyczeniaDoBazy\obj\Debug\WcfWypozyczeniaDoBazy.csproj.CopyComplete
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 — próba user\WcfWypozyczeniaDoBazy\obj\Debug\WcfWypozyczeniaDoBazy.dll
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 — próba user\WcfWypozyczeniaDoBazy\obj\Debug\WcfWypozyczeniaDoBazy.pdb
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfWypozyczeniaDoBazy\bin\Debug\WcfUserDoBazy.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfWypozyczeniaDoBazy\bin\Debug\WcfUserDoBazy.pdb
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfWypozyczeniaDoBazy\bin\Debug\WcfUserDoBazy.dll.config
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfWypozyczeniaDoBazy\obj\Debug\WcfWypozyczeniaDoBazy.csproj.CopyComplete

@@ -353,6 +353,47 @@ namespace WcfRezerwacjaDoBazy
         }
 
 
+        public void UpdateNaPrzedluzenie(string key, Rezerwacja rNowa)
+        {
+
+            try
+            {
+
+
+                comm.CommandText = "Update IRezerwacja3 set  dataZwrotu = @dataZwrotu " +
+                    " where idKsiazki = '" + key + "'";
+
+
+                comm.Parameters.AddWithValue("@dataZwrotu", rNowa.dataZwrotu);//DateTime.UtcNow.ToLocalTime().AddDays(14));
+
+
+
+                conn.Open();
+                comm.ExecuteNonQuery();
+
+                comm.Parameters.Clear();
+
+
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+
+
+
+
+
 
 
 

@@ -695,7 +695,7 @@ namespace WcfKsiazkaDoBazy4
                 comm.Parameters.AddWithValue("@rodzaj", kNowa.rodzaj);
                 comm.Parameters.AddWithValue("@licznikWypozyczen", kNowa.licznikWypozyczen);
                 comm.Parameters.AddWithValue("@dataWypozyczenia", kNowa.dataWypozyczenia); //DateTime.UtcNow.ToLocalTime()
-                comm.Parameters.AddWithValue("@dataZwrotu", (DateTime.UtcNow.ToLocalTime().AddDays(14))); // + 14 dni // tez można podac "2010-10-10"
+                comm.Parameters.AddWithValue("@dataZwrotu", kNowa.dataZwrotu);//(DateTime.UtcNow.ToLocalTime().AddDays(14))); // + 14 dni // tez można podac "2010-10-10"
                 comm.Parameters.AddWithValue("@licznikPrzedluzen", kNowa.licznikPrzedluzen);
                 comm.Parameters.AddWithValue("@iloscStron", kNowa.iloscStron);
                 comm.Parameters.AddWithValue("@imieAutora", kNowa.imieAutora);
@@ -794,7 +794,7 @@ namespace WcfKsiazkaDoBazy4
                 comm.Parameters.AddWithValue("@rodzaj", kNowa.rodzaj);
                 comm.Parameters.AddWithValue("@licznikWypozyczen", kNowa.licznikWypozyczen);
                 comm.Parameters.AddWithValue("@dataWypozyczenia", kNowa.dataWypozyczenia); //DateTime.UtcNow.ToLocalTime()
-                comm.Parameters.AddWithValue("@dataZwrotu", DateTime.UtcNow.ToLocalTime().AddDays(14)); // + 14 dni // tez można podac "2010-10-10"
+                comm.Parameters.AddWithValue("@dataZwrotu", kNowa.dataZwrotu);//DateTime.UtcNow.ToLocalTime().AddDays(14)); // + 14 dni // tez można podac "2010-10-10"
                 comm.Parameters.AddWithValue("@licznikPrzedluzen", kNowa.licznikPrzedluzen);
                 comm.Parameters.AddWithValue("@iloscStron", kNowa.iloscStron);
                 comm.Parameters.AddWithValue("@imieAutora", kNowa.imieAutora);

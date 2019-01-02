@@ -34,6 +34,8 @@ namespace biblioteka1
 
         WcfUserDoBazy.Service1 scUzytkownik;
 
+        
+
         public Form3_PanelCzytelnika()
         {
             InitializeComponent();
@@ -45,6 +47,9 @@ namespace biblioteka1
             scRezerwacja = new WcfRezerwacjaDoBazy.Service1();
 
             scUzytkownik = new WcfUserDoBazy.Service1();
+
+            
+
 
         }
 
@@ -235,6 +240,7 @@ namespace biblioteka1
 
             string keyRez = " CONVERT(VARCHAR, idKsiazki)  = '" + key1 + " ' and CONVERT(VARCHAR, idUsera) = '" + idUzy+ "'";
 
+            int limit = Convert.ToInt32(textBox_limit.Text);
 
             //1. sprawdzamy czy user nie zalega z skiążkami
             if (scWypozyczenie.CzyUserNieZalegazeZwrotem(idUzy) == false)  //tzn zalega
@@ -243,7 +249,7 @@ namespace biblioteka1
             }
 
             //2. spr czy nie przekroczy limitu
-            else if(scWypozyczenie.IleMaWypozyczonych(idUzy)>5) // na probe 20
+            else if(scWypozyczenie.IleMaWypozyczonych(idUzy)>=limit) // na probe 20
             {
                 MessageBox.Show("Wypozyczyles juz " + Convert.ToInt32(scWypozyczenie.IleMaWypozyczonych(idUzy)) + " nie mozesz więcej" );
             }
@@ -260,6 +266,9 @@ namespace biblioteka1
 
                 {
 
+                    //int limit = Convert.ToInt32(textBox_limit.Text);
+                    int maxCzasWypozyczenia = Convert.ToInt32(textBox_czasWypozyczenia.Text);
+
                     Wypozyczenie_uniwersalne(key1);
 
                     //na koniec zdejmujemy rezerwacje z Listy Rezerwacji
@@ -269,7 +278,7 @@ namespace biblioteka1
                     Rezerwacja rezNowa = new Rezerwacja();
 
                     //zmianie ulega data zwrotu - powinna we wszytskich
-                    rezNowa.dataZwrotu = DateTime.UtcNow.ToLocalTime().AddDays(14); //DateTime.UtcNow.ToLocalTime();
+                    rezNowa.dataZwrotu = DateTime.UtcNow.ToLocalTime().AddDays(maxCzasWypozyczenia); //DateTime.UtcNow.ToLocalTime();
 
                     //zmienie nie ulegaja
                     // rewNowa.idUsera = dataGridView_katalogUsera.CurrentRow.Cells["idUsera"].Value.ToString();
@@ -321,11 +330,14 @@ namespace biblioteka1
 
         private void Wypozyczenie_uniwersalne(string key1)
         {
+            int limit = Convert.ToInt32(textBox_limit.Text);
+            int maxCzasWypozyczenia = Convert.ToInt32(textBox_czasWypozyczenia.Text);
+
             ServiceReference3.Wypozyczenie w = new ServiceReference3.Wypozyczenie();
             w.idKsiazki = Convert.ToInt32(key1); // pcja = ks.id nie działa, bo wybrany wiersz jest nulem, wiec zamiast listBox, dataGridView
             w.idUsera = textBox_witajUser.Text;     //label7_witaJUser.Text;   //textBox_IdUsera.Text; // to na probe, zmienić by pobierało
             w.dataWypozyczyenia = DateTime.UtcNow.ToLocalTime();
-            w.dataZwrotu = DateTime.UtcNow.ToLocalTime().AddDays(14); // jak tu zrobic nulla
+            w.dataZwrotu = DateTime.UtcNow.ToLocalTime().AddDays(maxCzasWypozyczenia); // jak tu zrobic nulla
             w.czyAktualne = true; //w momencie wypozyczenia - true, jak będziemy zwracac to zmiana na false 
 
             ServiceReference3.Service1Client service = new ServiceReference3.Service1Client();
@@ -358,7 +370,7 @@ namespace biblioteka1
             //parametry, ktore ulegaja zmianie przy wypozyczeniu
             //nowa.id = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["id"].Value.ToString());
             nowa.dataWypozyczenia = DateTime.UtcNow.ToLocalTime();
-            nowa.dataZwrotu = (DateTime.UtcNow.ToLocalTime().AddDays(14)); //+14 dni jako prognozowana data zwrotu
+            nowa.dataZwrotu = (DateTime.UtcNow.ToLocalTime().AddDays(maxCzasWypozyczenia)); //+14 dni jako prognozowana data zwrotu
             nowa.stan = false;
             nowa.licznikWypozyczen = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["licznikWypozyczen"].Value.ToString()) + 1;
 
@@ -652,6 +664,9 @@ namespace biblioteka1
 
         private void button_przedłuż_Click(object sender, EventArgs e)
         {
+
+            int limit = Convert.ToInt32(textBox_limit.Text);
+            int maxCzasWypozyczenia = Convert.ToInt32(textBox_czasWypozyczenia.Text);
             //można przedłużyć 3 razy
             //ilość przedłużeń mozemy sprawidzć dla danej pozycji id 
             //- nie mozemy bo w wypozyczeniach nie zaplanowalismy pola ilość przedłużeń
@@ -665,7 +680,11 @@ namespace biblioteka1
 
 
 
-            string key = dataGridView_katalogUsera.CurrentRow.Cells["idKsiazki"].Value.ToString();
+            string key = dataGridView_katalogUsera.CurrentRow.Cells["idKsiazki"].Value.ToString();//key dla ksiazki
+
+            //key dla update wypozyczenia:
+
+            string keyWyp = (dataGridView_katalogUsera.CurrentRow.Cells["id"].Value.ToString());
 
             string keyDoWstawienia = "  CONVERT(VARCHAR, id)  = '" + key + " '";
 
@@ -683,7 +702,8 @@ namespace biblioteka1
 
             {
 
-                if (Convert.ToInt32(dataGridView_wybrana.CurrentRow.Cells["licznikPrzedluzen"].Value.ToString())<3)
+
+                if (Convert.ToInt32(dataGridView_wybrana.CurrentRow.Cells["licznikPrzedluzen"].Value.ToString())<2)
 
                 {
 
@@ -693,7 +713,7 @@ namespace biblioteka1
                     WcfWypozyczeniaDoBazy.Wypozyczenie wypNowe = new WcfWypozyczeniaDoBazy.Wypozyczenie();
 
                     //zmianie ulega data zwrotu 
-                    wypNowe.dataZwrotu = DateTime.UtcNow.ToLocalTime();
+                    wypNowe.dataZwrotu = DateTime.UtcNow.ToLocalTime().AddDays(maxCzasWypozyczenia);
 
                     //zmienie nie ulegaja
                     wypNowe.idUsera = dataGridView_katalogUsera.CurrentRow.Cells["idUsera"].Value.ToString();
@@ -703,8 +723,8 @@ namespace biblioteka1
 
                     //update wyp
 
-
-                    scWypozyczenie.UpdateNaPrzedluzenie(key, wypNowe);
+                    //tu key id by sie nie powtarzały ksiazki
+                    scWypozyczenie.UpdateNaPrzedluzenie(keyWyp, wypNowe);
 
 
 
@@ -714,7 +734,7 @@ namespace biblioteka1
 
                     //parametry, ktore ulegaja zmianie przy przedluzeniu
 
-                    nowa.dataZwrotu = DateTime.UtcNow.ToLocalTime().AddDays(14);
+                    nowa.dataZwrotu = DateTime.UtcNow.ToLocalTime().AddDays(maxCzasWypozyczenia);
                     nowa.licznikPrzedluzen = Convert.ToInt32(dataGridView_wybrana.CurrentRow.Cells["licznikPrzedluzen"].Value.ToString()) + 1;
 
 
@@ -736,10 +756,21 @@ namespace biblioteka1
                     nowa.nrISBN = dataGridView_wybrana.CurrentRow.Cells["nrISBN"].Value.ToString();
 
 
-                    //update ksiazka
-                    sc.UpdateNaZwrot(key, nowa);
+                    //update ksiazka i tu id ksiazki ok
+                    sc.UpdateNaPrzedluzenie(key, nowa);
+                    //sc.UpdateNaZwrot(key, nowa);
 
                     MessageBox.Show("ksiazka przedluzona");
+
+
+                    //update na rzerwacje
+
+                    Rezerwacja rNowa = new Rezerwacja();
+                    //zmienia date wszystkie gdzie id ksiazki takie samo
+                    rNowa.dataZwrotu = DateTime.UtcNow.ToLocalTime().AddDays(maxCzasWypozyczenia);
+
+
+                    scRezerwacja.UpdateNaPrzedluzenie(key, rNowa);
 
                 }
 
