@@ -12,7 +12,7 @@ namespace WcfUserDoBazy
 {
 
     [DataContract]
-    public class Uzytkownik
+    public abstract class Uzytkownik
     {
         [DataMember]
         public string id { get; set; }
@@ -27,6 +27,16 @@ namespace WcfUserDoBazy
         [DataMember]
         [DataType(DataType.EmailAddress)]
         public string emaileee { get; set; }
+
+
+        //
+        [DataMember]
+        public int limit { get; set; }
+        [DataMember]
+        public int maxCzasWypozyczenia { get; set; }
+        [DataMember]
+        public string kategoria { get; set; }
+
 
 
         public override string ToString()

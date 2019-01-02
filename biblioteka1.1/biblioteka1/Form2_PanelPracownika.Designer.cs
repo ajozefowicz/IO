@@ -68,7 +68,7 @@ namespace biblioteka1
             this.listBox_ksiazkiPracownik = new System.Windows.Forms.ListBox();
             this.listBox2_uzytkownicy = new System.Windows.Forms.ListBox();
             this.dataGridViewPokazUserow = new System.Windows.Forms.DataGridView();
-            this.button_pokazUserówDataGrid = new System.Windows.Forms.Button();
+            this.button_pokazCzytelnikow = new System.Windows.Forms.Button();
             this.button_usunUserazTabeli = new System.Windows.Forms.Button();
             this.dataGridView_ksiazkiTabela = new System.Windows.Forms.DataGridView();
             this.button_usunKsiazkezTabeli = new System.Windows.Forms.Button();
@@ -79,6 +79,15 @@ namespace biblioteka1
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox_sortowanieNaj = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.textBox_limit = new System.Windows.Forms.TextBox();
+            this.label_limit = new System.Windows.Forms.Label();
+            this.label_kategoria = new System.Windows.Forms.Label();
+            this.comboBox_kategoria = new System.Windows.Forms.ComboBox();
+            this.textBox_maxCzasWypozyczenia = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox_stanowisko = new System.Windows.Forms.TextBox();
+            this.label_stanowisko = new System.Windows.Forms.Label();
+            this.button_pokazPracownikow = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPokazUserow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ksiazkiTabela)).BeginInit();
             this.SuspendLayout();
@@ -365,7 +374,7 @@ namespace biblioteka1
             // 
             // button_dodajUsera
             // 
-            this.button_dodajUsera.Location = new System.Drawing.Point(667, 191);
+            this.button_dodajUsera.Location = new System.Drawing.Point(802, 160);
             this.button_dodajUsera.Name = "button_dodajUsera";
             this.button_dodajUsera.Size = new System.Drawing.Size(103, 23);
             this.button_dodajUsera.TabIndex = 36;
@@ -392,24 +401,24 @@ namespace biblioteka1
             // dataGridViewPokazUserow
             // 
             this.dataGridViewPokazUserow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPokazUserow.Location = new System.Drawing.Point(667, 220);
+            this.dataGridViewPokazUserow.Location = new System.Drawing.Point(667, 282);
             this.dataGridViewPokazUserow.Name = "dataGridViewPokazUserow";
             this.dataGridViewPokazUserow.Size = new System.Drawing.Size(326, 150);
             this.dataGridViewPokazUserow.TabIndex = 43;
             // 
-            // button_pokazUserówDataGrid
+            // button_pokazCzytelnikow
             // 
-            this.button_pokazUserówDataGrid.Location = new System.Drawing.Point(667, 376);
-            this.button_pokazUserówDataGrid.Name = "button_pokazUserówDataGrid";
-            this.button_pokazUserówDataGrid.Size = new System.Drawing.Size(117, 23);
-            this.button_pokazUserówDataGrid.TabIndex = 44;
-            this.button_pokazUserówDataGrid.Text = "pokaz użytkowników";
-            this.button_pokazUserówDataGrid.UseVisualStyleBackColor = true;
-            this.button_pokazUserówDataGrid.Click += new System.EventHandler(this.button_pokazUserówDataGrid_Click);
+            this.button_pokazCzytelnikow.Location = new System.Drawing.Point(618, 433);
+            this.button_pokazCzytelnikow.Name = "button_pokazCzytelnikow";
+            this.button_pokazCzytelnikow.Size = new System.Drawing.Size(117, 23);
+            this.button_pokazCzytelnikow.TabIndex = 44;
+            this.button_pokazCzytelnikow.Text = "pokaz czytelników";
+            this.button_pokazCzytelnikow.UseVisualStyleBackColor = true;
+            this.button_pokazCzytelnikow.Click += new System.EventHandler(this.button_pokazCzytelnikowDataGrid_Click);
             // 
             // button_usunUserazTabeli
             // 
-            this.button_usunUserazTabeli.Location = new System.Drawing.Point(817, 376);
+            this.button_usunUserazTabeli.Location = new System.Drawing.Point(876, 433);
             this.button_usunUserazTabeli.Name = "button_usunUserazTabeli";
             this.button_usunUserazTabeli.Size = new System.Drawing.Size(117, 23);
             this.button_usunUserazTabeli.TabIndex = 45;
@@ -512,11 +521,103 @@ namespace biblioteka1
             this.label2.TabIndex = 55;
             this.label2.Text = "sortuj tytuły";
             // 
+            // textBox_limit
+            // 
+            this.textBox_limit.Location = new System.Drawing.Point(667, 213);
+            this.textBox_limit.Name = "textBox_limit";
+            this.textBox_limit.Size = new System.Drawing.Size(100, 20);
+            this.textBox_limit.TabIndex = 57;
+            this.textBox_limit.TextChanged += new System.EventHandler(this.textBox_limit_TextChanged);
+            // 
+            // label_limit
+            // 
+            this.label_limit.AutoSize = true;
+            this.label_limit.Location = new System.Drawing.Point(619, 216);
+            this.label_limit.Name = "label_limit";
+            this.label_limit.Size = new System.Drawing.Size(24, 13);
+            this.label_limit.TabIndex = 56;
+            this.label_limit.Text = "limit";
+            this.label_limit.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // label_kategoria
+            // 
+            this.label_kategoria.AutoSize = true;
+            this.label_kategoria.Location = new System.Drawing.Point(600, 190);
+            this.label_kategoria.Name = "label_kategoria";
+            this.label_kategoria.Size = new System.Drawing.Size(51, 13);
+            this.label_kategoria.TabIndex = 59;
+            this.label_kategoria.Text = "kategoria";
+            // 
+            // comboBox_kategoria
+            // 
+            this.comboBox_kategoria.FormattingEnabled = true;
+            this.comboBox_kategoria.Items.AddRange(new object[] {
+            "wykładowca",
+            "student",
+            "zwykły czytelnik",
+            "pracownik"});
+            this.comboBox_kategoria.Location = new System.Drawing.Point(667, 187);
+            this.comboBox_kategoria.Name = "comboBox_kategoria";
+            this.comboBox_kategoria.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_kategoria.TabIndex = 58;
+            this.comboBox_kategoria.SelectedIndexChanged += new System.EventHandler(this.comboBox_kategoria_SelectedIndexChanged);
+            // 
+            // textBox_maxCzasWypozyczenia
+            // 
+            this.textBox_maxCzasWypozyczenia.Location = new System.Drawing.Point(663, 240);
+            this.textBox_maxCzasWypozyczenia.Name = "textBox_maxCzasWypozyczenia";
+            this.textBox_maxCzasWypozyczenia.Size = new System.Drawing.Size(100, 20);
+            this.textBox_maxCzasWypozyczenia.TabIndex = 61;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(615, 240);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(120, 13);
+            this.label3.TabIndex = 60;
+            this.label3.Text = "max czas wypozyczenia";
+            // 
+            // textBox_stanowisko
+            // 
+            this.textBox_stanowisko.Location = new System.Drawing.Point(663, 266);
+            this.textBox_stanowisko.Name = "textBox_stanowisko";
+            this.textBox_stanowisko.Size = new System.Drawing.Size(100, 20);
+            this.textBox_stanowisko.TabIndex = 63;
+            // 
+            // label_stanowisko
+            // 
+            this.label_stanowisko.AutoSize = true;
+            this.label_stanowisko.Location = new System.Drawing.Point(615, 266);
+            this.label_stanowisko.Name = "label_stanowisko";
+            this.label_stanowisko.Size = new System.Drawing.Size(60, 13);
+            this.label_stanowisko.TabIndex = 62;
+            this.label_stanowisko.Text = "stanowisko";
+            // 
+            // button_pokazPracownikow
+            // 
+            this.button_pokazPracownikow.Location = new System.Drawing.Point(741, 433);
+            this.button_pokazPracownikow.Name = "button_pokazPracownikow";
+            this.button_pokazPracownikow.Size = new System.Drawing.Size(117, 23);
+            this.button_pokazPracownikow.TabIndex = 64;
+            this.button_pokazPracownikow.Text = "pokaz pracowników";
+            this.button_pokazPracownikow.UseVisualStyleBackColor = true;
+            this.button_pokazPracownikow.Click += new System.EventHandler(this.button_pokazPracownikow_Click);
+            // 
             // Form2_PanelPracownika
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1015, 450);
+            this.ClientSize = new System.Drawing.Size(1015, 464);
+            this.Controls.Add(this.button_pokazPracownikow);
+            this.Controls.Add(this.textBox_stanowisko);
+            this.Controls.Add(this.label_stanowisko);
+            this.Controls.Add(this.textBox_maxCzasWypozyczenia);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label_kategoria);
+            this.Controls.Add(this.comboBox_kategoria);
+            this.Controls.Add(this.textBox_limit);
+            this.Controls.Add(this.label_limit);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBox_sortowanieNaj);
             this.Controls.Add(this.comboBox_stan);
@@ -527,7 +628,7 @@ namespace biblioteka1
             this.Controls.Add(this.button_pokazKsiazkiTabela);
             this.Controls.Add(this.dataGridView_ksiazkiTabela);
             this.Controls.Add(this.button_usunUserazTabeli);
-            this.Controls.Add(this.button_pokazUserówDataGrid);
+            this.Controls.Add(this.button_pokazCzytelnikow);
             this.Controls.Add(this.dataGridViewPokazUserow);
             this.Controls.Add(this.listBox2_uzytkownicy);
             this.Controls.Add(this.listBox_ksiazkiPracownik);
@@ -616,7 +717,7 @@ namespace biblioteka1
         private System.Windows.Forms.ListBox listBox_ksiazkiPracownik;
         private System.Windows.Forms.ListBox listBox2_uzytkownicy;
         private System.Windows.Forms.DataGridView dataGridViewPokazUserow;
-        private System.Windows.Forms.Button button_pokazUserówDataGrid;
+        private System.Windows.Forms.Button button_pokazCzytelnikow;
         private System.Windows.Forms.Button button_usunUserazTabeli;
         private System.Windows.Forms.DataGridView dataGridView_ksiazkiTabela;
         private System.Windows.Forms.Button button_usunKsiazkezTabeli;
@@ -627,5 +728,14 @@ namespace biblioteka1
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox_sortowanieNaj;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox_limit;
+        private System.Windows.Forms.Label label_limit;
+        private System.Windows.Forms.Label label_kategoria;
+        private System.Windows.Forms.ComboBox comboBox_kategoria;
+        private System.Windows.Forms.TextBox textBox_maxCzasWypozyczenia;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox_stanowisko;
+        private System.Windows.Forms.Label label_stanowisko;
+        private System.Windows.Forms.Button button_pokazPracownikow;
     }
 }

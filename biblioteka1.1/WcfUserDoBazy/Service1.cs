@@ -59,13 +59,11 @@ namespace WcfUserDoBazy
             return composite;
         }
 
-        public int InsertUser(Uzytkownik u)
+        public int InsertCzytelnik(Czytelnik u) // czytelnik
         {
-
-
             try
             {
-                comm.CommandText = "Insert into IUzytkownik values(@id, @haslo, @imie, @nazwisko, @pesel, @email)";
+                comm.CommandText = "Insert into IUzytkownik2 values(@id, @haslo, @imie, @nazwisko, @pesel, @email, @limit, @maxCzasWypozyczenia, @kategoria, @stanowisko)";
 
                 comm.Parameters.AddWithValue("id", u.id);
                 comm.Parameters.AddWithValue("haslo", u.haslo);
@@ -74,6 +72,55 @@ namespace WcfUserDoBazy
                 comm.Parameters.AddWithValue("pesel", u.pesel);
                 comm.Parameters.AddWithValue("email", u.emaileee);
 
+                comm.Parameters.AddWithValue("limit", u.limit);
+                comm.Parameters.AddWithValue("maxCzasWypozyczenia", u.maxCzasWypozyczenia);
+                comm.Parameters.AddWithValue("kategoria", u.kategoria);
+                comm.Parameters.AddWithValue("stanowisko", "nie dotyczy");
+
+
+                comm.CommandType = CommandType.Text;
+                conn.Open();
+
+                return comm.ExecuteNonQuery();
+
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+
+
+        public int InsertPracownik(Pracownik u)
+        {
+
+
+            try
+            {
+                comm.CommandText = "Insert into IUzytkownik2 values(@id, @haslo, @imie, @nazwisko, @pesel, @email, @limit, @maxCzasWypozyczenia, @kategoria, @stanowisko)";
+
+                comm.Parameters.AddWithValue("id", u.id);
+                comm.Parameters.AddWithValue("haslo", u.haslo);
+                comm.Parameters.AddWithValue("imie", u.imie);
+                comm.Parameters.AddWithValue("nazwisko", u.nazwisko);
+                comm.Parameters.AddWithValue("pesel", u.pesel);
+                comm.Parameters.AddWithValue("email", u.emaileee);
+
+                comm.Parameters.AddWithValue("limit", u.limit);
+                comm.Parameters.AddWithValue("maxCzasWypozyczenia", u.maxCzasWypozyczenia);
+                comm.Parameters.AddWithValue("kategoria", u.kategoria);
+                comm.Parameters.AddWithValue("stanowisko", u.stanowisko);
 
 
                 comm.CommandType = CommandType.Text;
@@ -97,24 +144,20 @@ namespace WcfUserDoBazy
             }
 
 
-
-            //wypelnanie ListBoxa
-
-
-
-
         }
 
 
-        public List<Uzytkownik> FillListBoxUzytkownicy()
+
+        //tego juz nie uzywamy
+        public List<Czytelnik> FillListBoxUzytkownicy()
         {
 
-            List<Uzytkownik> uzytkownicy = new List<Uzytkownik>();
+            List<Czytelnik> uzytkownicy = new List<Czytelnik>();
 
 
             try
             {
-                string cmdText = "Select * from IUzytkownik";
+                string cmdText = "Select * from IUzytkownik2";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 conn.Open();
 
@@ -123,7 +166,7 @@ namespace WcfUserDoBazy
                 while (reader.Read())
                 {
 
-                    Uzytkownik uz = new Uzytkownik();
+                    Czytelnik uz = new Czytelnik();
                     uz.id = reader["id"].ToString();
                     uz.haslo = reader["haslo"].ToString();
                     uz.imie = reader["imie"].ToString();
@@ -152,15 +195,15 @@ namespace WcfUserDoBazy
             }
 
         }
+            ///////////////////////////////
+            ///
 
 
-        ///////////////////////////////
-        ///
 
-        public List<Uzytkownik> FillListBoxUserzyTabela()
+            public List<Czytelnik> FillListBoxCzytelnicyTabela()
         {
 
-            List<Uzytkownik> uzytkownicy = new List<Uzytkownik>();
+            List<Czytelnik> uzytkownicy = new List<Czytelnik>();
 
 
             try
@@ -169,7 +212,7 @@ namespace WcfUserDoBazy
                 ////////////////////////////////// wersja 
 
 
-                string cmdText = "Select * from IUzytkownik";
+                string cmdText = "Select * from IUzytkownik2 where CONVERT(VARCHAR, kategoria) not like 'pracownik'";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 conn.Open();
 
@@ -178,13 +221,19 @@ namespace WcfUserDoBazy
                 while (reader.Read())
                 {
 
-                    Uzytkownik uz = new Uzytkownik();
+                    Czytelnik uz = new Czytelnik();
                     uz.id = reader["id"].ToString();
                     uz.haslo = reader["haslo"].ToString();
                     uz.imie = reader["imie"].ToString();
                     uz.nazwisko = reader["nazwisko"].ToString();
                     uz.pesel = reader["pesel"].ToString();
                     uz.emaileee = reader["email"].ToString();
+
+                    uz.kategoria = reader["kategoria"].ToString();
+                    uz.limit = Convert.ToInt32(reader["limit"].ToString());
+                    uz.maxCzasWypozyczenia = Convert.ToInt32(reader["maxCzasWypozyczenia"].ToString());
+
+
 
                     uzytkownicy.Add(uz);
 
@@ -209,6 +258,81 @@ namespace WcfUserDoBazy
             }
 
         }
+
+
+
+
+        public List<Pracownik> FillListBoxPracownicyTabela()
+        {
+
+            List<Pracownik> uzytkownicy = new List<Pracownik>();
+
+
+            try
+            {
+
+                ////////////////////////////////// wersja 
+
+
+                string cmdText = "Select * from IUzytkownik2 where CONVERT(VARCHAR, kategoria)  like 'pracownik' ";
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                conn.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    Pracownik uz = new Pracownik();
+                    uz.id = reader["id"].ToString();
+                    uz.haslo = reader["haslo"].ToString();
+                    uz.imie = reader["imie"].ToString();
+                    uz.nazwisko = reader["nazwisko"].ToString();
+                    uz.pesel = reader["pesel"].ToString();
+                    uz.emaileee = reader["email"].ToString();
+
+                    uz.kategoria = reader["kategoria"].ToString();
+                    uz.limit = Convert.ToInt32(reader["limit"].ToString());
+                    uz.maxCzasWypozyczenia = Convert.ToInt32(reader["maxCzasWypozyczenia"].ToString());
+                    uz.stanowisko = reader["stanowisko"].ToString();
+
+
+
+                    uzytkownicy.Add(uz);
+
+
+                }
+                return uzytkownicy;
+
+
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         /////////////////////////////////////////////////////
         ///
         public void DeleteUser (Uzytkownik u)
@@ -217,7 +341,7 @@ namespace WcfUserDoBazy
             try
             {
                 
-                string cmddText = "Delete from IUzytkownik where id = @id";
+                string cmddText = "Delete from IUzytkownik2 where id = @id";
                 SqlCommand cmd = new SqlCommand(cmddText, conn);
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -254,7 +378,7 @@ namespace WcfUserDoBazy
 
 
                 conn.Open();
-                string cmddText = "Delete from IUzytkownik where " + key;
+                string cmddText = "Delete from IUzytkownik2 where " + key;
                 SqlCommand cmd = new SqlCommand(cmddText, conn);
                 cmd.ExecuteNonQuery();
                 return true;
@@ -291,7 +415,120 @@ namespace WcfUserDoBazy
             powitanie = nazwa_Usera;
         }
 
-       
+
+
+        public int PokazLimitUsera(string key, string idU)
+        {
+
+            //List<Wypozyczenie> wypozyczenia = new List<Wypozyczenie>();
+
+
+            try
+            {
+
+
+                string cmdText = "Select limit from IUzytkownik2" +
+                                    " where  " + key;
+
+
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                conn.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                int wynik = 0;
+
+                while (reader.Read())
+                {
+
+                    Uzytkownik c = new Czytelnik();
+                    c.limit = Convert.ToInt32(reader["limit"].ToString());
+
+                    wynik = c.limit;
+
+                    //wypozyczenia.Add(w);
+
+
+                }
+                return wynik;
+
+
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+
+
+
+
+        public int PokazMaxCzasWypozyczeniaUsera(string key, string idU)
+        {
+
+
+
+            try
+            {
+
+
+                string cmdText = "Select maxCzasWypozyczenia from IUzytkownik2" +
+                                    " where  " + key;
+
+
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                conn.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                int wynik = 0;
+
+                while (reader.Read())
+                {
+
+                    Uzytkownik c = new Czytelnik();
+                    c.maxCzasWypozyczenia = Convert.ToInt32(reader["maxCzasWypozyczenia"].ToString());
+
+                    wynik = c.maxCzasWypozyczenia;
+
+                    //wypozyczenia.Add(w);
+
+
+                }
+                return wynik;
+
+
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+
+
+
 
 
     }

@@ -68,6 +68,10 @@
             this.button_czyNaRezerwacji = new System.Windows.Forms.Button();
             this.textBox1_pomocniczy = new System.Windows.Forms.TextBox();
             this.button_powiadomieniaORez = new System.Windows.Forms.Button();
+            this.label_limit = new System.Windows.Forms.Label();
+            this.textBox_limit = new System.Windows.Forms.TextBox();
+            this.label_czasWypozyczenia = new System.Windows.Forms.Label();
+            this.textBox_czasWypozyczenia = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.compositeTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ksiazki)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_katalogUsera)).BeginInit();
@@ -280,10 +284,10 @@
             // dataGridView_katalogUsera
             // 
             this.dataGridView_katalogUsera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_katalogUsera.Location = new System.Drawing.Point(234, 0);
+            this.dataGridView_katalogUsera.Location = new System.Drawing.Point(234, 27);
             this.dataGridView_katalogUsera.Name = "dataGridView_katalogUsera";
             this.dataGridView_katalogUsera.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_katalogUsera.Size = new System.Drawing.Size(301, 119);
+            this.dataGridView_katalogUsera.Size = new System.Drawing.Size(301, 92);
             this.dataGridView_katalogUsera.TabIndex = 26;
             this.dataGridView_katalogUsera.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_katalogUsera_CellContentClick);
             // 
@@ -317,6 +321,7 @@
             this.textBox_witajUser.ReadOnly = true;
             this.textBox_witajUser.Size = new System.Drawing.Size(100, 22);
             this.textBox_witajUser.TabIndex = 29;
+            this.textBox_witajUser.TextChanged += new System.EventHandler(this.textBox_witajUser_TextChanged);
             // 
             // button1_pokazDaneWybranejKs
             // 
@@ -431,11 +436,58 @@
             this.button_powiadomieniaORez.UseVisualStyleBackColor = true;
             this.button_powiadomieniaORez.Click += new System.EventHandler(this.button_powiadomieniaORez_Click);
             // 
+            // label_limit
+            // 
+            this.label_limit.AutoSize = true;
+            this.label_limit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_limit.Location = new System.Drawing.Point(220, 0);
+            this.label_limit.Name = "label_limit";
+            this.label_limit.Size = new System.Drawing.Size(47, 24);
+            this.label_limit.TabIndex = 42;
+            this.label_limit.Text = "limit:";
+            // 
+            // textBox_limit
+            // 
+            this.textBox_limit.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox_limit.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox_limit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox_limit.Location = new System.Drawing.Point(267, 0);
+            this.textBox_limit.Name = "textBox_limit";
+            this.textBox_limit.ReadOnly = true;
+            this.textBox_limit.Size = new System.Drawing.Size(38, 22);
+            this.textBox_limit.TabIndex = 43;
+            this.textBox_limit.TextChanged += new System.EventHandler(this.textBox_limit_TextChanged);
+            // 
+            // label_czasWypozyczenia
+            // 
+            this.label_czasWypozyczenia.AutoSize = true;
+            this.label_czasWypozyczenia.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_czasWypozyczenia.Location = new System.Drawing.Point(311, 0);
+            this.label_czasWypozyczenia.Name = "label_czasWypozyczenia";
+            this.label_czasWypozyczenia.Size = new System.Drawing.Size(176, 24);
+            this.label_czasWypozyczenia.TabIndex = 44;
+            this.label_czasWypozyczenia.Text = "czas wypozyczenia:";
+            // 
+            // textBox_czasWypozyczenia
+            // 
+            this.textBox_czasWypozyczenia.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox_czasWypozyczenia.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox_czasWypozyczenia.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox_czasWypozyczenia.Location = new System.Drawing.Point(488, 2);
+            this.textBox_czasWypozyczenia.Name = "textBox_czasWypozyczenia";
+            this.textBox_czasWypozyczenia.ReadOnly = true;
+            this.textBox_czasWypozyczenia.Size = new System.Drawing.Size(38, 22);
+            this.textBox_czasWypozyczenia.TabIndex = 45;
+            // 
             // Form3_PanelCzytelnika
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(991, 450);
+            this.Controls.Add(this.textBox_czasWypozyczenia);
+            this.Controls.Add(this.label_czasWypozyczenia);
+            this.Controls.Add(this.textBox_limit);
+            this.Controls.Add(this.label_limit);
             this.Controls.Add(this.button_powiadomieniaORez);
             this.Controls.Add(this.textBox1_pomocniczy);
             this.Controls.Add(this.button_czyNaRezerwacji);
@@ -528,5 +580,9 @@
         private System.Windows.Forms.Button button_czyNaRezerwacji;
         private System.Windows.Forms.TextBox textBox1_pomocniczy;
         private System.Windows.Forms.Button button_powiadomieniaORez;
+        private System.Windows.Forms.Label label_limit;
+        private System.Windows.Forms.TextBox textBox_limit;
+        private System.Windows.Forms.Label label_czasWypozyczenia;
+        private System.Windows.Forms.TextBox textBox_czasWypozyczenia;
     }
 }

@@ -14,9 +14,15 @@ namespace biblioteka1
 {
     public partial class Form1_Biblioteka : Form
     {
+
+        WcfUserDoBazy.Service1 scUzytkownik;
+
         public Form1_Biblioteka()
         {
             InitializeComponent();
+
+            scUzytkownik = new WcfUserDoBazy.Service1();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -37,8 +43,16 @@ namespace biblioteka1
 
             string hello = textBox1_loginCzytelnika.Text;
 
-
             p.pobierzNazweUseraDoPowitania(hello);
+           
+
+            p.pobierzLimiUseraDoPanelu();
+
+            p.pobierzMaxCzasWypozyczeniaUseraDoPanelu();
+
+            // string idUzytkownika = label7_witajUserName.Text; // wolalabym labela, ale niestwty nie odczytuje poprawnie :/
+
+            
 
             /*
             textBox_IdUsera.Text = "ananan";

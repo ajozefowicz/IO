@@ -12,3 +12,14 @@ C:\Users\Anna\Desktop\IO_projekt\biblioteka1.3\WcfWypozyczeniaDoBazy\obj\Debug\W
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.3\WcfWypozyczeniaDoBazy\obj\Debug\WcfWypozyczeniaDoBazy.csproj.CoreCompileInputs.cache
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.3\WcfWypozyczeniaDoBazy\obj\Debug\WcfWypozyczeniaDoBazy.dll
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.3\WcfWypozyczeniaDoBazy\obj\Debug\WcfWypozyczeniaDoBazy.pdb
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 — próba user\WcfWypozyczeniaDoBazy\bin\Debug\WcfWypozyczeniaDoBazy.dll.config
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 — próba user\WcfWypozyczeniaDoBazy\bin\Debug\WcfWypozyczeniaDoBazy.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 — próba user\WcfWypozyczeniaDoBazy\bin\Debug\WcfWypozyczeniaDoBazy.pdb
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 — próba user\WcfWypozyczeniaDoBazy\bin\Debug\WcfUserDoBazy.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 — próba user\WcfWypozyczeniaDoBazy\bin\Debug\WcfUserDoBazy.pdb
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 — próba user\WcfWypozyczeniaDoBazy\bin\Debug\WcfUserDoBazy.dll.config
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 — próba user\WcfWypozyczeniaDoBazy\obj\Debug\WcfWypozyczeniaDoBazy.csprojAssemblyReference.cache
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 — próba user\WcfWypozyczeniaDoBazy\obj\Debug\WcfWypozyczeniaDoBazy.csproj.CoreCompileInputs.cache
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 — próba user\WcfWypozyczeniaDoBazy\obj\Debug\WcfWypozyczeniaDoBazy.csproj.CopyComplete
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 — próba user\WcfWypozyczeniaDoBazy\obj\Debug\WcfWypozyczeniaDoBazy.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 — próba user\WcfWypozyczeniaDoBazy\obj\Debug\WcfWypozyczeniaDoBazy.pdb

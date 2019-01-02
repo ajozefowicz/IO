@@ -32,6 +32,8 @@ namespace biblioteka1
 
         WcfRezerwacjaDoBazy.Service1 scRezerwacja;
 
+        WcfUserDoBazy.Service1 scUzytkownik;
+
         public Form3_PanelCzytelnika()
         {
             InitializeComponent();
@@ -41,6 +43,8 @@ namespace biblioteka1
             scWypozyczenie = new WcfWypozyczeniaDoBazy.Service1();
 
             scRezerwacja = new WcfRezerwacjaDoBazy.Service1();
+
+            scUzytkownik = new WcfUserDoBazy.Service1();
 
         }
 
@@ -860,5 +864,46 @@ namespace biblioteka1
             //nie ma jak sie dostac do daty zwrotu bez klikania na liste
 
         }
+
+        private void textBox_witajUser_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_limit_TextChanged(object sender, EventArgs e)
+        {
+
+
+            
+
+        }
+
+
+
+
+        public string pobierzLimiUseraDoPanelu()
+        {
+
+            string idUzytkownika = textBox_witajUser.Text;
+            string key = "  CONVERT(VARCHAR, id)  like '" + idUzytkownika + "'";
+            textBox_limit.Text = (scUzytkownik.PokazLimitUsera(key, idUzytkownika)).ToString();
+
+            return textBox_limit.Text;
+
+        }
+
+
+        public string pobierzMaxCzasWypozyczeniaUseraDoPanelu()
+        {
+
+            string idUzytkownika = textBox_witajUser.Text;
+            string key = "  CONVERT(VARCHAR, id)  like '" + idUzytkownika + "'";
+            textBox_czasWypozyczenia.Text = (scUzytkownik.PokazMaxCzasWypozyczeniaUsera(key, idUzytkownika)).ToString();
+
+            return textBox_czasWypozyczenia.Text;
+
+        }
+
+
     }
 }

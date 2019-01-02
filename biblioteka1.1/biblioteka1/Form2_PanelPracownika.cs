@@ -102,13 +102,35 @@ namespace biblioteka1
         private void button_dodajUsera_Click(object sender, EventArgs e)
         {
 
-            Uzytkownik u = new Uzytkownik();
-            u.id = text_IdUsera.Text;
-            u.haslo = text_haslo.Text;
-            u.imie = text_ImieUsera.Text;
-            u.nazwisko = text_nazwiskoUsera.Text;
-            u.pesel = textPesel.Text;
-            u.emaileee = Convert.ToString(textEMail.Text);
+            //moze z ifem sprobowac if box stanowisko not null to ....
+
+
+            Czytelnik c = new Czytelnik();
+            c.id = text_IdUsera.Text;
+            c.haslo = text_haslo.Text;
+            c.imie = text_ImieUsera.Text;
+            c.nazwisko = text_nazwiskoUsera.Text;
+            c.pesel = textPesel.Text;
+            c.emaileee = Convert.ToString(textEMail.Text);
+            c.limit = Convert.ToInt32(textBox_limit.Text);
+            c.kategoria = comboBox_kategoria.Text;
+            c.maxCzasWypozyczenia = Convert.ToInt32(textBox_maxCzasWypozyczenia.Text);
+
+            //
+
+            Pracownik p = new Pracownik();
+            p.id = text_IdUsera.Text;
+            p.haslo = text_haslo.Text;
+            p.imie = text_ImieUsera.Text;
+            p.nazwisko = text_nazwiskoUsera.Text;
+            p.pesel = textPesel.Text;
+            p.emaileee = Convert.ToString(textEMail.Text);
+            p.limit = Convert.ToInt32(textBox_limit.Text);
+            p.kategoria = comboBox_kategoria.Text;
+            p.maxCzasWypozyczenia = Convert.ToInt32(textBox_maxCzasWypozyczenia.Text);
+            p.stanowisko = textBox_stanowisko.Text;
+
+
 
 
 
@@ -119,10 +141,28 @@ namespace biblioteka1
             WcfUserDoBazy.Service1 scUser = new WcfUserDoBazy.Service1();
 
            // if (service.InsertUser(u) == 1) -- wczesniej dzialalo
-                if (scUser.InsertUser(u) == 1)
+
+
+            //tu ifa , if stanowikso not null to pracownik itd
+
+            if(comboBox_kategoria.Text != "pracownik")
             {
-                MessageBox.Show("uzytkownik dodany do bazy");
+                if (scUser.InsertCzytelnik(c) == 1)
+                {
+                    MessageBox.Show("czytelnik dodany do bazy");
+                }
+
             }
+
+
+            else
+            {
+                if (scUser.InsertPracownik(p) == 1)
+                {
+                    MessageBox.Show("pracownik dodany do bazy");
+                }
+            }
+
 
 
             //czyszczenie
@@ -133,6 +173,11 @@ namespace biblioteka1
             text_nazwiskoUsera.Clear();
             textPesel.Clear();
             textEMail.Clear();
+            textBox_limit.Clear();
+            textBox_maxCzasWypozyczenia.Clear();
+            textBox_stanowisko.Clear();
+            
+
 
 
 
@@ -150,9 +195,9 @@ namespace biblioteka1
 
         }
 
-        private void button_pokazUserówDataGrid_Click(object sender, EventArgs e)
+        private void button_pokazCzytelnikowDataGrid_Click(object sender, EventArgs e)
         {
-            dataGridViewPokazUserow.DataSource = sc.FillListBoxUserzyTabela();
+            dataGridViewPokazUserow.DataSource = sc.FillListBoxCzytelnicyTabela();
 
         }
 
@@ -273,6 +318,38 @@ namespace biblioteka1
                 listBox_ksiazkiPracownik.DataSource = scKsiazki.pokazKsiazkiNajzadziejWypozyczane();
 
             }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_pokazPracownikow_Click(object sender, EventArgs e)
+        {
+            dataGridViewPokazUserow.DataSource = sc.FillListBoxPracownicyTabela();
+        }
+
+        private void textBox_limit_TextChanged(object sender, EventArgs e)
+        {
+
+
+
+        }
+
+        private void comboBox_kategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_kategoria.Text == "wykładowca")
+                textBox_limit.Text = "30";
+
+            if (comboBox_kategoria.Text == "student")
+                textBox_limit.Text = "21";
+
+            if (comboBox_kategoria.Text == "zwykły czytelnik")
+                textBox_limit.Text = "5";
+
+            if (comboBox_kategoria.Text == "pracownik")
+                textBox_limit.Text = "30";
         }
     }
 }
