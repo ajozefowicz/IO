@@ -140,9 +140,6 @@
     <None Include="Connected Services\ServiceReference2\WcfUserDoBazy.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServiceReference3\biblioteka1.ServiceReference3.CompositeType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Connected Services\ServiceReference3\service.wsdl" />
     <None Include="Connected Services\ServiceReference3\service.xsd">
       <SubType>Designer</SubType>

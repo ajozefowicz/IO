@@ -29,7 +29,7 @@ namespace WcfEgzemplarzDoBazy
         {
             connStringBuilder = new SqlConnectionStringBuilder();
             connStringBuilder.DataSource = "DESKTOP-PD78ORB";
-            connStringBuilder.InitialCatalog = "WCFKsiazka";
+            connStringBuilder.InitialCatalog = "WCFEgzemplarz";
             connStringBuilder.Encrypt = true;
             connStringBuilder.TrustServerCertificate = true;
             connStringBuilder.ConnectTimeout = 30;
@@ -68,8 +68,9 @@ namespace WcfEgzemplarzDoBazy
             {
 
                 //LICZY SIE TO W JAKIEJ KOLEJNOSCI TU SA POLA WPISANE, TAK DODAJE DO BAZY
-                comm.CommandText = "Insert into IKsiazka values(@id, @tytul, @stan, @rodzaj, @licznikWypozyczen," +
-                    " @dataWypozyczenia, @dataZwrotu, @licznikPrzedluzen, @iloscStron, @imieAutora, @nazwiskoAutora, @nrISBN )";
+                //@id,
+                comm.CommandText = "Insert into IEgzemplarz values( @tytul, @stan, @rodzaj, @licznikWypozyczen," +
+                    " @dataWypozyczenia, @dataZwrotu, @licznikPrzedluzen, @iloscStron, @imieAutora, @nazwiskoAutora, @nrISBN, @iloscMinut, @ktoCzyta )";
 
 
                 DateTime myDateTime = DateTime.Now;
@@ -82,7 +83,7 @@ namespace WcfEgzemplarzDoBazy
                 DateTime myDateTime2 = DateTime.Now;
                 string sqlFormattedDate2 = myDateTime.ToString("20001212");
 
-                comm.Parameters.AddWithValue("@id", k.id);
+                //comm.Parameters.AddWithValue("@id", k.id);
                 comm.Parameters.AddWithValue("@tytul", k.tytul);
                 comm.Parameters.AddWithValue("@stan", k.stan);
                 comm.Parameters.AddWithValue("@rodzaj", k.rodzaj);
@@ -94,6 +95,10 @@ namespace WcfEgzemplarzDoBazy
                 comm.Parameters.AddWithValue("@imieAutora", k.imieAutora);
                 comm.Parameters.AddWithValue("@nazwiskoAutora", k.nazwiskoAutora);
                 comm.Parameters.AddWithValue("@nrISBN", k.nrISBN);
+                comm.Parameters.AddWithValue("@iloscMinut", 0);
+                comm.Parameters.AddWithValue("@ktoCzyta", "nie dotyczy");
+
+
 
 
                 comm.CommandType = CommandType.Text;
@@ -119,6 +124,70 @@ namespace WcfEgzemplarzDoBazy
 
 
 
+        public int InsertAudiobook(Audiobook k)
+        {
+
+            try
+            {
+
+                //LICZY SIE TO W JAKIEJ KOLEJNOSCI TU SA POLA WPISANE, TAK DODAJE DO BAZY
+                //@id,
+                comm.CommandText = "Insert into IEgzemplarz values( @tytul, @stan, @rodzaj, @licznikWypozyczen," +
+                    " @dataWypozyczenia, @dataZwrotu, @licznikPrzedluzen, @iloscStron, @imieAutora, @nazwiskoAutora, @nrISBN, @iloscMinut, @ktoCzyta )";
+
+
+                DateTime myDateTime = DateTime.Now;
+                string sqlFormattedDate = myDateTime.ToString("2000-12-12");
+
+                string dataZero = Convert.ToString(DateTime.UtcNow.ToLocalTime());
+
+                var aaa = DateTime.Parse(dataZero);
+
+                DateTime myDateTime2 = DateTime.Now;
+                string sqlFormattedDate2 = myDateTime.ToString("20001212");
+
+                //comm.Parameters.AddWithValue("@id", k.id);
+                comm.Parameters.AddWithValue("@tytul", k.tytul);
+                comm.Parameters.AddWithValue("@stan", k.stan);
+                comm.Parameters.AddWithValue("@rodzaj", k.rodzaj);
+                comm.Parameters.AddWithValue("@licznikWypozyczen", k.licznikWypozyczen);
+                comm.Parameters.AddWithValue("@dataWypozyczenia", DateTime.UtcNow.ToLocalTime()); //DBNull.Value - działa oprzy wpisywaniu, ale nie przy wyswietlani //DateTime.UtcNow.ToLocalTime()
+                comm.Parameters.AddWithValue("@dataZwrotu", DateTime.UtcNow.ToLocalTime()); // tez można podac "2010-10-10"
+                comm.Parameters.AddWithValue("@licznikPrzedluzen", k.licznikPrzedluzen);
+                comm.Parameters.AddWithValue("@iloscStron", 0);
+                comm.Parameters.AddWithValue("@imieAutora", "nie dotyczy");
+                comm.Parameters.AddWithValue("@nazwiskoAutora", "nie dotyczy");
+                comm.Parameters.AddWithValue("@nrISBN", "nie dotyczy");
+                comm.Parameters.AddWithValue("@iloscMinut", k.iliscMinut);
+                comm.Parameters.AddWithValue("@ktoCzyta", k.ktoCzyta);
+
+
+
+
+                comm.CommandType = CommandType.Text;
+                conn.Open();
+
+                return comm.ExecuteNonQuery();
+
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+
+
+
         //  POKAZ KSIAZKI DLA PANELU cZYTELNIKA
 
 
@@ -137,7 +206,7 @@ namespace WcfEgzemplarzDoBazy
                 ////////////////////////////////// wersja 1 
 
 
-                string cmdText = "Select tytul, id, stan, imieAutora, nazwiskoAutora, nrISBN from IKsiazka";
+                string cmdText = "Select tytul, id, stan, imieAutora, nazwiskoAutora, nrISBN from IEgzemplarz";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 conn.Open();
 
@@ -170,7 +239,7 @@ namespace WcfEgzemplarzDoBazy
 
                 ///////////////////// wersja 2 nic nie wyswietla
                 /*
-                var data = from o in wc.IKsiazka
+                var data = from o in wc.IEgzemplarz
                           select o ;
                 //List<object> baba = data.ToList();
          
@@ -193,7 +262,7 @@ namespace WcfEgzemplarzDoBazy
                 ///
 
                 /*
-                var employees = from emps in wc.IKsiazka
+                var employees = from emps in wc.IEgzemplarz
 
                                 select new
                 {
@@ -263,7 +332,7 @@ namespace WcfEgzemplarzDoBazy
                 ////////////////////////////////// wersja 
 
 
-                string cmdText = "Select * from IKsiazka";
+                string cmdText = "Select * from IEgzemplarz";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 conn.Open();
 
@@ -303,7 +372,7 @@ namespace WcfEgzemplarzDoBazy
 
                 ///////////////////// wersja 2 nic nie wyswietla
                 /*
-                var data = from o in wc.IKsiazka
+                var data = from o in wc.IEgzemplarz
                           select o ;
                 //List<object> baba = data.ToList();
          
@@ -326,7 +395,7 @@ namespace WcfEgzemplarzDoBazy
                 ///
 
                 /*
-                var employees = from emps in wc.IKsiazka
+                var employees = from emps in wc.IEgzemplarz
 
                                 select new
                 {
@@ -389,7 +458,7 @@ namespace WcfEgzemplarzDoBazy
             try
             {
                 string cmdText = "Select id, tytul, stan, rodzaj, imieAutora, nazwiskoAutora, nrISBN, dataWypozyczenia" +
-                    ", dataZwrotu, licznikWypozyczen, licznikPrzedluzen, iloscStron from IKsiazka";
+                    ", dataZwrotu, licznikWypozyczen, licznikPrzedluzen, iloscStron from IEgzemplarz";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 conn.Open();
 
@@ -457,7 +526,7 @@ namespace WcfEgzemplarzDoBazy
                 ////////////////////////////////// wersja 
 
 
-                string cmdText = "Select * from IKsiazka";
+                string cmdText = "Select * from IEgzemplarz";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 conn.Open();
 
@@ -522,7 +591,7 @@ namespace WcfEgzemplarzDoBazy
             try
             {
                 conn.Open();
-                string cmddText = "Delete from IKsiazka where " + key;
+                string cmddText = "Delete from IEgzemplarz where " + key;
                 SqlCommand cmd = new SqlCommand(cmddText, conn);
                 cmd.ExecuteNonQuery();
                 return true;
@@ -558,7 +627,7 @@ namespace WcfEgzemplarzDoBazy
             {
 
 
-                string cmdText = "Select * from IKsiazka" +
+                string cmdText = "Select * from IEgzemplarz" +
                     " where  " + key;      //textBox_imieAutora.Text
 
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
@@ -619,7 +688,7 @@ namespace WcfEgzemplarzDoBazy
             {
 
                 /*
-                string cmdText = "Update IKsiazka set dataWypozyczenia = @dataWypozyczenia, dataZwrotu = @dataZwrotu, stan = @stan where id = @id";
+                string cmdText = "Update IEgzemplarz set dataWypozyczenia = @dataWypozyczenia, dataZwrotu = @dataZwrotu, stan = @stan where id = @id";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@dataWypozyczenia", DateTime.UtcNow.ToLocalTime());
                 cmd.Parameters.AddWithValue("@dataWypozyczenia", DateTime.UtcNow.ToLocalTime());
@@ -633,7 +702,7 @@ namespace WcfEgzemplarzDoBazy
 
 
                 //LICZY SIE TO W JAKIEJ KOLEJNOSCI TU SA POLA WPISANE, TAK DODAJE DO BAZY
-                comm.CommandText = "Update IKsiazka set   tytul = @tytul, stan = @stan, rodzaj = @rodzaj, licznikWypozyczen = @licznikWypozyczen," +
+                comm.CommandText = "Update IEgzemplarz set   tytul = @tytul, stan = @stan, rodzaj = @rodzaj, licznikWypozyczen = @licznikWypozyczen," +
                     "dataWypozyczenia = @dataWypozyczenia, dataZwrotu = @dataZwrotu, licznikPrzedluzen = @licznikPrzedluzen, iloscStron = @iloscStron, imieAutora = @imieAutora, nazwiskoAutora = @nazwiskoAutora, nrISBN = @nrISBN where id =@id ";
 
 
@@ -682,7 +751,7 @@ namespace WcfEgzemplarzDoBazy
             {
 
                 //LICZY SIE TO W JAKIEJ KOLEJNOSCI TU SA POLA WPISANE, TAK DODAJE DO BAZY
-                comm.CommandText = "Update IKsiazka set  tytul = @tytul , stan = @stan, rodzaj = @rodzaj, licznikWypozyczen = @licznikWypozyczen," +
+                comm.CommandText = "Update IEgzemplarz set  tytul = @tytul , stan = @stan, rodzaj = @rodzaj, licznikWypozyczen = @licznikWypozyczen," +
                     "dataWypozyczenia = @dataWypozyczenia, dataZwrotu = @dataZwrotu, licznikPrzedluzen = @licznikPrzedluzen, iloscStron = @iloscStron, imieAutora = @imieAutora, nazwiskoAutora = @nazwiskoAutora, nrISBN = @nrISBN where id = '" + key + "'";
 
 
@@ -734,7 +803,7 @@ namespace WcfEgzemplarzDoBazy
             {
 
                 //LICZY SIE TO W JAKIEJ KOLEJNOSCI TU SA POLA WPISANE, TAK DODAJE DO BAZY
-                comm.CommandText = "Update IKsiazka set  tytul = @tytul , stan = @stan, rodzaj = @rodzaj, licznikWypozyczen = @licznikWypozyczen," +
+                comm.CommandText = "Update IEgzemplarz set  tytul = @tytul , stan = @stan, rodzaj = @rodzaj, licznikWypozyczen = @licznikWypozyczen," +
                     "dataWypozyczenia = @dataWypozyczenia, dataZwrotu = @dataZwrotu, licznikPrzedluzen = @licznikPrzedluzen, iloscStron = @iloscStron, imieAutora = @imieAutora, nazwiskoAutora = @nazwiskoAutora, nrISBN = @nrISBN where id = '" + key + "'";
 
 
@@ -784,7 +853,7 @@ namespace WcfEgzemplarzDoBazy
             {
 
                 //LICZY SIE TO W JAKIEJ KOLEJNOSCI TU SA POLA WPISANE, TAK DODAJE DO BAZY
-                comm.CommandText = "Update IKsiazka set  tytul = @tytul , stan = @stan, rodzaj = @rodzaj, licznikWypozyczen = @licznikWypozyczen," +
+                comm.CommandText = "Update IEgzemplarz set  tytul = @tytul , stan = @stan, rodzaj = @rodzaj, licznikWypozyczen = @licznikWypozyczen," +
                     "dataWypozyczenia = @dataWypozyczenia, dataZwrotu = @dataZwrotu, licznikPrzedluzen = @licznikPrzedluzen, iloscStron = @iloscStron, imieAutora = @imieAutora, nazwiskoAutora = @nazwiskoAutora, nrISBN = @nrISBN where id = '" + key + "'";
 
 
@@ -837,7 +906,7 @@ namespace WcfEgzemplarzDoBazy
             {
 
 
-                string cmdText = "Select * from IKsiazka" +
+                string cmdText = "Select * from IEgzemplarz" +
                     " where  " + key;      //textBox_imieAutora.Text
 
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
@@ -911,7 +980,7 @@ namespace WcfEgzemplarzDoBazy
             {
 
                 string cmdText = "Select * " +
-                    "from IKsiazka " +
+                    "from IEgzemplarz " +
                     "order by licznikWypozyczen desc";
 
 
@@ -979,7 +1048,7 @@ namespace WcfEgzemplarzDoBazy
             {
 
                 string cmdText = "Select * " +
-                    "from IKsiazka " +
+                    "from IEgzemplarz " +
                     "order by licznikWypozyczen";
 
 

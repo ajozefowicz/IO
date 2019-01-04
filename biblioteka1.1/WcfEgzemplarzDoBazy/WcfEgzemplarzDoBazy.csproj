@@ -44,6 +44,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Audiobook.cs" />
     <Compile Include="Egzemplarz.cs" />
     <Compile Include="IService1.cs" />
     <Compile Include="Ksiazka.cs" />

@@ -13,7 +13,7 @@ namespace WcfWypozyczeniaDoBazy
         [DataMember]
         public int id { get; set; }
         [DataMember]
-        public int idKsiazki { get; set; }
+        public int idEgzemplarza { get; set; }
         [DataMember]
         public string idUsera { get; set; }
         [DataMember]

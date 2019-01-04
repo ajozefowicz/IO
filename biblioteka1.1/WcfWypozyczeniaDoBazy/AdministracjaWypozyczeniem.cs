@@ -80,7 +80,7 @@ namespace WcfWypozyczeniaDoBazy
                 comm.CommandText = "Insert into IWypozyczenie values( @idKsiazki, @idUsera, @dataWypozyczenia, @dataZwrotu, @czyAktualne)";
 
                 // comm.Parameters.AddWithValue("id", w.id);
-                comm.Parameters.AddWithValue("idKsiazki", w.idKsiazki);
+                comm.Parameters.AddWithValue("idKsiazki", w.idEgzemplarza);
                 comm.Parameters.AddWithValue("idUsera", w.idUsera);
                 comm.Parameters.AddWithValue("dataWypozyczenia", DateTime.UtcNow.ToLocalTime());
                 comm.Parameters.AddWithValue("dataZwrotu", w.dataZwrotu);//DateTime.UtcNow.ToLocalTime().AddDays(14));
@@ -141,7 +141,7 @@ namespace WcfWypozyczeniaDoBazy
 
                     Wypozyczenie w = new Wypozyczenie();
                     w.id = Convert.ToInt32(reader["id"].ToString());
-                    w.idKsiazki = Convert.ToInt32(reader["idKsiazki"].ToString());
+                    w.idEgzemplarza = Convert.ToInt32(reader["idKsiazki"].ToString());
                     w.idUsera = reader["idUsera"].ToString();
                     w.dataWypozyczyenia = Convert.ToDateTime(reader["dataWypozyczenia"].ToString());
                     w.dataZwrotu = Convert.ToDateTime(reader["dataZwrotu"].ToString());
@@ -206,7 +206,7 @@ namespace WcfWypozyczeniaDoBazy
 
                     Wypozyczenie w = new Wypozyczenie();
                     w.id = Convert.ToInt32(reader["id"].ToString());
-                    w.idKsiazki = Convert.ToInt32(reader["idKsiazki"].ToString());
+                    w.idEgzemplarza = Convert.ToInt32(reader["idKsiazki"].ToString());
                     w.idUsera = idU;//        reader["idUsera"].ToString();  // hmmmmmmmmmmmmm
                     w.dataWypozyczyenia = Convert.ToDateTime(reader["dataWypozyczenia"].ToString());
                     w.dataZwrotu = Convert.ToDateTime(reader["dataZwrotu"].ToString());
@@ -261,7 +261,7 @@ namespace WcfWypozyczeniaDoBazy
                 {
                     Wypozyczenie w = new Wypozyczenie();
                     w.id = Convert.ToInt32(reader["id"].ToString());
-                    w.idKsiazki = Convert.ToInt32(reader["idKsiazki"].ToString());
+                    w.idEgzemplarza = Convert.ToInt32(reader["idKsiazki"].ToString());
                     w.idUsera = reader["idUsera"].ToString();  // hmmmmmmmmmmmmm
                     w.dataWypozyczyenia = Convert.ToDateTime(reader["dataWypozyczenia"].ToString());
                     w.dataZwrotu = Convert.ToDateTime(reader["dataZwrotu"].ToString());
@@ -309,7 +309,7 @@ namespace WcfWypozyczeniaDoBazy
                 {
                     Wypozyczenie w = new Wypozyczenie();
                     w.id = Convert.ToInt32(reader["id"].ToString());
-                    w.idKsiazki = Convert.ToInt32(reader["idKsiazki"].ToString());
+                    w.idEgzemplarza = Convert.ToInt32(reader["idKsiazki"].ToString());
                     w.idUsera = reader["idUsera"].ToString();  // hmmmmmmmmmmmmm
                     w.dataWypozyczyenia = Convert.ToDateTime(reader["dataWypozyczenia"].ToString());
                     w.dataZwrotu = Convert.ToDateTime(reader["dataZwrotu"].ToString());

@@ -73,33 +73,65 @@ namespace biblioteka1
 
         private void button1_dodajKsiazke_Click(object sender, EventArgs e)
         {
-            Ksiazka k = new Ksiazka();
-            k.id = Convert.ToInt32(textId.Text);
-            k.tytul = textTytul.Text;
-            //k.stan = Convert.ToBoolean(textStan.Text);
-            k.stan = Convert.ToBoolean(comboBox_stan.Text);
-            //  k.rodzaj = textRodzaj.Text;
-            k.rodzaj = comboBox_rodzajeKsiazke.Text;
-            k.licznikWypozyczen = Convert.ToInt32(textLicznikWyp.Text);
-            k.licznikPrzedluzen = Convert.ToInt32(textLicznikPrzed.Text);
-            k.iloscStron = Convert.ToInt32(textIloscStron.Text);
-            k.imieAutora = textImieAutora.Text;
-            k.nazwiskoAutora = textNazwiskoAutora.Text;
-            k.nrISBN = textISBN.Text;
+
+
+            /////////////////////////////////////////////////////
+
 
 
             //test czt to pojdzie
-           // k.dataWypozyczenia = DateTime.UtcNow.ToLocalTime();
-           // k.dataZwrotu = DateTime.UtcNow.ToLocalTime();
+            // k.dataWypozyczenia = DateTime.UtcNow.ToLocalTime();
+            // k.dataZwrotu = DateTime.UtcNow.ToLocalTime();
 
-           // ServiceReference4.Service1Client service = new ServiceReference4.Service1Client();
+            // ServiceReference4.Service1Client service = new ServiceReference4.Service1Client();
 
             WcfEgzemplarzDoBazy.AdministracjaEgzemplarzem ss = new WcfEgzemplarzDoBazy.AdministracjaEgzemplarzem();
 
-           if ( ss.InsertKsiazka(k) == 1)
+
+
+            if(comboBox_kategoriaEgzemplarza.Text=="książka")
             {
-                MessageBox.Show("Ksiazka dodana do bazy");
+                Ksiazka k = new Ksiazka();
+
+                k.tytul = textTytul.Text;
+                k.stan = Convert.ToBoolean(comboBox_stan.Text);
+                //  k.rodzaj = textRodzaj.Text;
+                k.rodzaj = comboBox_rodzajeKsiazke.Text;
+                k.licznikWypozyczen = Convert.ToInt32(textLicznikWyp.Text);
+                k.licznikPrzedluzen = Convert.ToInt32(textLicznikPrzed.Text);
+                k.iloscStron = Convert.ToInt32(textIloscStron.Text);
+                k.imieAutora = textImieAutora.Text;
+                k.nazwiskoAutora = textNazwiskoAutora.Text;
+                k.nrISBN = textISBN.Text;
+
+                if (ss.InsertKsiazka(k) == 1)
+                {
+                    MessageBox.Show("Ksiazka dodana do bazy");
+                }
             }
+
+
+            if(comboBox_kategoriaEgzemplarza.Text == "audiobook")
+            {
+                Audiobook a = new Audiobook();
+                a.tytul = textTytul.Text;
+                a.stan = Convert.ToBoolean(comboBox_stan.Text);
+                //  k.rodzaj = textRodzaj.Text;
+                a.rodzaj = comboBox_rodzajeKsiazke.Text;
+                a.licznikWypozyczen = Convert.ToInt32(textLicznikWyp.Text);
+                a.licznikPrzedluzen = Convert.ToInt32(textLicznikPrzed.Text);
+                a.iliscMinut = Convert.ToInt32(textBox_iloscMinut.Text);
+                a.ktoCzyta = textBox_ktoCzyta.Text;
+
+                if (ss.InsertAudiobook(a) == 1)
+                {
+                    MessageBox.Show("Audiobook dodana do bazy");
+                }
+            }
+
+
+
+
         }
 
         private void button_dodajUsera_Click(object sender, EventArgs e)

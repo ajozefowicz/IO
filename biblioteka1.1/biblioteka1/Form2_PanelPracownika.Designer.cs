@@ -36,9 +36,6 @@ namespace biblioteka1
             this.textId = new System.Windows.Forms.TextBox();
             this.textTytul = new System.Windows.Forms.TextBox();
             this.label2_tytul = new System.Windows.Forms.Label();
-            this.textStan = new System.Windows.Forms.TextBox();
-            this.label3_stan = new System.Windows.Forms.Label();
-            this.textRodzaj = new System.Windows.Forms.TextBox();
             this.label4_rodzaj = new System.Windows.Forms.Label();
             this.textLicznikWyp = new System.Windows.Forms.TextBox();
             this.label5_licznikWypozyczen = new System.Windows.Forms.Label();
@@ -88,6 +85,12 @@ namespace biblioteka1
             this.textBox_stanowisko = new System.Windows.Forms.TextBox();
             this.label_stanowisko = new System.Windows.Forms.Label();
             this.button_pokazPracownikow = new System.Windows.Forms.Button();
+            this.textBox_iloscMinut = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox_ktoCzyta = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBox_kategoriaEgzemplarza = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPokazUserow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ksiazkiTabela)).BeginInit();
             this.SuspendLayout();
@@ -104,7 +107,7 @@ namespace biblioteka1
             // 
             // button1_dodajKsiazke
             // 
-            this.button1_dodajKsiazke.Location = new System.Drawing.Point(12, 347);
+            this.button1_dodajKsiazke.Location = new System.Drawing.Point(12, 359);
             this.button1_dodajKsiazke.Name = "button1_dodajKsiazke";
             this.button1_dodajKsiazke.Size = new System.Drawing.Size(103, 23);
             this.button1_dodajKsiazke.TabIndex = 1;
@@ -145,33 +148,10 @@ namespace biblioteka1
             this.label2_tytul.TabIndex = 4;
             this.label2_tytul.Text = "tytul";
             // 
-            // textStan
-            // 
-            this.textStan.Location = new System.Drawing.Point(108, 86);
-            this.textStan.Name = "textStan";
-            this.textStan.Size = new System.Drawing.Size(100, 20);
-            this.textStan.TabIndex = 7;
-            // 
-            // label3_stan
-            // 
-            this.label3_stan.AutoSize = true;
-            this.label3_stan.Location = new System.Drawing.Point(12, 86);
-            this.label3_stan.Name = "label3_stan";
-            this.label3_stan.Size = new System.Drawing.Size(27, 13);
-            this.label3_stan.TabIndex = 6;
-            this.label3_stan.Text = "stan";
-            // 
-            // textRodzaj
-            // 
-            this.textRodzaj.Location = new System.Drawing.Point(108, 111);
-            this.textRodzaj.Name = "textRodzaj";
-            this.textRodzaj.Size = new System.Drawing.Size(100, 20);
-            this.textRodzaj.TabIndex = 9;
-            // 
             // label4_rodzaj
             // 
             this.label4_rodzaj.AutoSize = true;
-            this.label4_rodzaj.Location = new System.Drawing.Point(12, 293);
+            this.label4_rodzaj.Location = new System.Drawing.Point(12, 90);
             this.label4_rodzaj.Name = "label4_rodzaj";
             this.label4_rodzaj.Size = new System.Drawing.Size(35, 13);
             this.label4_rodzaj.TabIndex = 8;
@@ -475,7 +455,7 @@ namespace biblioteka1
             "liryki",
             "horror",
             "romans"});
-            this.comboBox_rodzajeKsiazke.Location = new System.Drawing.Point(87, 290);
+            this.comboBox_rodzajeKsiazke.Location = new System.Drawing.Point(87, 87);
             this.comboBox_rodzajeKsiazke.Name = "comboBox_rodzajeKsiazke";
             this.comboBox_rodzajeKsiazke.Size = new System.Drawing.Size(121, 21);
             this.comboBox_rodzajeKsiazke.TabIndex = 50;
@@ -486,7 +466,7 @@ namespace biblioteka1
             this.comboBox_stan.Items.AddRange(new object[] {
             "true",
             "false"});
-            this.comboBox_stan.Location = new System.Drawing.Point(87, 317);
+            this.comboBox_stan.Location = new System.Drawing.Point(87, 113);
             this.comboBox_stan.Name = "comboBox_stan";
             this.comboBox_stan.Size = new System.Drawing.Size(121, 21);
             this.comboBox_stan.TabIndex = 53;
@@ -494,7 +474,7 @@ namespace biblioteka1
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 320);
+            this.label1.Location = new System.Drawing.Point(9, 116);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 13);
             this.label1.TabIndex = 52;
@@ -604,11 +584,69 @@ namespace biblioteka1
             this.button_pokazPracownikow.UseVisualStyleBackColor = true;
             this.button_pokazPracownikow.Click += new System.EventHandler(this.button_pokazPracownikow_Click);
             // 
+            // textBox_iloscMinut
+            // 
+            this.textBox_iloscMinut.Location = new System.Drawing.Point(108, 301);
+            this.textBox_iloscMinut.Name = "textBox_iloscMinut";
+            this.textBox_iloscMinut.Size = new System.Drawing.Size(100, 20);
+            this.textBox_iloscMinut.TabIndex = 66;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 301);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 13);
+            this.label4.TabIndex = 65;
+            this.label4.Text = "ilosc minut";
+            // 
+            // textBox_ktoCzyta
+            // 
+            this.textBox_ktoCzyta.Location = new System.Drawing.Point(108, 327);
+            this.textBox_ktoCzyta.Name = "textBox_ktoCzyta";
+            this.textBox_ktoCzyta.Size = new System.Drawing.Size(100, 20);
+            this.textBox_ktoCzyta.TabIndex = 68;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 327);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(50, 13);
+            this.label5.TabIndex = 67;
+            this.label5.Text = "kto czyta";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 12);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(51, 13);
+            this.label6.TabIndex = 70;
+            this.label6.Text = "kategoria";
+            // 
+            // comboBox_kategoriaEgzemplarza
+            // 
+            this.comboBox_kategoriaEgzemplarza.FormattingEnabled = true;
+            this.comboBox_kategoriaEgzemplarza.Items.AddRange(new object[] {
+            "książka",
+            "audiobook"});
+            this.comboBox_kategoriaEgzemplarza.Location = new System.Drawing.Point(87, 9);
+            this.comboBox_kategoriaEgzemplarza.Name = "comboBox_kategoriaEgzemplarza";
+            this.comboBox_kategoriaEgzemplarza.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_kategoriaEgzemplarza.TabIndex = 69;
+            // 
             // Form2_PanelPracownika
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1015, 464);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.comboBox_kategoriaEgzemplarza);
+            this.Controls.Add(this.textBox_ktoCzyta);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.textBox_iloscMinut);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.button_pokazPracownikow);
             this.Controls.Add(this.textBox_stanowisko);
             this.Controls.Add(this.label_stanowisko);
@@ -657,10 +695,7 @@ namespace biblioteka1
             this.Controls.Add(this.label6_licznikPrzedluzen);
             this.Controls.Add(this.textLicznikWyp);
             this.Controls.Add(this.label5_licznikWypozyczen);
-            this.Controls.Add(this.textRodzaj);
             this.Controls.Add(this.label4_rodzaj);
-            this.Controls.Add(this.textStan);
-            this.Controls.Add(this.label3_stan);
             this.Controls.Add(this.textTytul);
             this.Controls.Add(this.label2_tytul);
             this.Controls.Add(this.textId);
@@ -685,9 +720,6 @@ namespace biblioteka1
         private System.Windows.Forms.TextBox textId;
         private System.Windows.Forms.TextBox textTytul;
         private System.Windows.Forms.Label label2_tytul;
-        private System.Windows.Forms.TextBox textStan;
-        private System.Windows.Forms.Label label3_stan;
-        private System.Windows.Forms.TextBox textRodzaj;
         private System.Windows.Forms.Label label4_rodzaj;
         private System.Windows.Forms.TextBox textLicznikWyp;
         private System.Windows.Forms.Label label5_licznikWypozyczen;
@@ -737,5 +769,11 @@ namespace biblioteka1
         private System.Windows.Forms.TextBox textBox_stanowisko;
         private System.Windows.Forms.Label label_stanowisko;
         private System.Windows.Forms.Button button_pokazPracownikow;
+        private System.Windows.Forms.TextBox textBox_iloscMinut;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox_ktoCzyta;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBox_kategoriaEgzemplarza;
     }
 }

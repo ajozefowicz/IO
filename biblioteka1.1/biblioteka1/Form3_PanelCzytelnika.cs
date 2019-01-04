@@ -334,8 +334,11 @@ namespace biblioteka1
             int limit = Convert.ToInt32(textBox_limit.Text);
             int maxCzasWypozyczenia = Convert.ToInt32(textBox_czasWypozyczenia.Text);
 
-            ServiceReference3.Wypozyczenie w = new ServiceReference3.Wypozyczenie();
-            w.idKsiazki = Convert.ToInt32(key1); // pcja = ks.id nie działa, bo wybrany wiersz jest nulem, wiec zamiast listBox, dataGridView
+            //ServiceReference3.Wypozyczenie w = new ServiceReference3.Wypozyczenie();
+            WcfWypozyczeniaDoBazy.Wypozyczenie w = new WcfWypozyczeniaDoBazy.Wypozyczenie();
+            
+
+            w.idEgzemplarza = Convert.ToInt32(key1); // pcja = ks.id nie działa, bo wybrany wiersz jest nulem, wiec zamiast listBox, dataGridView
             w.idUsera = textBox_witajUser.Text;     //label7_witaJUser.Text;   //textBox_IdUsera.Text; // to na probe, zmienić by pobierało
             w.dataWypozyczyenia = DateTime.UtcNow.ToLocalTime();
             w.dataZwrotu = DateTime.UtcNow.ToLocalTime().AddDays(maxCzasWypozyczenia); // jak tu zrobic nulla
@@ -415,7 +418,7 @@ namespace biblioteka1
             //jak zwroci to zmianie ulega status w ksiazce i w wypozyczeniu zmienia się na archiwalne i nowa data zwrotu się pojawia - update
             //i w rezerwacji data zwrotu powina sie zmienic
 
-            string key = dataGridView_katalogUsera.CurrentRow.Cells["idKsiazki"].Value.ToString();
+            string key = dataGridView_katalogUsera.CurrentRow.Cells["idEgzemplarza"].Value.ToString();
 
             string keyDoWstawienia = "  CONVERT(VARCHAR, id)  = '" + key + " '";
 
@@ -606,7 +609,7 @@ namespace biblioteka1
 
         private void button1_pokazDaneWybranejKs_Click(object sender, EventArgs e)
         {
-            string id = dataGridView_katalogUsera.CurrentRow.Cells["idKsiazki"].Value.ToString();
+            string id = dataGridView_katalogUsera.CurrentRow.Cells["idEgzemplarza"].Value.ToString();
 
             string key = "  CONVERT(VARCHAR, id)  = '" + id + " ' ";
 
@@ -619,7 +622,7 @@ namespace biblioteka1
 
         private void dataGridView_wybrana_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            string id = dataGridView_katalogUsera.CurrentRow.Cells["idKsiazki"].Value.ToString();
+            string id = dataGridView_katalogUsera.CurrentRow.Cells["idEgzemplarza"].Value.ToString();
 
             string key = "  CONVERT(VARCHAR, id)  = '" + id + " ' ";
 
@@ -635,19 +638,15 @@ namespace biblioteka1
         private void dataGridView_katalogUsera_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            string id = dataGridView_katalogUsera.CurrentRow.Cells["idKsiazki"].Value.ToString();
+            string id = dataGridView_katalogUsera.CurrentRow.Cells["idEgzemplarza"].Value.ToString();
 
             string key = "  CONVERT(VARCHAR, id)  = '" + id + " ' ";
 
-
-
-
             //pooakzuje dane wybranej - bo tak
-            //dataGridView_ksiazki.DataSource = sc.FillListBoxKsiazkiWybranePrzezUsera(key);
 
 
-
-            textBox_imieAutora.Text = "nanan";
+            //tescik, bo nie wiem kiedy dziala, generalnie dziala jak klika sie na daty ....
+            //textBox_imieAutora.Text = "nanan";
 
 
             //dataGridView_ksiazki.DataSource = sc.FillListBoxKsiazkiWybranePrzezUsera(key);
@@ -681,7 +680,7 @@ namespace biblioteka1
 
 
 
-            string key = dataGridView_katalogUsera.CurrentRow.Cells["idKsiazki"].Value.ToString();//key dla ksiazki
+            string key = dataGridView_katalogUsera.CurrentRow.Cells["idEgzemplarza"].Value.ToString();//key dla ksiazki
 
             //key dla update wypozyczenia:
 
@@ -811,7 +810,7 @@ namespace biblioteka1
             if (ss.CzyUserJuzZarezerowalDanaKsiazka(idK, idU) == false)
             {
                 r.idUsera = textBox_witajUser.Text;
-                r.idKsiazki = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["id"].Value.ToString());
+                r.idEgzemplarza = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["id"].Value.ToString());
                 r.tytul = dataGridView_ksiazki.CurrentRow.Cells["tytul"].Value.ToString();
                 r.nazwiskoAutora = dataGridView_ksiazki.CurrentRow.Cells["nazwiskoAutora"].Value.ToString();
                 r.dataZwrotu = Convert.ToDateTime(dataGridView_ksiazki.CurrentRow.Cells["dataZwrotu"].Value.ToString());
@@ -850,7 +849,7 @@ namespace biblioteka1
             string idUzy = textBox_witajUser.Text;
 
 
-            int idK = Convert.ToInt32(dataGridView_katalogUsera.CurrentRow.Cells["idKsiazki"].Value.ToString());
+            int idK = Convert.ToInt32(dataGridView_katalogUsera.CurrentRow.Cells["idEgzemplarza"].Value.ToString());
 
             DateTime dataZw = Convert.ToDateTime(dataGridView_katalogUsera.CurrentRow.Cells["dataZwrotu"].Value.ToString());
 
@@ -868,7 +867,7 @@ namespace biblioteka1
         {
 
 
-            int key1 = Convert.ToInt32(dataGridView_katalogUsera.CurrentRow.Cells["idKsiazki"].Value.ToString());
+            int key1 = Convert.ToInt32(dataGridView_katalogUsera.CurrentRow.Cells["idEgzemplarza"].Value.ToString());
 
             string key2 = dataGridView_katalogUsera.CurrentRow.Cells["idUsera"].Value.ToString();
 
@@ -894,7 +893,7 @@ namespace biblioteka1
         private void button_czyNaRezerwacji_Click(object sender, EventArgs e)
         {
             //jest ok
-            string key = dataGridView_katalogUsera.CurrentRow.Cells["idKsiazki"].Value.ToString();
+            string key = dataGridView_katalogUsera.CurrentRow.Cells["idEgzemplarza"].Value.ToString();
             textBox1_pomocniczy.Text = Convert.ToString(scRezerwacja.CzyKsiazkaJestNaRzerwacji(key));
         }
 

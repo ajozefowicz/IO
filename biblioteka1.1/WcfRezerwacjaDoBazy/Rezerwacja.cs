@@ -17,7 +17,7 @@ namespace WcfRezerwacjaDoBazy
         [DataMember]
         public string idUsera { get; set; }
         [DataMember]
-        public int idKsiazki { get; set; }
+        public int idEgzemplarza { get; set; }
         [DataMember]
         public string tytul { get; set; }
         [DataMember]

@@ -73,7 +73,7 @@ namespace WcfRezerwacjaDoBazy
 
                 // comm.Parameters.AddWithValue("id", w.id);
                 comm.Parameters.AddWithValue("idUsera", r.idUsera);
-                comm.Parameters.AddWithValue("idKsiazki", r.idKsiazki);
+                comm.Parameters.AddWithValue("idKsiazki", r.idEgzemplarza);
                 comm.Parameters.AddWithValue("tytul", r.tytul);
                 comm.Parameters.AddWithValue("nazwiskoAutora", r.nazwiskoAutora); 
                 comm.Parameters.AddWithValue("dataZwrotu", r.dataZwrotu);
@@ -127,7 +127,7 @@ namespace WcfRezerwacjaDoBazy
                     Rezerwacja r = new Rezerwacja();
                     r.id = Convert.ToInt32(reader["id"].ToString());
                     r.idUsera = reader["idUsera"].ToString();
-                    r.idKsiazki = Convert.ToInt32(reader["idKsiazki"].ToString());
+                    r.idEgzemplarza = Convert.ToInt32(reader["idKsiazki"].ToString());
                     r.tytul = reader["tytul"].ToString();
                     r.nazwiskoAutora= reader["nazwiskoAutora"].ToString();
                     r.dataZwrotu = Convert.ToDateTime(reader["dataZwrotu"].ToString());
