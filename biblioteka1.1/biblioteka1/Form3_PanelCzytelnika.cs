@@ -794,24 +794,34 @@ namespace biblioteka1
             // WcfRezerwacjaDoBazy.Rezerwacja r = new WcfRezerwacjaDoBazy.Rezerwacja();
             Rezerwacja r = new Rezerwacja();
 
-
             ServiceReference4.Ksiazka ks = new ServiceReference4.Ksiazka();
 
-
-
-
-            r.idUsera = textBox_witajUser.Text;
-            r.idKsiazki = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["id"].Value.ToString());
-            r.tytul = dataGridView_ksiazki.CurrentRow.Cells["tytul"].Value.ToString();
-            r.nazwiskoAutora = dataGridView_ksiazki.CurrentRow.Cells["nazwiskoAutora"].Value.ToString();
-            r.dataZwrotu= Convert.ToDateTime(dataGridView_ksiazki.CurrentRow.Cells["dataZwrotu"].Value.ToString());
-
             WcfRezerwacjaDoBazy.Service1 ss = new WcfRezerwacjaDoBazy.Service1();
-            
-            if(ss.InsertRezerwacja(r) ==1)
+
+            string idU = textBox_witajUser.Text;
+            string idK = dataGridView_ksiazki.CurrentRow.Cells["id"].Value.ToString();
+
+            //blokada, że jesli raz zarezerwował to już drugi raz nie może - w tej samej "turze", po zwrocie już moze
+
+            if (ss.CzyUserJuzZarezerowalDanaKsiazka(idK, idU) == false)
             {
-                MessageBox.Show("Rezerwacja dodana do bazy");
+                r.idUsera = textBox_witajUser.Text;
+                r.idKsiazki = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["id"].Value.ToString());
+                r.tytul = dataGridView_ksiazki.CurrentRow.Cells["tytul"].Value.ToString();
+                r.nazwiskoAutora = dataGridView_ksiazki.CurrentRow.Cells["nazwiskoAutora"].Value.ToString();
+                r.dataZwrotu = Convert.ToDateTime(dataGridView_ksiazki.CurrentRow.Cells["dataZwrotu"].Value.ToString());
+
+
+
+                if (ss.InsertRezerwacja(r) == 1)
+                {
+                    MessageBox.Show("Rezerwacja dodana do bazy");
+                }
             }
+
+            else
+                MessageBox.Show("Juz zarezerwowałeś tę pozycję, nie możesz drugi raz");
+            
 
 
         }

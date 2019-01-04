@@ -395,6 +395,58 @@ namespace WcfRezerwacjaDoBazy
 
 
 
+        public bool CzyUserJuzZarezerowalDanaKsiazka(string idK, string idU) //jesli true to nie moze zarezerowac drugi raz
+        {
+
+            try
+            {
+
+                string cmdText = " select count(dataZwrotu)  " +
+                "from IRezerwacja3    " +
+                "where CONVERT(VARCHAR, idUsera)  = '" + idU + "' "+
+                "and idKsiazki  = '" + idK + "'";
+
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                conn.Open();
+
+                //SqlDataReader reader = cmd.ExecuteReader();
+
+                Int32 count = (Int32)cmd.ExecuteScalar();
+
+                if (count > 0)
+                {
+                    return true; // jest na liscie
+
+                }
+
+                else
+                    return false;
+
+
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+
+        }
+
+
+
+
+
+
+
+
+
 
 
 
