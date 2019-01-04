@@ -49,6 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\ServiceReference4\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\ServiceReference5\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -60,11 +65,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\ServiceReference3\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Connected Services\ServiceReference4\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -107,6 +107,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Connected Services\ServiceReference4\service.wsdl" />
+    <None Include="Connected Services\ServiceReference4\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference4\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference4\WcfEgzemplarzDoBazy.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ServiceReference5\service.wsdl" />
     <None Include="Connected Services\ServiceReference5\service.xsd">
       <SubType>Designer</SubType>
@@ -143,25 +153,7 @@
     <None Include="Connected Services\ServiceReference3\WcfWypozyczeniaDoBazy.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServiceReference4\Arrays.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ServiceReference4\biblioteka1.ServiceReference4.CompositeType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ServiceReference4\service.wsdl" />
-    <None Include="Connected Services\ServiceReference4\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ServiceReference4\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ServiceReference4\System.Collections.Generic.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ServiceReference4\WcfKsiazkaDoBazy4.xsd">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Properties\DataSources\WcfEgzemplarzDoBazy.CompositeType.datasource" />
     <None Include="Properties\DataSources\WcfKsiazkaDoBazy4.CompositeType.datasource" />
     <None Include="Properties\DataSources\WcfRezerwacjaDoBazy.CompositeType.datasource" />
     <None Include="Properties\DataSources\WcfUserDoBazy.CompositeType.datasource" />
@@ -183,15 +175,15 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ServiceReference4\" />
     <WCFMetadataStorage Include="Connected Services\ServiceReference5\" />
     <WCFMetadataStorage Include="Connected Services\ServiceReference2\" />
     <WCFMetadataStorage Include="Connected Services\ServiceReference3\" />
-    <WCFMetadataStorage Include="Connected Services\ServiceReference4\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WcfKsiazkaDoBazy4\WcfKsiazkaDoBazy4.csproj">
-      <Project>{9adbfe7c-517e-4092-bd90-ddf0f83e6dc1}</Project>
-      <Name>WcfKsiazkaDoBazy4</Name>
+    <ProjectReference Include="..\WcfEgzemplarzDoBazy\WcfEgzemplarzDoBazy.csproj">
+      <Project>{0475ce22-1171-42ee-ae68-802f347e5adc}</Project>
+      <Name>WcfEgzemplarzDoBazy</Name>
     </ProjectReference>
     <ProjectReference Include="..\WcfRezerwacjaDoBazy\WcfRezerwacjaDoBazy.csproj">
       <Project>{43c44474-d702-4d0a-91fe-4c856312de2a}</Project>
@@ -205,18 +197,6 @@
       <Project>{4058e6ca-5c70-486a-842c-08ca7307ec31}</Project>
       <Name>WcfWypozyczeniaDoBazy</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\ServiceReference4\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\ServiceReference4\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\ServiceReference4\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\ServiceReference3\configuration91.svcinfo" />
@@ -250,6 +230,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\ServiceReference5\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference4\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference4\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference4\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

@@ -27,3 +27,14 @@ C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfWypozyczeniaDoBazy\bin\Debug\W
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfWypozyczeniaDoBazy\bin\Debug\WcfUserDoBazy.pdb
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfWypozyczeniaDoBazy\bin\Debug\WcfUserDoBazy.dll.config
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfWypozyczeniaDoBazy\obj\Debug\WcfWypozyczeniaDoBazy.csproj.CopyComplete
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfWypozyczeniaDoBazy\bin\Debug\WcfWypozyczeniaDoBazy.dll.config
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfWypozyczeniaDoBazy\bin\Debug\WcfWypozyczeniaDoBazy.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfWypozyczeniaDoBazy\bin\Debug\WcfWypozyczeniaDoBazy.pdb
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfWypozyczeniaDoBazy\bin\Debug\WcfUserDoBazy.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfWypozyczeniaDoBazy\bin\Debug\WcfUserDoBazy.pdb
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfWypozyczeniaDoBazy\bin\Debug\WcfUserDoBazy.dll.config
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfWypozyczeniaDoBazy\obj\Debug\WcfWypozyczeniaDoBazy.csprojAssemblyReference.cache
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfWypozyczeniaDoBazy\obj\Debug\WcfWypozyczeniaDoBazy.csproj.CoreCompileInputs.cache
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfWypozyczeniaDoBazy\obj\Debug\WcfWypozyczeniaDoBazy.csproj.CopyComplete
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfWypozyczeniaDoBazy\obj\Debug\WcfWypozyczeniaDoBazy.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfWypozyczeniaDoBazy\obj\Debug\WcfWypozyczeniaDoBazy.pdb

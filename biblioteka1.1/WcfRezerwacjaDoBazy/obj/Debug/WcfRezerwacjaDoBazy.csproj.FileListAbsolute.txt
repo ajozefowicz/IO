@@ -5,3 +5,10 @@ C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfRezerwacjaDoBazy\obj\Debug\Wcf
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfRezerwacjaDoBazy\obj\Debug\WcfRezerwacjaDoBazy.csproj.CoreCompileInputs.cache
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfRezerwacjaDoBazy\obj\Debug\WcfRezerwacjaDoBazy.dll
 C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfRezerwacjaDoBazy\obj\Debug\WcfRezerwacjaDoBazy.pdb
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfRezerwacjaDoBazy\bin\Debug\WcfRezerwacjaDoBazy.dll.config
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfRezerwacjaDoBazy\bin\Debug\WcfRezerwacjaDoBazy.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfRezerwacjaDoBazy\bin\Debug\WcfRezerwacjaDoBazy.pdb
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfRezerwacjaDoBazy\obj\Debug\WcfRezerwacjaDoBazy.csprojAssemblyReference.cache
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfRezerwacjaDoBazy\obj\Debug\WcfRezerwacjaDoBazy.csproj.CoreCompileInputs.cache
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfRezerwacjaDoBazy\obj\Debug\WcfRezerwacjaDoBazy.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfRezerwacjaDoBazy\obj\Debug\WcfRezerwacjaDoBazy.pdb

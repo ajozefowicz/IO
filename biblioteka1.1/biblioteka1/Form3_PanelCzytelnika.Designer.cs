@@ -108,7 +108,7 @@
             // 
             // compositeTypeBindingSource
             // 
-            this.compositeTypeBindingSource.DataSource = typeof(biblioteka1.ServiceReference4.CompositeType);
+           // this.compositeTypeBindingSource.DataSource = typeof(biblioteka1.ServiceReference4.CompositeType);
             // 
             // dataGridView_ksiazki
             // 

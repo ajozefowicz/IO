@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using biblioteka1.ServiceReference2;
 using WcfWypozyczeniaDoBazy;
 
-using WcfKsiazkaDoBazy4;
+using WcfEgzemplarzDoBazy;
 using biblioteka1.ServiceReference3;
 //using.biblioteka1.ServiceReference4;
 
@@ -26,13 +26,13 @@ namespace biblioteka1
         //WCFKsiazkaDataSet wc = new WCFKsiazkaDataSet();
 
 
-        WcfKsiazkaDoBazy4.Service1 sc;
+        WcfEgzemplarzDoBazy.AdministracjaEgzemplarzem sc;
 
-        WcfWypozyczeniaDoBazy.Service1 scWypozyczenie;
+        WcfWypozyczeniaDoBazy.AdministracjaWypozyczeniem scWypozyczenie;
 
-        WcfRezerwacjaDoBazy.Service1 scRezerwacja;
+        WcfRezerwacjaDoBazy.AdministracjaRezerwacja scRezerwacja;
 
-        WcfUserDoBazy.Service1 scUzytkownik;
+        WcfUserDoBazy.AdministracjaUzytkownikiem scUzytkownik;
 
         
 
@@ -40,13 +40,13 @@ namespace biblioteka1
         {
             InitializeComponent();
 
-            sc = new WcfKsiazkaDoBazy4.Service1();
+            sc = new WcfEgzemplarzDoBazy.AdministracjaEgzemplarzem();
 
-            scWypozyczenie = new WcfWypozyczeniaDoBazy.Service1();
+            scWypozyczenie = new WcfWypozyczeniaDoBazy.AdministracjaWypozyczeniem();
 
-            scRezerwacja = new WcfRezerwacjaDoBazy.Service1();
+            scRezerwacja = new WcfRezerwacjaDoBazy.AdministracjaRezerwacja();
 
-            scUzytkownik = new WcfUserDoBazy.Service1();
+            scUzytkownik = new WcfUserDoBazy.AdministracjaUzytkownikiem();
 
             
 
@@ -211,7 +211,8 @@ namespace biblioteka1
 
         private void button_Wypozycz_Click(object sender, EventArgs e)
         {
-            ServiceReference4.Ksiazka ks = new ServiceReference4.Ksiazka();
+            //ServiceReference4.Ksiazka ks = new ServiceReference4.Ksiazka();
+            WcfEgzemplarzDoBazy.Ksiazka ks = new WcfEgzemplarzDoBazy.Ksiazka();
 
  
             //2 wersje wypozyczania :
@@ -794,9 +795,13 @@ namespace biblioteka1
             // WcfRezerwacjaDoBazy.Rezerwacja r = new WcfRezerwacjaDoBazy.Rezerwacja();
             Rezerwacja r = new Rezerwacja();
 
-            ServiceReference4.Ksiazka ks = new ServiceReference4.Ksiazka();
 
-            WcfRezerwacjaDoBazy.Service1 ss = new WcfRezerwacjaDoBazy.Service1();
+            //!!!!! dlaczego to raz działa raz nie ????????
+            //ServiceReference4.Ksiazka ks = new ServiceReference4.Ksiazka(); 
+
+            WcfEgzemplarzDoBazy.Ksiazka ks = new WcfEgzemplarzDoBazy.Ksiazka();
+
+            WcfRezerwacjaDoBazy.AdministracjaRezerwacja ss = new WcfRezerwacjaDoBazy.AdministracjaRezerwacja();
 
             string idU = textBox_witajUser.Text;
             string idK = dataGridView_ksiazki.CurrentRow.Cells["id"].Value.ToString();

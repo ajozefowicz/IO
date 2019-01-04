@@ -14,6 +14,7 @@ using biblioteka1.ServiceReference3;
 using biblioteka1.ServiceReference4;
 
 using WcfUserDoBazy;
+using WcfEgzemplarzDoBazy;
 
 
 
@@ -23,22 +24,22 @@ namespace biblioteka1
     {
 
 
-        WcfUserDoBazy.Service1 sc;
+        WcfUserDoBazy.AdministracjaUzytkownikiem sc;
 
-        WcfKsiazkaDoBazy4.Service1 scKsiazki;
+        WcfEgzemplarzDoBazy.AdministracjaEgzemplarzem scKsiazki;
 
-        WcfWypozyczeniaDoBazy.Service1 scWypozyczenia;
+        WcfWypozyczeniaDoBazy.AdministracjaWypozyczeniem scWypozyczenia;
 
 
         public Form2_PanelPracownika()
         {
             InitializeComponent();
 
-            sc = new WcfUserDoBazy.Service1();
+            sc = new WcfUserDoBazy.AdministracjaUzytkownikiem();
 
-            scKsiazki = new WcfKsiazkaDoBazy4.Service1();
+            scKsiazki = new WcfEgzemplarzDoBazy.AdministracjaEgzemplarzem();
 
-            scWypozyczenia = new WcfWypozyczeniaDoBazy.Service1();
+            scWypozyczenia = new WcfWypozyczeniaDoBazy.AdministracjaWypozyczeniem();
         }
 
         private void button1_powrotDoGlownego_Click(object sender, EventArgs e)
@@ -91,9 +92,11 @@ namespace biblioteka1
            // k.dataWypozyczenia = DateTime.UtcNow.ToLocalTime();
            // k.dataZwrotu = DateTime.UtcNow.ToLocalTime();
 
-            ServiceReference4.Service1Client service = new ServiceReference4.Service1Client();
+           // ServiceReference4.Service1Client service = new ServiceReference4.Service1Client();
 
-           if ( service.InsertKsiazka(k) == 1)
+            WcfEgzemplarzDoBazy.AdministracjaEgzemplarzem ss = new WcfEgzemplarzDoBazy.AdministracjaEgzemplarzem();
+
+           if ( ss.InsertKsiazka(k) == 1)
             {
                 MessageBox.Show("Ksiazka dodana do bazy");
             }
@@ -138,7 +141,7 @@ namespace biblioteka1
 
             
 
-            WcfUserDoBazy.Service1 scUser = new WcfUserDoBazy.Service1();
+            WcfUserDoBazy.AdministracjaUzytkownikiem scUser = new WcfUserDoBazy.AdministracjaUzytkownikiem();
 
            // if (service.InsertUser(u) == 1) -- wczesniej dzialalo
 

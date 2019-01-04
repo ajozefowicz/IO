@@ -1,0 +1,14 @@
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfEgzemplarzDoBazy\bin\Debug\WcfEgzemplarzDoBazy.dll.config
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfEgzemplarzDoBazy\bin\Debug\WcfEgzemplarzDoBazy.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfEgzemplarzDoBazy\bin\Debug\WcfEgzemplarzDoBazy.pdb
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfEgzemplarzDoBazy\obj\Debug\WcfEgzemplarzDoBazy.csproj.CoreCompileInputs.cache
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfEgzemplarzDoBazy\obj\Debug\WcfEgzemplarzDoBazy.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfEgzemplarzDoBazy\obj\Debug\WcfEgzemplarzDoBazy.pdb
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1\WcfEgzemplarzDoBazy\obj\Debug\WcfEgzemplarzDoBazy.csprojAssemblyReference.cache
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfEgzemplarzDoBazy\bin\Debug\WcfEgzemplarzDoBazy.dll.config
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfEgzemplarzDoBazy\bin\Debug\WcfEgzemplarzDoBazy.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfEgzemplarzDoBazy\bin\Debug\WcfEgzemplarzDoBazy.pdb
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfEgzemplarzDoBazy\obj\Debug\WcfEgzemplarzDoBazy.csprojAssemblyReference.cache
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfEgzemplarzDoBazy\obj\Debug\WcfEgzemplarzDoBazy.csproj.CoreCompileInputs.cache
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfEgzemplarzDoBazy\obj\Debug\WcfEgzemplarzDoBazy.dll
+C:\Users\Anna\Desktop\IO_projekt\biblioteka1.1 dziala troche — kopia\WcfEgzemplarzDoBazy\obj\Debug\WcfEgzemplarzDoBazy.pdb
