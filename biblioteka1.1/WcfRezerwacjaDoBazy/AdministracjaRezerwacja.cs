@@ -83,8 +83,6 @@ namespace WcfRezerwacjaDoBazy
 
                 return comm.ExecuteNonQuery();
 
-                comm.Parameters.Clear();
-
 
             }
 
@@ -322,13 +320,6 @@ namespace WcfRezerwacjaDoBazy
 
 
 
-
-
-
-
-
-
-
                 conn.Open();
                 comm.ExecuteNonQuery();
 
@@ -438,18 +429,6 @@ namespace WcfRezerwacjaDoBazy
 
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     }

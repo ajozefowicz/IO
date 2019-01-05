@@ -67,32 +67,21 @@ namespace biblioteka1
 
             listBoxKsiazki.DataSource = sc.FillListBoxKsiazki();
 
-
-
            // dataGridView_ksiazki.DataSource = sc.FillListBoxKsiazki(); // przemyslec jak to tu działa
-
-
 
         }
 
         private void button_pokazKsiazkiTabela_Click(object sender, EventArgs e)
         {
 
-            //listBoxKsiazki.DataSource = sc.FillListBoxKsiazki();
-
-
-            //this.dataGridView_ksiazki.Columns["@licznikWypozyczen"].Visible = false;
+            //this.dataGridView_ksiazki.Columns["@licznikWypozyczen"].Visible = false; //nie dziaka
 
             //DataGridView bierze kolumny z klasy książka, nie z bazy 
 
-            //  dataGridView_ksiazki.Columns[1].Visible = false;
+            //  dataGridView_ksiazki.Columns[1].Visible = false; // nie dziala
 
 
             dataGridView_ksiazki.DataSource = sc.FillListBoxKsiazkiTabela();
-
-
-            //dataGridView_ksiazki.DataBind();
-
 
         }
 
@@ -196,9 +185,6 @@ namespace biblioteka1
                 key = "  CONVERT(VARCHAR, imieAutora)  = '" + key_imie + " ' and CONVERT(VARCHAR, nazwiskoAutora) = '" + key_nazwisko  +" ' and CONVERT(VARCHAR, nrISBN) = '" + key_isbn + " ' and CONVERT(VARCHAR, tytul) = '" + key_tytul + "'";
 
 
-
-            //listBox_ksiazkiWybrane.DataSource = sc.FillListBoxKsiazkiWybranePrzezUsera(key);
-
             dataGridView_ksiazki.DataSource = sc.FillListBoxKsiazkiWybranePrzezUsera(key);
 
 
@@ -217,11 +203,7 @@ namespace biblioteka1
  
             //2 wersje wypozyczania :
             //1. z rezerwacji i wtedy update rezerwacji - data
-            //2.normalne
-
-
-
-
+            //2. normalne
 
             //ks = listBox_ksiazkiWybrane.SelectedItem as ServiceReference1.Ksiazka;// to nie działa, po wybraniu wiersza na ekranie jest nullem
 
@@ -235,9 +217,6 @@ namespace biblioteka1
             //id Usera do sprawdzenia funkcji czy nie zalega i czy limit nie przekroczony
             string  idUzy = textBox_witajUser.Text;
 
-            //int key1 = Convert.ToInt32(dataGridView_katalogUsera.CurrentRow.Cells["idKsiazki"].Value.ToString());
-
-           // string key2 = dataGridView_katalogUsera.CurrentRow.Cells["idUsera"].Value.ToString();
 
             string keyRez = " CONVERT(VARCHAR, idKsiazki)  = '" + key1 + " ' and CONVERT(VARCHAR, idUsera) = '" + idUzy+ "'";
 
@@ -270,7 +249,7 @@ namespace biblioteka1
                     //int limit = Convert.ToInt32(textBox_limit.Text);
                     int maxCzasWypozyczenia = Convert.ToInt32(textBox_czasWypozyczenia.Text);
 
-                    Wypozyczenie_uniwersalne(key1);
+                    Wypozycz(key1);
 
                     //na koniec zdejmujemy rezerwacje z Listy Rezerwacji
                     scRezerwacja.DeleteRezerwacja(keyRez);
@@ -308,28 +287,18 @@ namespace biblioteka1
                 //najpierw sprawdzamy czy ksiazka dostępna
 
                 else if (Convert.ToBoolean(dataGridView_ksiazki.CurrentRow.Cells["stan"].Value.ToString()) == true)
-                    Wypozyczenie_uniwersalne(key1);
+                    Wypozycz(key1);
 
 
                 else
                     MessageBox.Show("Ksiazka niedostępna, pusty kwadracik !!!");
 
 
-
-
-
             }
                     
-
-
-
-
-            
-
-
         }
 
-        private void Wypozyczenie_uniwersalne(string key1)
+        private void Wypozycz(string key1)
         {
             int limit = Convert.ToInt32(textBox_limit.Text);
             int maxCzasWypozyczenia = Convert.ToInt32(textBox_czasWypozyczenia.Text);
@@ -393,7 +362,7 @@ namespace biblioteka1
 
 
             // update z WCFKiazka
-            sc.UpdateNaWypozyczenie2(key1, nowa);
+            sc.UpdateNaWypozyczenie(key1, nowa);
 
 
             //Insert z WCFWypozyczenie
@@ -564,11 +533,8 @@ namespace biblioteka1
         public void pobierzNazweUseraDoPowitania(string n)
         {
 
-            //textBox_IdUsera.Text = n;
-
             textBox_witajUser.Text = n;
 
-           // label7_witaJUser.Text = n;
         }
 
         private void button_przegladajkatalogWlasny_Click(object sender, EventArgs e)
@@ -673,11 +639,6 @@ namespace biblioteka1
             //a może sie da licząc ile razy dla danej pozycji id wypozyczenia wywołano klik butona
 
             //zmienają się tylko daty zwrotu w IKsiazka i i Wypozyczenie
-
-
-
-
-
 
 
             string key = dataGridView_katalogUsera.CurrentRow.Cells["idEgzemplarza"].Value.ToString();//key dla ksiazki
@@ -798,7 +759,7 @@ namespace biblioteka1
             //!!!!! dlaczego to raz działa raz nie ????????
             //ServiceReference4.Ksiazka ks = new ServiceReference4.Ksiazka(); 
 
-            WcfEgzemplarzDoBazy.Ksiazka ks = new WcfEgzemplarzDoBazy.Ksiazka();
+          //  WcfEgzemplarzDoBazy.Ksiazka ks = new WcfEgzemplarzDoBazy.Ksiazka();
 
             WcfRezerwacjaDoBazy.AdministracjaRezerwacja ss = new WcfRezerwacjaDoBazy.AdministracjaRezerwacja();
 

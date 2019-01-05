@@ -190,6 +190,7 @@ namespace WcfEgzemplarzDoBazy
 
         //  POKAZ KSIAZKI DLA PANELU cZYTELNIKA
 
+        //już jej nie uzywamy
 
         public List<string> FillListBoxKsiazki()
         {
@@ -367,66 +368,6 @@ namespace WcfEgzemplarzDoBazy
                 return ksiazki;
 
 
-
-
-
-                ///////////////////// wersja 2 nic nie wyswietla
-                /*
-                var data = from o in wc.IEgzemplarz
-                          select o ;
-                //List<object> baba = data.ToList();
-         
-                foreach (var item in data)
-               {
-                    // Wypisujemy podstawowe informacje
-
-                    string ss = item.id + item.tytul + item.stan + item.imieAutora + item.nazwiskoAutora + item.nrISBN;
-                    //Console.WriteLine("Id: {0}, Numer: {1}, Nazwa: {2}", item.ProductID, item.ProductNumber, item.Name);
-
-                    
-
-                    stringi.Add(ss);
-
-                }
-
-                */
-
-                ////////////// wersja 3 - nic
-                ///
-
-                /*
-                var employees = from emps in wc.IEgzemplarz
-
-                                select new
-                {
-                    emps.id,
-                    emps.tytul,
-                    emps.stan,
-                    emps.nazwiskoAutora,
-                    emps.imieAutora,
-                    emps.nrISBN,
-
-                };
-
-                  return employees;
-
-                
-                */
-
-                /*
-
-
-                   foreach (var item in employees)
-                   {
-
-                       string ss = item.id + item.tytul + item.stan + item.imieAutora + item.nazwiskoAutora + item.nrISBN;
-
-                    stringi.Add(ss);
-
-                    }
-
-                       return stringi; 
-                */
             }
 
             catch (Exception)
@@ -449,6 +390,7 @@ namespace WcfEgzemplarzDoBazy
         //  POKAZ KSIAZKI DLA PANELU PRACOWNIKA
 
 
+            //nie uzywamy juz tej funkcji
         public List<Ksiazka> FillListBoxKsiazkiPanelPracownika()
         {
 
@@ -505,88 +447,10 @@ namespace WcfEgzemplarzDoBazy
 
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
 
 
 
-
-        /////////////////////////////////
-        public List<Ksiazka> FillListBoxksiazkiTabela()
-        {
-
-            List<Ksiazka> ksiazki = new List<Ksiazka>();
-
-
-            try
-            {
-
-                ////////////////////////////////// wersja 
-
-
-                string cmdText = "Select * from IEgzemplarz";
-                SqlCommand cmd = new SqlCommand(cmdText, conn);
-                conn.Open();
-
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-
-
-
-
-                    Ksiazka ks = new Ksiazka();
-                    ks.tytul = reader["tytul"].ToString();
-                    ks.id = Convert.ToInt32(reader["id"].ToString());
-                    ks.stan = Convert.ToBoolean(reader["stan"].ToString());
-                    ks.rodzaj = reader["rodzaj"].ToString();
-                    ks.imieAutora = reader["imieAutora"].ToString();
-                    ks.nazwiskoAutora = reader["nazwiskoAutora"].ToString();
-                    ks.nrISBN = reader["nrISBN"].ToString();
-
-                    //if (ks.dataWypozyczenia.Value  DBNull.Value)
-                    //if (ks.dataWypozyczenia == DBNull.Value) return default(T)
-
-
-
-                    ks.dataWypozyczenia = Convert.ToDateTime(reader["dataWypozyczenia"].ToString());
-
-                    ks.dataZwrotu = Convert.ToDateTime(reader["dataZwrotu"].ToString());
-                    ks.licznikWypozyczen = Convert.ToInt32(reader["licznikWypozyczen"].ToString());
-                    ks.licznikPrzedluzen = Convert.ToInt32(reader["licznikPrzedluzen"].ToString());
-                    ks.iloscStron = Convert.ToInt32(reader["iloscStron"].ToString());
-
-                    ksiazki.Add(ks);
-
-
-                }
-                return ksiazki;
-
-
-            }
-
-            catch (Exception)
-            {
-                throw;
-            }
-
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
-            }
-
-        }
-
-
-        //////////////////
-        ///
-        public bool DeleteKsiazka2(string key)
+        public bool DeleteKsiazka(string key)
         {
             try
             {
@@ -681,70 +545,12 @@ namespace WcfEgzemplarzDoBazy
         ////////////////////////////////////////////
 
 
-        public void UpdateNaWypozyczenie(Ksiazka kStara, Ksiazka kNowa)
-        {
-
-            try
-            {
-
-                /*
-                string cmdText = "Update IEgzemplarz set dataWypozyczenia = @dataWypozyczenia, dataZwrotu = @dataZwrotu, stan = @stan where id = @id";
-                SqlCommand cmd = new SqlCommand(cmdText, conn);
-                cmd.Parameters.AddWithValue("@dataWypozyczenia", DateTime.UtcNow.ToLocalTime());
-                cmd.Parameters.AddWithValue("@dataWypozyczenia", DateTime.UtcNow.ToLocalTime());
-                cmd.Parameters.AddWithValue("status", kNowa.stan);
-                cmd.Parameters.AddWithValue("@id", kNowa.id);
-
-                conn.Open();
-                cmd.EndExecuteNonQuery();
-
-                */
-
-
-                //LICZY SIE TO W JAKIEJ KOLEJNOSCI TU SA POLA WPISANE, TAK DODAJE DO BAZY
-                comm.CommandText = "Update IEgzemplarz set   tytul = @tytul, stan = @stan, rodzaj = @rodzaj, licznikWypozyczen = @licznikWypozyczen," +
-                    "dataWypozyczenia = @dataWypozyczenia, dataZwrotu = @dataZwrotu, licznikPrzedluzen = @licznikPrzedluzen, iloscStron = @iloscStron, imieAutora = @imieAutora, nazwiskoAutora = @nazwiskoAutora, nrISBN = @nrISBN where id =@id ";
-
-
-                //caly czas sie pluje o to ID, przy wypozyczaniu drugiej ksiazki
-
-
-                comm.Parameters.AddWithValue("@id", kStara.id);
-                comm.Parameters.AddWithValue("@tytul", kNowa.tytul);
-                comm.Parameters.AddWithValue("@stan", kNowa.stan);
-                comm.Parameters.AddWithValue("@rodzaj", kNowa.rodzaj);
-                comm.Parameters.AddWithValue("@licznikWypozyczen", kNowa.licznikWypozyczen);
-                comm.Parameters.AddWithValue("@dataWypozyczenia", DateTime.UtcNow.ToLocalTime()); //DateTime.UtcNow.ToLocalTime()
-                comm.Parameters.AddWithValue("@dataZwrotu", DateTime.UtcNow.ToLocalTime()); // + 14 dni // tez można podac "2010-10-10"
-                comm.Parameters.AddWithValue("@licznikPrzedluzen", kNowa.licznikPrzedluzen);
-                comm.Parameters.AddWithValue("@iloscStron", kNowa.iloscStron);
-                comm.Parameters.AddWithValue("@imieAutora", kNowa.imieAutora);
-                comm.Parameters.AddWithValue("@nazwiskoAutora", kNowa.nazwiskoAutora);
-                comm.Parameters.AddWithValue("@nrISBN", kNowa.nrISBN);
-
-
-                conn.Open();
-                comm.ExecuteNonQuery();
-
-            }
-            catch
-            {
-                throw;
-            }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
-            }
-
-
-        }
+            
+        
 
 
 
-        public void UpdateNaWypozyczenie2(string key, Ksiazka kNowa)
+        public void UpdateNaWypozyczenie(string key, Ksiazka kNowa)
         {
 
             try

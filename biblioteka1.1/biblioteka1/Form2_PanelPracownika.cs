@@ -299,7 +299,7 @@ namespace biblioteka1
         {
             // dataGridViewPokazUserow.DataSource = sc.FillListBoxUserzyTabela();
 
-            dataGridView_ksiazkiTabela.DataSource = scKsiazki.FillListBoxksiazkiTabela();
+            dataGridView_ksiazkiTabela.DataSource = scKsiazki.FillListBoxKsiazkiTabela(); //zamiast ListBoxksiazkiTabela
         }
 
         private void button_usunKsiazkezTabeli_Click(object sender, EventArgs e)
@@ -311,7 +311,7 @@ namespace biblioteka1
 
             string key = "  id  = '" + key1 + " ' and CONVERT(VARCHAR, tytul) = '" + key2 + "'"; //= czy like? lepiej = i konversja na varchar
 
-            bool request = scKsiazki.DeleteKsiazka2(key);
+            bool request = scKsiazki.DeleteKsiazka(key);
 
             if (request)
             {
@@ -363,6 +363,7 @@ namespace biblioteka1
         private void button_pokazPracownikow_Click(object sender, EventArgs e)
         {
             dataGridViewPokazUserow.DataSource = sc.FillListBoxPracownicyTabela();
+
         }
 
         private void textBox_limit_TextChanged(object sender, EventArgs e)
