@@ -318,7 +318,7 @@ namespace WcfEgzemplarzDoBazy
         //  POKAZ KSIAZKI DLA PANELU CZYTELNIKA
 
 
-        public List<Ksiazka> FillListBoxKsiazkiTabela()
+        public List<Ksiazka> SelectWszytskieKsiazki()
         {
 
             //WCFKsiazkaDataSet wc = new WCFKsiazkaDataSet();
@@ -450,7 +450,7 @@ namespace WcfEgzemplarzDoBazy
 
 
 
-        public bool DeleteKsiazka(string key)
+        public bool DeleteEgzemplarz(string key)
         {
             try
             {
@@ -481,7 +481,7 @@ namespace WcfEgzemplarzDoBazy
         //////////////////////////////////////// wyszukiwanie przez userea
 
 
-        public List<Ksiazka> FillListBoxKsiazkiWybranePrzezUsera(string key)
+        public List<Ksiazka> SelectKsiazkiWybranePoParametrach(string key)
         {
 
             // WCFKsiazkaDataSet wc = new WCFKsiazkaDataSet();
@@ -703,7 +703,7 @@ namespace WcfEgzemplarzDoBazy
 
         /////////////////
 
-        public List<Ksiazka> pokazDaneWybranejKsiazkiZKataloguUsera(string key) //mozna tez zrobic oknk wyskakujace z opisem
+        public List<Ksiazka> SelectDaneWybranejKsiazkiZKataloguUsera(string key) //mozna tez zrobic oknk wyskakujace z opisem
         {
             //kluczem bedzue id z DataGrid katalogu usera
 
@@ -774,7 +774,7 @@ namespace WcfEgzemplarzDoBazy
         ///////////////////////////////////
         ///
 
-        public List<string> pokazKsiazkiNajczesciejWypozyczane() //mozna tez zrobic oknk wyskakujace z opisem
+        public List<string> SelectKsiazkiNajczesciejWypozyczane() //mozna tez zrobic oknk wyskakujace z opisem
         {
             //kluczem bedzue największa liczba wypozyczeń
 
@@ -812,7 +812,7 @@ namespace WcfEgzemplarzDoBazy
                     ks.licznikPrzedluzen = Convert.ToInt32(reader["licznikPrzedluzen"].ToString());
                     ks.iloscStron = Convert.ToInt32(reader["iloscStron"].ToString());
 
-                    string ss = ks.tytul + " napisana przez " + ks.imieAutora + " " + ks.nazwiskoAutora + " (" + ks.nrISBN + "), ilosc wypozyczen: " + ks.licznikWypozyczen;
+                    string ss = ks.tytul + " autor: " + ks.imieAutora + " " + ks.nazwiskoAutora + " licznik: " + ks.licznikWypozyczen;
 
 
                     stringi.Add(ss);
@@ -842,7 +842,7 @@ namespace WcfEgzemplarzDoBazy
 
 
 
-        public List<string> pokazKsiazkiNajzadziejWypozyczane() //mozna tez zrobic oknk wyskakujace z opisem
+        public List<string> SelectKsiazkiNajzadziejWypozyczane() //mozna tez zrobic oknk wyskakujace z opisem
         {
             //kluczem bedzue największa liczba wypozyczeń
 

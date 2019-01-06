@@ -65,13 +65,13 @@ namespace biblioteka1
         private void button_pokazKsiazki_Click(object sender, EventArgs e)
         {
 
-            listBoxKsiazki.DataSource = sc.FillListBoxKsiazki();
+            //listBoxKsiazki.DataSource = sc.FillListBoxKsiazki();
 
            // dataGridView_ksiazki.DataSource = sc.FillListBoxKsiazki(); // przemyslec jak to tu działa
 
         }
 
-        private void button_pokazKsiazkiTabela_Click(object sender, EventArgs e)
+        private void pokazWszytskieKsiazki(object sender, EventArgs e)
         {
 
             //this.dataGridView_ksiazki.Columns["@licznikWypozyczen"].Visible = false; //nie dziaka
@@ -81,7 +81,7 @@ namespace biblioteka1
             //  dataGridView_ksiazki.Columns[1].Visible = false; // nie dziala
 
 
-            dataGridView_ksiazki.DataSource = sc.FillListBoxKsiazkiTabela();
+            dataGridView_ksiazki.DataSource = sc.SelectWszytskieKsiazki();
 
         }
 
@@ -90,7 +90,7 @@ namespace biblioteka1
 
         }
 
-        private void button_Wyszukaj_Click(object sender, EventArgs e)
+        private void wyszukajEgzemplarz(object sender, EventArgs e)
         {
 
 
@@ -185,7 +185,7 @@ namespace biblioteka1
                 key = "  CONVERT(VARCHAR, imieAutora)  = '" + key_imie + " ' and CONVERT(VARCHAR, nazwiskoAutora) = '" + key_nazwisko  +" ' and CONVERT(VARCHAR, nrISBN) = '" + key_isbn + " ' and CONVERT(VARCHAR, tytul) = '" + key_tytul + "'";
 
 
-            dataGridView_ksiazki.DataSource = sc.FillListBoxKsiazkiWybranePrzezUsera(key);
+            dataGridView_ksiazki.DataSource = sc.SelectKsiazkiWybranePoParametrach(key);
 
 
         }
@@ -195,7 +195,7 @@ namespace biblioteka1
 
         }
 
-        private void button_Wypozycz_Click(object sender, EventArgs e)
+        private void wypozycEgzemplarz(object sender, EventArgs e)
         {
             //ServiceReference4.Ksiazka ks = new ServiceReference4.Ksiazka();
             WcfEgzemplarzDoBazy.Ksiazka ks = new WcfEgzemplarzDoBazy.Ksiazka();
@@ -223,15 +223,15 @@ namespace biblioteka1
             int limit = Convert.ToInt32(textBox_limit.Text);
 
             //1. sprawdzamy czy user nie zalega z skiążkami
-            if (scWypozyczenie.CzyUserNieZalegazeZwrotem(idUzy) == false)  //tzn zalega
+            if (scWypozyczenie.SelectCzyUserNieZalegazeZwrotem(idUzy) == false)  //tzn zalega
             {
                 MessageBox.Show("Zalegasz ze zwrotem, nie możesz wypozyczyc");
             }
 
             //2. spr czy nie przekroczy limitu
-            else if(scWypozyczenie.IleMaWypozyczonych(idUzy)>=limit) // na probe 20
+            else if(scWypozyczenie.SelectIleUserMaWypozyczonych(idUzy)>=limit) // na probe 20
             {
-                MessageBox.Show("Wypozyczyles juz " + Convert.ToInt32(scWypozyczenie.IleMaWypozyczonych(idUzy)) + " nie mozesz więcej" );
+                MessageBox.Show("Wypozyczyles juz " + Convert.ToInt32(scWypozyczenie.SelectIleUserMaWypozyczonych(idUzy)) + " nie mozesz więcej" );
             }
 
             //3.
@@ -241,7 +241,7 @@ namespace biblioteka1
                 //jesli ks jest na rezerwacji u user jest nr 1 w kolejce to może wypozyczyć
                 //i ks musi byc zwrocona, czyli data zwrotu<dataaktualna
 
-                if((scRezerwacja.CzyKsiazkaJestNaRzerwacji(key1)==true) && scRezerwacja.NaKtorejUserJestPozycjiWRezerwacji(idUzy,idK )==1
+                if((scRezerwacja.SelectCzyKsiazkaJestNaRzerwacji(key1)==true) && scRezerwacja.SelectNaKtorejUserJestPozycjiWRezerwacji(idUzy,idK )==1
                     && dataDoSprawdzeniaRezerwacji< DateTime.UtcNow.ToLocalTime())
 
                 {
@@ -273,7 +273,7 @@ namespace biblioteka1
                 }
 
 
-                else if ((scRezerwacja.CzyKsiazkaJestNaRzerwacji(key1) == true) && scRezerwacja.NaKtorejUserJestPozycjiWRezerwacji(idUzy, idK) == 1
+                else if ((scRezerwacja.SelectCzyKsiazkaJestNaRzerwacji(key1) == true) && scRezerwacja.SelectNaKtorejUserJestPozycjiWRezerwacji(idUzy, idK) == 1
                     && dataDoSprawdzeniaRezerwacji > DateTime.UtcNow.ToLocalTime())
 
                 {
@@ -374,13 +374,13 @@ namespace biblioteka1
             ///////////////////////////////
         }
 
-        private void button_dodajDoUlubionych_Click(object sender, EventArgs e)
+        private void dodajDoUlubionych(object sender, EventArgs e)
         {
             // trza gdzieś zrobic pole ulubioneDla i tam np podawac id usera, w książce nie - bo moze bnyc wielu userów a pole 1, 
             //w wypozyczeniach też nie bo nie musiał wypozyczyć by dodać do ulubioncyh - no w ostateczności tak sie zrobi
         }
 
-        private void button_zwroc_Click(object sender, EventArgs e) // uwaga zmieniona nazawa butona, jak by sie krzaczyło pamiętać
+        private void zwrocWybranaKsiazke(object sender, EventArgs e) // uwaga zmieniona nazawa butona, jak by sie krzaczyło pamiętać
         {
             //zwróc
             //wybiera poprzez wybór na liście ksiazek usera
@@ -394,7 +394,7 @@ namespace biblioteka1
 
             //pooakzuje dane wybranej - bo tak
             //dataGridView_ksiazki.DataSource = sc.FillListBoxKsiazkiWybranePrzezUsera(key);
-            dataGridView_wybrana.DataSource = sc.pokazDaneWybranejKsiazkiZKataloguUsera(keyDoWstawienia);
+            dataGridView_wybrana.DataSource = sc.SelectDaneWybranejKsiazkiZKataloguUsera(keyDoWstawienia);
 
 
 
@@ -411,7 +411,7 @@ namespace biblioteka1
 
                 Ksiazka nowa = new Ksiazka();
 
-                if (scRezerwacja.CzyKsiazkaJestNaRzerwacji(key) == true)
+                if (scRezerwacja.SelectCzyKsiazkaJestNaRzerwacji(key) == true)
                 {
                     nowa.stan = false;
 
@@ -537,7 +537,7 @@ namespace biblioteka1
 
         }
 
-        private void button_przegladajkatalogWlasny_Click(object sender, EventArgs e)
+        private void przegladajKatalogWlasny(object sender, EventArgs e)
         {
             string idUzytkownika = textBox_witajUser.Text;
 
@@ -545,23 +545,23 @@ namespace biblioteka1
 
             string key = "  CONVERT(VARCHAR, idUsera)  like '" + idUzytkownika + "'";
 
-            dataGridView_katalogUsera.DataSource = scWypozyczenie.FillWypozyczeniaUseraWszystkie(key, idUzytkownika);
+            dataGridView_katalogUsera.DataSource = scWypozyczenie.SelectWypozyczeniaUzytkownikaWszystkie(key, idUzytkownika);
 
         }
 
-        private void button_pokazAktualneWypUsera_Click(object sender, EventArgs e)
+        private void pokazAktualneWypozyczeniaCzytelnika(object sender, EventArgs e)
         {
             string idUzytkownika = textBox_witajUser.Text; // label7_witajUserName.Text;
 
             string key = "  CONVERT(VARCHAR, idUsera)  like '" + idUzytkownika + "' and czyAktualne like '1' ";
 
-            dataGridView_katalogUsera.DataSource = scWypozyczenie.FillWypozyczeniaUseraAktualne(key);
+            dataGridView_katalogUsera.DataSource = scWypozyczenie.SelectWypozyczeniaUzytkownikaAktualne(key);
 
 
 
         }
 
-        private void button_pokazArchiwalneWypUsera_Click(object sender, EventArgs e)
+        private void pokazArchiwalneWypozyczeniaCzytelnika(object sender, EventArgs e)
         {
 
 
@@ -569,11 +569,11 @@ namespace biblioteka1
 
             string key = "  CONVERT(VARCHAR, idUsera)  like '" + idUzytkownika + "' and czyAktualne like '0' ";
 
-            dataGridView_katalogUsera.DataSource = scWypozyczenie.FillWypozyczeniaUseraAktualne(key);
+            dataGridView_katalogUsera.DataSource = scWypozyczenie.SelectWypozyczeniaUzytkownikaAktualne(key);
 
         }
 
-        private void button1_pokazDaneWybranejKs_Click(object sender, EventArgs e)
+        private void pokazDaneWybranejPozycji(object sender, EventArgs e)
         {
             string id = dataGridView_katalogUsera.CurrentRow.Cells["idEgzemplarza"].Value.ToString();
 
@@ -581,7 +581,7 @@ namespace biblioteka1
 
 
             //dataGridView_ksiazki.DataSource = sc.FillListBoxKsiazkiWybranePrzezUsera(key);
-            dataGridView_wybrana.DataSource = sc.pokazDaneWybranejKsiazkiZKataloguUsera(key);
+            dataGridView_wybrana.DataSource = sc.SelectDaneWybranejKsiazkiZKataloguUsera(key);
 
 
         }
@@ -594,7 +594,7 @@ namespace biblioteka1
 
 
             //dataGridView_ksiazki.DataSource = sc.FillListBoxKsiazkiWybranePrzezUsera(key);
-            dataGridView_wybrana.DataSource = sc.pokazDaneWybranejKsiazkiZKataloguUsera(key);
+            dataGridView_wybrana.DataSource = sc.SelectDaneWybranejKsiazkiZKataloguUsera(key);
 
             dataGridView_wybrana.ClearSelection();
 
@@ -616,7 +616,7 @@ namespace biblioteka1
 
 
             //dataGridView_ksiazki.DataSource = sc.FillListBoxKsiazkiWybranePrzezUsera(key);
-            dataGridView_wybrana.DataSource = sc.pokazDaneWybranejKsiazkiZKataloguUsera(key);
+            dataGridView_wybrana.DataSource = sc.SelectDaneWybranejKsiazkiZKataloguUsera(key);
 
 
             dataGridView_wybrana.ClearSelection();
@@ -628,7 +628,7 @@ namespace biblioteka1
 
         }
 
-        private void button_przedłuż_Click(object sender, EventArgs e)
+        private void przedluzWybranaKsiazke(object sender, EventArgs e)
         {
 
             int limit = Convert.ToInt32(textBox_limit.Text);
@@ -652,7 +652,7 @@ namespace biblioteka1
 
             //pooakzuje dane wybranej - bo tak
             //dataGridView_ksiazki.DataSource = sc.FillListBoxKsiazkiWybranePrzezUsera(key);
-            dataGridView_wybrana.DataSource = sc.pokazDaneWybranejKsiazkiZKataloguUsera(keyDoWstawienia);
+            dataGridView_wybrana.DataSource = sc.SelectDaneWybranejKsiazkiZKataloguUsera(keyDoWstawienia);
 
 
 
@@ -750,7 +750,7 @@ namespace biblioteka1
 
         }
 
-        private void button_ZarezerwujKsiazke_Click(object sender, EventArgs e)
+        private void zarezerwujEgzemplarz(object sender, EventArgs e)
         {
             // WcfRezerwacjaDoBazy.Rezerwacja r = new WcfRezerwacjaDoBazy.Rezerwacja();
             Rezerwacja r = new Rezerwacja();
@@ -768,7 +768,7 @@ namespace biblioteka1
 
             //blokada, że jesli raz zarezerwował to już drugi raz nie może - w tej samej "turze", po zwrocie już moze
 
-            if (ss.CzyUserJuzZarezerowalDanaKsiazka(idK, idU) == false)
+            if (ss.SelectCzyUserJuzZarezerowalDanaKsiazka(idK, idU) == false)
             {
                 r.idUsera = textBox_witajUser.Text;
                 r.idEgzemplarza = Convert.ToInt32(dataGridView_ksiazki.CurrentRow.Cells["id"].Value.ToString());
@@ -791,13 +791,13 @@ namespace biblioteka1
 
         }
 
-        private void button_pokazZarezerwowane_Click(object sender, EventArgs e)
+        private void pokazZarezerwowaneKsiazkiUzytkownika(object sender, EventArgs e)
         {
             string idUzytkownika = textBox_witajUser.Text; // label7_witajUserName.Text;
 
             string key = "  CONVERT(VARCHAR, idUsera)  like '" + idUzytkownika + "' ";
 
-            dataGridView_katalogUsera.DataSource = scRezerwacja.FillRezerwacjeUsera(key);
+            dataGridView_katalogUsera.DataSource = scRezerwacja.SelectRezerwacjeUzytkownika(key);
         }
 
         private void dataGridView_ksiazki_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -805,7 +805,7 @@ namespace biblioteka1
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void pokazNumerCzytelnikaWKolejceRezerwacji(object sender, EventArgs e)
         {
             string idUzy = textBox_witajUser.Text;
 
@@ -816,15 +816,15 @@ namespace biblioteka1
 
 
             if(dataZw> DateTime.UtcNow.ToLocalTime())
-            textBox_nrWKolejce.Text = (scRezerwacja.NaKtorejUserJestPozycjiWRezerwacji(idUzy, idK)).ToString();
+            textBox_nrWKolejce.Text = (scRezerwacja.SelectNaKtorejUserJestPozycjiWRezerwacji(idUzy, idK)).ToString();
 
             else
-                textBox_nrWKolejce.Text = ((scRezerwacja.NaKtorejUserJestPozycjiWRezerwacji(idUzy, idK))-1).ToString();
+                textBox_nrWKolejce.Text = ((scRezerwacja.SelectNaKtorejUserJestPozycjiWRezerwacji(idUzy, idK))-1).ToString();
 
 
         }
 
-        private void button_usunRezerwacje_Click(object sender, EventArgs e)
+        private void usunRezerwacje(object sender, EventArgs e)
         {
 
 
@@ -855,7 +855,7 @@ namespace biblioteka1
         {
             //jest ok
             string key = dataGridView_katalogUsera.CurrentRow.Cells["idEgzemplarza"].Value.ToString();
-            textBox1_pomocniczy.Text = Convert.ToString(scRezerwacja.CzyKsiazkaJestNaRzerwacji(key));
+            //textBox1_pomocniczy.Text = Convert.ToString(scRezerwacja.CzyKsiazkaJestNaRzerwacji(key));
         }
 
         private void button_powiadomieniaORez_Click(object sender, EventArgs e)
@@ -892,7 +892,7 @@ namespace biblioteka1
 
             string idUzytkownika = textBox_witajUser.Text;
             string key = "  CONVERT(VARCHAR, id)  like '" + idUzytkownika + "'";
-            textBox_limit.Text = (scUzytkownik.PokazLimitUsera(key, idUzytkownika)).ToString();
+            textBox_limit.Text = (scUzytkownik.SelectLimitUzytkownika(key, idUzytkownika)).ToString();
 
             return textBox_limit.Text;
 
@@ -904,12 +904,35 @@ namespace biblioteka1
 
             string idUzytkownika = textBox_witajUser.Text;
             string key = "  CONVERT(VARCHAR, id)  like '" + idUzytkownika + "'";
-            textBox_czasWypozyczenia.Text = (scUzytkownik.PokazMaxCzasWypozyczeniaUsera(key, idUzytkownika)).ToString();
+            textBox_czasWypozyczenia.Text = (scUzytkownik.SelectMaxCzasWypozyczeniaUsera(key, idUzytkownika)).ToString();
 
             return textBox_czasWypozyczenia.Text;
 
         }
 
+        private void label4_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void compositeTypeBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_limit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

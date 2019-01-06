@@ -31,6 +31,7 @@ namespace biblioteka1
 
             Form2_PanelPracownika p = new Form2_PanelPracownika();
             p.Show();
+
         }
 
         private void button2_Log_Czytelnik_Click(object sender, EventArgs e)

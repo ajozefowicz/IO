@@ -149,7 +149,7 @@ namespace WcfUserDoBazy
 
 
         //tego juz nie uzywamy
-        public List<Czytelnik> FillListBoxUzytkownicy()
+        public List<Czytelnik> SelectUzytkownicy()
         {
 
             List<Czytelnik> uzytkownicy = new List<Czytelnik>();
@@ -200,7 +200,7 @@ namespace WcfUserDoBazy
 
 
 
-            public List<Czytelnik> FillListBoxCzytelnicyTabela()
+            public List<Czytelnik> SelectCzytelnicy()
         {
 
             List<Czytelnik> uzytkownicy = new List<Czytelnik>();
@@ -262,7 +262,7 @@ namespace WcfUserDoBazy
 
 
 
-        public List<Pracownik> FillListBoxPracownicyTabela()
+        public List<Pracownik> SelectPracownicy()
         {
 
             List<Pracownik> uzytkownicy = new List<Pracownik>();
@@ -335,7 +335,7 @@ namespace WcfUserDoBazy
 
         /////////////////////////////////////////////////////
         ///
-        public void DeleteUser (Uzytkownik u)
+        public void DeleteUzytkownik (Uzytkownik u)
         {
 
             try
@@ -370,7 +370,7 @@ namespace WcfUserDoBazy
         ///////////
         ///
 
-        public bool DeleteUser2(string key)
+        public bool DeleteUzytkownik2(string key)
         {
 
             try
@@ -417,7 +417,7 @@ namespace WcfUserDoBazy
 
 
 
-        public int PokazLimitUsera(string key, string idU)
+        public int SelectLimitUzytkownika(string key, string idU)
         {
 
             //List<Wypozyczenie> wypozyczenia = new List<Wypozyczenie>();
@@ -474,7 +474,7 @@ namespace WcfUserDoBazy
 
 
 
-        public int PokazMaxCzasWypozyczeniaUsera(string key, string idU)
+        public int SelectMaxCzasWypozyczeniaUsera(string key, string idU)
         {
 
 

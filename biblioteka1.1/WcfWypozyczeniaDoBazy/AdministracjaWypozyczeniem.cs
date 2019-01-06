@@ -118,7 +118,7 @@ namespace WcfWypozyczeniaDoBazy
 
 
 
-        public List<Wypozyczenie> FillWypozyczeniaDataGridViewTabela()
+        public List<Wypozyczenie> SelectWszystkieWypozyczenia()
         {
 
             List<Wypozyczenie> wypozyczenia = new List<Wypozyczenie>();
@@ -176,7 +176,7 @@ namespace WcfWypozyczeniaDoBazy
         //////////////////////////////////////////////
         ///
         //wypozyczenia konkretnego usera
-        public List<Wypozyczenie> FillWypozyczeniaUseraWszystkie(string key, string idU)
+        public List<Wypozyczenie> SelectWypozyczeniaUzytkownikaWszystkie(string key, string idU)
         {
 
             List<Wypozyczenie> wypozyczenia = new List<Wypozyczenie>();
@@ -242,7 +242,7 @@ namespace WcfWypozyczeniaDoBazy
         // aktualne wypozyczenia usera
 
 
-        public List<Wypozyczenie> FillWypozyczeniaUseraAktualne(string key)
+        public List<Wypozyczenie> SelectWypozyczeniaUzytkownikaAktualne(string key)
         {
             List<Wypozyczenie> wypozyczenia = new List<Wypozyczenie>();
 
@@ -290,7 +290,7 @@ namespace WcfWypozyczeniaDoBazy
         }
 
 
-        public List<Wypozyczenie> FillWypozyczeniaUseraArchiwalne(string key)
+        public List<Wypozyczenie> SelectWypozyczeniaUzytwkonikaArchiwalne(string key)
         {
             List<Wypozyczenie> wypozyczenia = new List<Wypozyczenie>();
 
@@ -434,7 +434,7 @@ namespace WcfWypozyczeniaDoBazy
 
 
 
-        public bool CzyUserNieZalegazeZwrotem(string idUzytkownika)
+        public bool SelectCzyUserNieZalegazeZwrotem(string idUzytkownika)
         {
 
             //sprawdzamy czy data żadnej pozycji nie została przekroczona i czy limit ksiązek nie zotsał przekroczony
@@ -507,7 +507,7 @@ namespace WcfWypozyczeniaDoBazy
         }
 
 
-        public int IleMaWypozyczonych(string idUzytkownika)
+        public int SelectIleUserMaWypozyczonych(string idUzytkownika)
         {
 
             try

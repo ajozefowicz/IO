@@ -71,7 +71,7 @@ namespace biblioteka1
 
         }
 
-        private void button1_dodajKsiazke_Click(object sender, EventArgs e)
+        private void dodajEgzemplarz(object sender, EventArgs e)
         {
 
 
@@ -134,7 +134,7 @@ namespace biblioteka1
 
         }
 
-        private void button_dodajUsera_Click(object sender, EventArgs e)
+        private void dodajUzytkownika(object sender, EventArgs e)
         {
 
             //moze z ifem sprobowac if box stanowisko not null to ....
@@ -225,18 +225,18 @@ namespace biblioteka1
         {
             //zaby pokazało ks wszytskie, ale tylko kila parametrów
             // listBox_ksiazkiPracownik.DataSource = scKsiazki.FillListBoxKsiazkiPanelPracownika();
-            listBox_ksiazkiPracownik.DataSource = scKsiazki.pokazKsiazkiNajczesciejWypozyczane();
+            listBox_ksiazkiPracownik.DataSource = scKsiazki.SelectKsiazkiNajczesciejWypozyczane();
 
 
         }
 
-        private void button_pokazCzytelnikowDataGrid_Click(object sender, EventArgs e)
+        private void pokazCzytelnikow(object sender, EventArgs e)
         {
-            dataGridViewPokazUserow.DataSource = sc.FillListBoxCzytelnicyTabela();
+            dataGridViewPokazUserow.DataSource = sc.SelectCzytelnicy();
 
         }
 
-        private void button_usunUserazTabeli_Click(object sender, EventArgs e)
+        private void usunCzytelnikow(object sender, EventArgs e)
         {
             // int rowIndex = dataGridViewPokazUserow.CurrentCell.RowIndex;
             //dataGridViewPokazUserow.Rows.RemoveAt(rowIndex);
@@ -279,7 +279,7 @@ namespace biblioteka1
 
             string key = " CONVERT(VARCHAR, id)  = '" + key1 + " ' and CONVERT(VARCHAR, haslo) = '" + key2 + "'"; //= czy like? lepiej = i konversja na varchar
 
-            bool request = sc.DeleteUser2(key);
+            bool request = sc.DeleteUzytkownik2(key);
 
             if(request)
             {
@@ -295,14 +295,14 @@ namespace biblioteka1
 
         //////////////////////////////////////////////////////////
 
-        private void button_pokazKsiazkiTabela_Click(object sender, EventArgs e)
+        private void pokazKsiazki(object sender, EventArgs e)
         {
             // dataGridViewPokazUserow.DataSource = sc.FillListBoxUserzyTabela();
 
-            dataGridView_ksiazkiTabela.DataSource = scKsiazki.FillListBoxKsiazkiTabela(); //zamiast ListBoxksiazkiTabela
+            dataGridView_ksiazkiTabela.DataSource = scKsiazki.SelectWszytskieKsiazki(); //zamiast ListBoxksiazkiTabela
         }
 
-        private void button_usunKsiazkezTabeli_Click(object sender, EventArgs e)
+        private void usunKsiazke(object sender, EventArgs e)
         {
 
             string key1 = dataGridView_ksiazkiTabela.CurrentRow.Cells["id"].Value.ToString();
@@ -311,7 +311,7 @@ namespace biblioteka1
 
             string key = "  id  = '" + key1 + " ' and CONVERT(VARCHAR, tytul) = '" + key2 + "'"; //= czy like? lepiej = i konversja na varchar
 
-            bool request = scKsiazki.DeleteKsiazka(key);
+            bool request = scKsiazki.DeleteEgzemplarz(key);
 
             if (request)
             {
@@ -334,23 +334,23 @@ namespace biblioteka1
 
         }
 
-        private void button_pokazWypozyczenia_Click(object sender, EventArgs e)
+        private void pokazWypozyczenia(object sender, EventArgs e)
         {
-            dataGridView_ksiazkiTabela.DataSource = scWypozyczenia.FillWypozyczeniaDataGridViewTabela();
+            dataGridView_ksiazkiTabela.DataSource = scWypozyczenia.SelectWszystkieWypozyczenia();
         }
 
-        private void comboBox_sortowanieNaj_SelectedIndexChanged(object sender, EventArgs e)
+        private void pokazInformacjeOPoczytnosci(object sender, EventArgs e)
         {
            if (comboBox_sortowanieNaj.SelectedIndex == 0 )
             {
-                listBox_ksiazkiPracownik.DataSource = scKsiazki.pokazKsiazkiNajczesciejWypozyczane();
+                listBox_ksiazkiPracownik.DataSource = scKsiazki.SelectKsiazkiNajczesciejWypozyczane();
 
             }
 
 
             if (comboBox_sortowanieNaj.SelectedIndex == 1)
             {
-                listBox_ksiazkiPracownik.DataSource = scKsiazki.pokazKsiazkiNajzadziejWypozyczane();
+                listBox_ksiazkiPracownik.DataSource = scKsiazki.SelectKsiazkiNajzadziejWypozyczane();
 
             }
         }
@@ -360,9 +360,9 @@ namespace biblioteka1
 
         }
 
-        private void button_pokazPracownikow_Click(object sender, EventArgs e)
+        private void pokazPracownikow(object sender, EventArgs e)
         {
-            dataGridViewPokazUserow.DataSource = sc.FillListBoxPracownicyTabela();
+            dataGridViewPokazUserow.DataSource = sc.SelectPracownicy();
 
         }
 
@@ -386,6 +386,42 @@ namespace biblioteka1
 
             if (comboBox_kategoria.Text == "pracownik")
                 textBox_limit.Text = "30";
+        }
+
+        private void button_przejscieDoSekcjiCzytelnika_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            Form3_PanelCzytelnika p = new Form3_PanelCzytelnika();
+            p.Show();
+
+
+
+        }
+
+        private void label1_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_tytul_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridViewPokazUserow_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

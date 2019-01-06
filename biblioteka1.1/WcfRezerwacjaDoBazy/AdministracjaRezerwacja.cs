@@ -105,7 +105,7 @@ namespace WcfRezerwacjaDoBazy
 
 
 
-        public List<Rezerwacja> FillRezerwacjeUsera(string key)
+        public List<Rezerwacja> SelectRezerwacjeUzytkownika(string key)
         {
             List<Rezerwacja> rezerwacje = new List<Rezerwacja>();
 
@@ -158,7 +158,7 @@ namespace WcfRezerwacjaDoBazy
 
 
 
-        public bool CzyKsiazkaJestNaRzerwacji(string idK)
+        public bool SelectCzyKsiazkaJestNaRzerwacji(string idK)
         {
 
             try
@@ -202,7 +202,7 @@ namespace WcfRezerwacjaDoBazy
         }
 
 
-        public int NaKtorejUserJestPozycjiWRezerwacji(string idU, int idK)
+        public int SelectNaKtorejUserJestPozycjiWRezerwacji(string idU, int idK)
         {
 
             try
@@ -386,7 +386,7 @@ namespace WcfRezerwacjaDoBazy
 
 
 
-        public bool CzyUserJuzZarezerowalDanaKsiazka(string idK, string idU) //jesli true to nie moze zarezerowac drugi raz
+        public bool SelectCzyUserJuzZarezerowalDanaKsiazka(string idK, string idU) //jesli true to nie moze zarezerowac drugi raz
         {
 
             try
